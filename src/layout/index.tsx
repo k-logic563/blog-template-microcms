@@ -6,6 +6,7 @@ import {
   Grid,
   GridItem,
   useDisclosure,
+  extendTheme,
 } from '@chakra-ui/react'
 
 import Header from '@/components/organisms/Header'
@@ -17,6 +18,14 @@ import { BlogContent } from '@/api/types'
 type Props = {
   children: React.ReactNode
 }
+
+const theme = extendTheme({
+  fonts: {
+    headings:
+      'Helvetica Neue, Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif',
+    body: 'Helvetica Neue, Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif',
+  },
+})
 
 const Layout = ({ children }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -56,7 +65,7 @@ const Layout = ({ children }: Props) => {
   }, [])
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Header onOpen={onOpen} />
       <Container maxW="container.lg" py={12}>
         <Grid
