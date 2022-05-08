@@ -27,12 +27,11 @@ const Header: React.FC<Props> = ({ onOpen }) => {
       <Container maxW="container.lg">
         <Flex justify="space-between" align="center">
           {isTopPage ? (
-            <Heading as="h1" color="white" fontSize={['lg', 'xl', '4xl']}>
+            <Text as="h1" color="white" fontSize={['lg', 'xl', '4xl']} fontWeight="bold">
               {pkg.name}
-            </Heading>
+            </Text>
           ) : (
             <Text
-              lineHeight={1.2}
               fontSize={['lg', 'xl', '4xl']}
               fontWeight="bold"
               color="white"
