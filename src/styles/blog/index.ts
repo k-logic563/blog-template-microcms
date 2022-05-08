@@ -1,0 +1,126 @@
+import { css } from '@emotion/react'
+import { theme } from '@chakra-ui/react'
+
+export const tocList = css`
+  list-style-position: inside;
+  list-style-type: none;
+  color: ${theme.colors.gray['800']};
+  line-height: 1.8;
+  font-size: clamp(14px, 3vw, 16px);
+
+  & > li {
+    &:before {
+      content: '-';
+      display: inline-block;
+      color: ${theme.colors.gray['400']};
+      margin-right: 0.5em;
+    }
+
+    &.h3 {
+      padding-left: 0.6em;
+    }
+
+    &.h4 {
+      padding-left: 1.2em;
+    }
+  }
+`
+
+export const listLink = css`
+  display: inline-block;
+
+  &:hover {
+    opacity: 0.6;
+  }
+`
+
+export const pagination = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(30px, 4vw, 36px);
+  height: clamp(30px, 4vw, 36px);
+  color: ${theme.colors.teal['500']};
+  border: 1px solid ${theme.colors.teal['500']};
+  transition: all 150ms;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    background-color: ${theme.colors.teal['500']};
+    color: #fff;
+  }
+
+  &.is-active {
+    background-color: ${theme.colors.teal['500']};
+    color: #fff;
+    pointer-events: none;
+  }
+`
+
+export const contents = css`
+  overflow-x: auto;
+
+  p {
+    margin-bottom: 1em;
+    line-height: 1.8;
+  }
+
+  ul,
+  ol {
+    list-style-position: inside;
+    line-height: 1.8;
+    padding: 0.8em 1em;
+    background-color: ${theme.colors.gray['200']};
+  }
+
+  h2 {
+    padding: 0.3em 1em;
+    background-color: ${theme.colors.teal['500']};
+    color: #fff;
+    font-weight: bold;
+    font-size: clamp(18px, 5vw, 24px);
+    margin: 1.2em 0 0.6em;
+  }
+
+  h3 {
+    border-bottom: 1px solid ${theme.colors.teal['500']};
+    font-size: clamp(16px, 4vw, 20px);
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+    padding: 0.2em 0.5em;
+  }
+
+  blockquote {
+    position: relative;
+    padding: 10px 15px 10px 50px;
+    background: #efefef;
+    color: #555;
+    margin: 1em 0;
+  }
+
+  blockquote:before {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    content: '“';
+    font-family: sans-serif;
+    color: #cfcfcf;
+    font-size: 90px;
+    line-height: 1;
+  }
+
+  blockquote p {
+    padding: 0;
+    margin: 10px 0;
+    line-height: 1.7;
+  }
+
+  blockquote cite {
+    display: block;
+    text-align: right;
+    color: #888888;
+    font-size: 0.9em;
+  }
+`
