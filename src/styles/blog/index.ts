@@ -44,6 +44,7 @@ export const pagination = css`
   border: 1px solid ${theme.colors.teal['500']};
   transition: all 150ms;
   cursor: pointer;
+  border-radius: 5px;
 
   &:hover {
     text-decoration: none;

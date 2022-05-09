@@ -38,7 +38,7 @@ export const Main: NextPageWithLayout<HomeProps> = ({ response }) => {
         <List contents={contents} />
         <Box textAlign="center" mt={8}>
           <Link href="/blog/page/1" color="white">
-            <Button colorScheme="teal" size="md">
+            <Button colorScheme="teal" size="md" rounded="5px">
               一覧を見る
             </Button>
           </Link>

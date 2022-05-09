@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Box, Text, VStack } from '@chakra-ui/react'
+import { Box, Text, SimpleGrid } from '@chakra-ui/react'
 
 import { Category } from '@/components/organisms/sidebar/Category'
 import { Tag } from '@/components/organisms/sidebar/Tag'
@@ -14,8 +14,8 @@ type Props = {
 
 export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
   return (
-    <VStack gap={6}>
-      <Box w="100%">
+    <SimpleGrid gap={6}>
+      <Box>
         <Text
           mb={4}
           fontSize={['base', 'lg']}
@@ -24,11 +24,11 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
           borderBottomWidth="2px"
           borderColor="teal.500"
         >
-          ブログのお人
+          プロフィール
         </Text>
         <Bio />
       </Box>
-      <Box w="100%">
+      <Box>
         <Text
           mb={4}
           fontSize={['base', 'lg']}
@@ -45,7 +45,7 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
           <p>loading categories...</p>
         )}
       </Box>
-      <Box w="100%">
+      <Box>
         <Text
           mb={4}
           fontSize={['base', 'lg']}
@@ -58,7 +58,7 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
         </Text>
         {tags.length !== 0 ? <Tag tags={tags} /> : <p>loading tags...</p>}
       </Box>
-    </VStack>
+    </SimpleGrid>
   )
 }
 
