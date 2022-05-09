@@ -21,7 +21,7 @@ export const Main: NextPageWithLayout<HomeProps> = ({ response }) => {
         </Heading>
         <Box fontSize={{ base: '14px', md: '16px' }}>
           <Text mb={4}>
-            このサイトは著者"iwt"が、勉強のアウトプットのために作ったサイトです。
+            このサイトは著者&quot;iwt&quot;が、勉強のアウトプットのために作ったサイトです。
             <br />
             日頃の学んだ知識を惜しみなく出していきたいと思っています。
           </Text>
