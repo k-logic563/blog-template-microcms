@@ -6,26 +6,22 @@ import {
   Grid,
   GridItem,
   useDisclosure,
-  extendTheme,
 } from '@chakra-ui/react'
 
 import Header from '@/components/organisms/Header'
 import Footer from '@/components/organisms/Footer'
 import { Sidebar } from '@/layout/widget/Sidebar'
 import SearchModal from '@/layout/widget/SearchModal'
-import { BlogContent } from '@/api/types'
+
+import { theme } from '@/config/chakraTheme'
+import { BlogContent, CategoryContent, TagContent } from '@/api/types'
 
 type Props = {
   children: React.ReactNode
 }
 
-const theme = extendTheme({
-  fonts: {
-    headings:
-      'Helvetica Neue, Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif',
-    body: 'Helvetica Neue, Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif',
-  },
-})
+const CATEGORY_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
+const TAG_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/tag`
 
 const Layout = ({ children }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -34,6 +30,8 @@ const Layout = ({ children }: Props) => {
   const [filteredArticles, setFilteredArticles] = useState<
     BlogContent['contents']
   >([])
+  const [categories, setCategories] = useState<CategoryContent['contents']>([])
+  const [tags, setTags] = useState<TagContent['contents']>([])
 
   const handleSearch = (keyword: string) => {
     const word = keyword.trim()
@@ -54,6 +52,14 @@ const Layout = ({ children }: Props) => {
   }
 
   useEffect(() => {
+    // set tag and category
+    const promise1 = axios.get<CategoryContent>(CATEGORY_URL)
+    const promise2 = axios.get<TagContent>(TAG_URL)
+    Promise.all([promise1, promise2]).then((responses) => {
+      setCategories(responses[0].data.contents)
+      setTags(responses[1].data.contents)
+    })
+    // set articles
     axios
       .get<BlogContent>('/api/blog')
       .then((res) => {
@@ -76,7 +82,7 @@ const Layout = ({ children }: Props) => {
         >
           <GridItem colSpan={{ md: 3 }}>{children}</GridItem>
           <GridItem position="sticky" top="1rem">
-            <Sidebar />
+            <Sidebar categories={categories} tags={tags} />
           </GridItem>
         </Grid>
       </Container>

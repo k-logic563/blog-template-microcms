@@ -66,6 +66,14 @@ export const contents = css`
     line-height: 1.8;
   }
 
+  a {
+    color: ${theme.colors.blue['400']};
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   ul,
   ol {
     list-style-position: inside;
