@@ -1,16 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
-import {
-  Box,
-  Image,
-  Stack,
-  VStack,
-  Text,
-  Tag,
-  TagLabel,
-  Icon,
-} from '@chakra-ui/react'
+import { Box, Image, Stack, VStack, Text, Icon, Flex } from '@chakra-ui/react'
 import { AiOutlineFieldTime } from 'react-icons/ai'
 
 import { formatDate } from '@/utils/dateUtils'
@@ -28,30 +19,40 @@ const List: React.FC<Props> = ({ contents }) => {
         <Link key={item.id} href={`/blog/${item.id}`} passHref>
           <a css={styles.blog.listLink}>
             <Stack columnGap={6} direction={{ base: 'column', sm: 'row' }}>
-              <Box w={{ base: '100%', sm: '35%' }}>
+              <Box position="relative" w={{ base: '100%', sm: '40%' }}>
                 <Image objectFit="cover" src={item.eyecatch.url} alt="" />
-              </Box>
-              <Box>
                 <Text
-                  fontSize={{ base: '16px', md: '18px', lg: '20px' }}
-                  fontWeight="bold"
-                  mb={0.5}
+                  position="absolute"
+                  top={0}
+                  left={0}
+                  py={1}
+                  px={2}
+                  fontSize={{ base: '12px' }}
+                  bg="whiteAlpha.600"
                 >
-                  {item.title}
+                  {item.category.name}
                 </Text>
-                <Text mb={3} fontSize={{ base: '14px', md: '16px' }}>
+              </Box>
+              <Flex direction="column" py={{ md: 2 }} flex={1}>
+                <Box>
+                  <Text
+                    fontSize={{ base: '16px', md: '18px', lg: '20px' }}
+                    fontWeight="bold"
+                    mb={2}
+                  >
+                    {item.title}
+                  </Text>
+                </Box>
+                <Text
+                  mt="auto"
+                  textAlign="right"
+                  fontSize={{ base: '14px', md: '16px' }}
+                  color="gray.500"
+                >
                   <Icon as={AiOutlineFieldTime} verticalAlign="middle" mr={1} />
                   {formatDate(item.publishedAt)}
                 </Text>
-                <Tag
-                  size="sm"
-                  variant="outline"
-                  colorScheme="teal"
-                  rounded="3px"
-                >
-                  <TagLabel>{item.category.name}</TagLabel>
-                </Tag>
-              </Box>
+              </Flex>
             </Stack>
           </a>
         </Link>
