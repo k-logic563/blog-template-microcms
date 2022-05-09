@@ -64,6 +64,7 @@ export const contents = css`
   p {
     margin-bottom: 1em;
     line-height: 1.8;
+    font-size: clamp(14px, 3vw, 16px);
   }
 
   a {

@@ -7,7 +7,7 @@ export const Bio = () => {
       <Image
         src="/assets/images/iwt.jpg"
         alt="iwt"
-        w={{ base: '300px', md: 'auto' }}
+        w={{ base: '100%', sm: '300px', md: 'auto' }}
       />
     </Box>
   )

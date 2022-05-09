@@ -19,7 +19,7 @@ export const Main: NextPageWithLayout<HomeProps> = ({ response }) => {
         >
           このサイトについて
         </Heading>
-        <Box fontSize={{ base: '14px', md: '16px' }}>
+        <Box>
           <Text mb={4}>
             このサイトは著者&quot;iwt&quot;が、勉強のアウトプットのために作ったサイトです。
             <br />
