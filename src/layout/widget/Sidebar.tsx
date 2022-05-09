@@ -1,8 +1,10 @@
 import React, { memo } from 'react'
 import { Box, Text, VStack } from '@chakra-ui/react'
 
-import { Category } from '@/layout/widget/Category'
-import { Tag } from '@/layout/widget/Tag'
+import { Category } from '@/components/organisms/sidebar/Category'
+import { Tag } from '@/components/organisms/sidebar/Tag'
+import { Bio } from '@/components/organisms/sidebar/Bio'
+
 import { CategoryContent, TagContent } from '@/api/types'
 
 type Props = {
@@ -13,6 +15,19 @@ type Props = {
 export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
   return (
     <VStack gap={6}>
+      <Box w="100%">
+        <Text
+          mb={4}
+          fontSize={['base', 'lg']}
+          fontWeight="bold"
+          bg="gray.200"
+          p={2}
+          rounded="base"
+        >
+          ブログのお人
+        </Text>
+        <Bio />
+      </Box>
       <Box w="100%">
         <Text
           mb={4}

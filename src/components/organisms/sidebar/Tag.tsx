@@ -4,6 +4,7 @@ import { Flex, Icon } from '@chakra-ui/react'
 import { AiOutlineTag } from 'react-icons/ai'
 
 import { TagContent } from '@/api/types'
+import * as styles from '@/styles'
 
 type Props = {
   tags: TagContent['contents']
@@ -14,7 +15,7 @@ export const Tag: React.FC<Props> = ({ tags }) => {
     <Flex gap={2} align="center" flexWrap="wrap" px={2}>
       {tags.map((x) => (
         <Link key={x.id} href={`/blog/tag/${x.id}/1`} passHref>
-          <a>
+          <a css={styles.sidebar.link}>
             <Icon verticalAlign="middle" mr={1} as={AiOutlineTag} />
             {x.name}
           </a>

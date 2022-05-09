@@ -1,7 +1,17 @@
 import React from 'react'
 import Link from 'next/link'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
-import { Box, SimpleGrid, Text, Tag, TagLabel } from '@chakra-ui/react'
+import {
+  Box,
+  Image,
+  Stack,
+  VStack,
+  Text,
+  Tag,
+  TagLabel,
+  Icon,
+} from '@chakra-ui/react'
+import { AiOutlineFieldTime } from 'react-icons/ai'
 
 import { formatDate } from '@/utils/dateUtils'
 import { Content } from '@/api/types'
@@ -13,25 +23,40 @@ type Props = {
 
 const List: React.FC<Props> = ({ contents }) => {
   return (
-    <SimpleGrid columns={{ sm: 2 }} spacing={6}>
+    <VStack spacing={6}>
       {contents.map((item) => (
-        <Box key={item.id} w="100%" py={7} px={6} shadow="xl" rounded="10px">
-          <Text mb={2}>{formatDate(item.publishedAt)}</Text>
-          <Text
-            fontSize={{ base: '18px', lg: '20px' }}
-            fontWeight="bold"
-            mb={4}
-          >
-            <Link href={`/blog/${item.id}`} passHref>
-              <a css={styles.blog.listLink}>{item.title}</a>
-            </Link>
-          </Text>
-          <Tag size="sm" variant="outline" colorScheme="teal">
-            <TagLabel>{item.category.name}</TagLabel>
-          </Tag>
-        </Box>
+        <Link key={item.id} href={`/blog/${item.id}`} passHref>
+          <a css={styles.blog.listLink}>
+            <Stack columnGap={6} direction={{ base: 'column', sm: 'row' }}>
+              <Box w={{ base: '100%', sm: '35%' }}>
+                <Image objectFit="cover" src={item.eyecatch.url} alt="" />
+              </Box>
+              <Box>
+                <Text
+                  fontSize={{ base: '16px', md: '18px', lg: '20px' }}
+                  fontWeight="bold"
+                  mb={0.5}
+                >
+                  {item.title}
+                </Text>
+                <Text mb={3} fontSize={{ base: '14px', md: '16px' }}>
+                  <Icon as={AiOutlineFieldTime} verticalAlign="middle" mr={1} />
+                  {formatDate(item.publishedAt)}
+                </Text>
+                <Tag
+                  size="sm"
+                  variant="outline"
+                  colorScheme="teal"
+                  rounded="3px"
+                >
+                  <TagLabel>{item.category.name}</TagLabel>
+                </Tag>
+              </Box>
+            </Stack>
+          </a>
+        </Link>
       ))}
-    </SimpleGrid>
+    </VStack>
   )
 }
 

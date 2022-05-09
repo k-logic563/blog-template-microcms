@@ -10,8 +10,8 @@ import {
 
 import Header from '@/components/organisms/Header'
 import Footer from '@/components/organisms/Footer'
-import { Sidebar } from '@/layout/widget/Sidebar'
 import SearchModal from '@/layout/widget/SearchModal'
+import { Sidebar } from '@/layout/widget/Sidebar'
 
 import { theme } from '@/config/chakraTheme'
 import { BlogContent, CategoryContent, TagContent } from '@/api/types'
@@ -82,13 +82,13 @@ const Layout = ({ children }: Props) => {
         }}
       >
         <Grid
-          templateColumns={{ md: 'repeat(4, 1fr)' }}
+          templateColumns={{ md: '1fr 0.35fr' }}
           columnGap={8}
           rowGap={10}
           alignItems="start"
         >
-          <GridItem colSpan={{ md: 3 }}>{children}</GridItem>
-          <GridItem position="sticky" top="1rem">
+          <GridItem>{children}</GridItem>
+          <GridItem position="sticky" top="6rem">
             <Sidebar categories={categories} tags={tags} />
           </GridItem>
         </Grid>

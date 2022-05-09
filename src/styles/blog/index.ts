@@ -27,7 +27,7 @@ export const tocList = css`
 `
 
 export const listLink = css`
-  display: inline-block;
+  transition: opacity 150ms;
 
   &:hover {
     opacity: 0.6;
