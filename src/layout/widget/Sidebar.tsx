@@ -20,9 +20,9 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
           mb={4}
           fontSize={['base', 'lg']}
           fontWeight="bold"
-          bg="gray.200"
           p={2}
-          rounded="base"
+          borderBottomWidth="2px"
+          borderColor="teal.500"
         >
           ブログのお人
         </Text>
@@ -33,9 +33,9 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
           mb={4}
           fontSize={['base', 'lg']}
           fontWeight="bold"
-          bg="gray.200"
           p={2}
-          rounded="base"
+          borderBottomWidth="2px"
+          borderColor="teal.500"
         >
           カテゴリー
         </Text>
@@ -50,9 +50,9 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
           mb={4}
           fontSize={['base', 'lg']}
           fontWeight="bold"
-          bg="gray.200"
           p={2}
-          rounded="base"
+          borderBottomWidth="2px"
+          borderColor="teal.500"
         >
           タグ
         </Text>
