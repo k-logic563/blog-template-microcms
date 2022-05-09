@@ -9,6 +9,7 @@ import hljs from 'highlight.js'
 
 import Layout from '@/layout'
 import { Main } from '@/components/pages/blog'
+
 import { client } from '@/utils/httpUtils'
 
 export type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>

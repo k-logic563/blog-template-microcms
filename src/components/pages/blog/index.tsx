@@ -5,8 +5,8 @@ import { Heading, Text, Box, Image } from '@chakra-ui/react'
 
 import { BlogDetailProps } from '@/pages/blog/[id]'
 import { formatDate } from '@/utils/dateUtils'
-import * as styles from '@/styles'
 
+import * as styles from '@/styles'
 import 'highlight.js/styles/atom-one-dark.css'
 
 export const Main: NextPage<BlogDetailProps> = ({ data, toc }) => {
