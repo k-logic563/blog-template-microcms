@@ -1,8 +1,8 @@
 import React from 'react'
-import { StackDivider, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
+import { Flex, Icon } from '@chakra-ui/react'
+import { AiOutlineTag } from 'react-icons/ai'
 
-import * as styles from '@/styles'
 import { TagContent } from '@/api/types'
 
 type Props = {
@@ -11,16 +11,15 @@ type Props = {
 
 export const Tag: React.FC<Props> = ({ tags }) => {
   return (
-    <VStack
-      spacing={0}
-      align="start"
-      divider={<StackDivider borderColor="gray.200" />}
-    >
+    <Flex gap={2} align="center" flexWrap="wrap" px={2}>
       {tags.map((x) => (
         <Link key={x.id} href={`/blog/tag/${x.id}/1`} passHref>
-          <a css={styles.sidebar.link}>{x.name}</a>
+          <a>
+            <Icon verticalAlign="middle" mr={1} as={AiOutlineTag} />
+            {x.name}
+          </a>
         </Link>
       ))}
-    </VStack>
+    </Flex>
   )
 }

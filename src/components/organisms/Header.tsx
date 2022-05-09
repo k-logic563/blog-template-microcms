@@ -1,15 +1,7 @@
 import React, { memo } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-  Container,
-  Icon,
-  Button,
-} from '@chakra-ui/react'
+import { Box, Flex, Text, Container, Icon, Button } from '@chakra-ui/react'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 import pkg from '~/package.json'
@@ -23,7 +15,19 @@ const Header: React.FC<Props> = ({ onOpen }) => {
   const isTopPage = pathname === '/'
 
   return (
-    <Box bg="teal.500" py={4}>
+    <Box
+      bg="teal.500"
+      h={{
+        base: '52px',
+        md: '72px',
+      }}
+      display="grid"
+      placeItems="center"
+      position="fixed"
+      top={0}
+      zIndex={1000}
+      width="100%"
+    >
       <Container maxW="container.lg">
         <Flex justify="space-between" align="center">
           {isTopPage ? (

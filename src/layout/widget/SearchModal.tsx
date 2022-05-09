@@ -36,8 +36,8 @@ const SearchModal: React.FC<Props> = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} onCloseComplete={handleModalEnd}>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
+      <ModalContent maxW={{ base: '90%', sm: '560px' }} p={6}>
+        <ModalHeader p={0}>
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
@@ -57,7 +57,7 @@ const SearchModal: React.FC<Props> = ({
           </InputGroup>
         </ModalHeader>
         {filteredArticles.length !== 0 && (
-          <ModalBody>
+          <ModalBody p={0} mt={8}>
             <ul css={styles.search.list}>
               {filteredArticles.map((x) => (
                 <li key={x.id}>

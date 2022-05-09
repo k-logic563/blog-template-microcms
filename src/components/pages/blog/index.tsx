@@ -16,7 +16,7 @@ export const Main: NextPage<BlogDetailProps> = ({ data, toc }) => {
         title={`${data.title}:my-micro-blog`}
         description="記事詳細ページです。"
       />
-      <Heading as="h1" mb={4}>
+      <Heading as="h1" fontSize={{ base: '24px', lg: '32px' }} mb={4}>
         {data.title}
       </Heading>
       <Text mb={8}>投稿日&ensp;{formatDate(data.publishedAt)}</Text>

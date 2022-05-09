@@ -67,7 +67,7 @@ export const contents = css`
   }
 
   a {
-    color: ${theme.colors.blue['400']};
+    color: ${theme.colors.blue['600']};
 
     &:hover {
       text-decoration: underline;
@@ -88,14 +88,14 @@ export const contents = css`
     color: #fff;
     font-weight: bold;
     font-size: clamp(18px, 5vw, 24px);
-    margin: 1.2em 0 0.6em;
+    margin: 2em 0 1em;
   }
 
   h3 {
     border-bottom: 1px solid ${theme.colors.teal['500']};
     font-size: clamp(16px, 4vw, 20px);
     font-weight: bold;
-    margin: 1em 0 0.5em;
+    margin: 1.2em 0 0.8em;
     padding: 0.2em 0.5em;
   }
 

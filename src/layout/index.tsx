@@ -73,7 +73,14 @@ const Layout = ({ children }: Props) => {
   return (
     <ChakraProvider theme={theme}>
       <Header onOpen={onOpen} />
-      <Container maxW="container.lg" py={12}>
+      <Container
+        maxW="container.lg"
+        py={12}
+        mt={{
+          base: '52px',
+          md: '72px',
+        }}
+      >
         <Grid
           templateColumns={{ md: 'repeat(4, 1fr)' }}
           columnGap={8}
