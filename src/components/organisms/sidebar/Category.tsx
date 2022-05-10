@@ -1,5 +1,5 @@
 import React from 'react'
-import { StackDivider, VStack } from '@chakra-ui/react'
+import { StackDivider, VStack, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 
 import { CategoryContent } from '@/api/types'
@@ -19,7 +19,9 @@ export const Category: React.FC<Props> = ({ categories }) => {
     >
       {categories.map((x) => (
         <Link key={x.id} href={`/blog/category/${x.id}/1`} passHref>
-          <a css={styles.sidebar.link}>{x.name}</a>
+          <Text as="a" w="100%" py={1.5} css={styles.sidebar.link}>
+            {x.name}
+          </Text>
         </Link>
       ))}
     </VStack>

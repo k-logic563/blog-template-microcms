@@ -3,6 +3,7 @@ import { Box, Text, SimpleGrid } from '@chakra-ui/react'
 
 import { Category } from '@/components/organisms/sidebar/Category'
 import { Tag } from '@/components/organisms/sidebar/Tag'
+import { Sns } from '@/components/organisms/sidebar/Sns'
 
 import { CategoryContent, TagContent } from '@/api/types'
 
@@ -43,6 +44,19 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
           タグ
         </Text>
         {tags.length !== 0 ? <Tag tags={tags} /> : <p>loading tags...</p>}
+      </Box>
+      <Box>
+        <Text
+          mb={4}
+          fontSize={['base', 'lg']}
+          fontWeight="bold"
+          p={2}
+          borderBottomWidth="2px"
+          borderColor="teal.500"
+        >
+          SNS
+        </Text>
+        <Sns />
       </Box>
     </SimpleGrid>
   )

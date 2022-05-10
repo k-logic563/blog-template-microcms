@@ -2,5 +2,5 @@ body {
   font-feature-settings: 'palt' !important;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
 }
