@@ -19,7 +19,11 @@ export const Main: NextPageWithLayout<HomeProps> = ({ response }) => {
         >
           最新記事
         </Heading>
-        <List contents={contents} />
+        {contents.length !== 0 ? (
+          <List contents={contents} />
+        ) : (
+          <Text>記事がありません。</Text>
+        )}
         <Box textAlign="center" mt={8}>
           <Link href="/blog/page/1" color="white">
             <Button colorScheme="teal" size="md" rounded="5px">
