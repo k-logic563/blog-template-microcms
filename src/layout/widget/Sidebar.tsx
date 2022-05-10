@@ -3,7 +3,6 @@ import { Box, Text, SimpleGrid } from '@chakra-ui/react'
 
 import { Category } from '@/components/organisms/sidebar/Category'
 import { Tag } from '@/components/organisms/sidebar/Tag'
-import { Bio } from '@/components/organisms/sidebar/Bio'
 
 import { CategoryContent, TagContent } from '@/api/types'
 
@@ -15,19 +14,6 @@ type Props = {
 export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
   return (
     <SimpleGrid gap={6}>
-      <Box>
-        <Text
-          mb={4}
-          fontSize={['base', 'lg']}
-          fontWeight="bold"
-          p={2}
-          borderBottomWidth="2px"
-          borderColor="teal.500"
-        >
-          プロフィール
-        </Text>
-        <Bio />
-      </Box>
       <Box>
         <Text
           mb={4}

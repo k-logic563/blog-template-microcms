@@ -1,8 +1,20 @@
 import React, { memo } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { Box, Flex, Text, Container, Icon, Button } from '@chakra-ui/react'
-import { AiOutlineSearch } from 'react-icons/ai'
+import {
+  Box,
+  Flex,
+  Text,
+  Container,
+  Icon,
+  Button,
+  HStack,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from '@chakra-ui/react'
+import { AiOutlineSearch, AiOutlineMenu } from 'react-icons/ai'
 
 import pkg from '~/package.json'
 
@@ -50,18 +62,42 @@ const Header: React.FC<Props> = ({ onOpen }) => {
               </Link>
             </Text>
           )}
-          <Button
-            variant="unstyled"
-            onClick={onOpen}
-            display="flex"
-            alignContent="center"
-          >
-            <Icon
-              as={AiOutlineSearch}
-              fontSize={{ base: '20px', md: '24px' }}
-              color="white"
-            />
-          </Button>
+          <HStack spacing={2}>
+            <Menu>
+              <MenuButton>
+                <Icon
+                  as={AiOutlineMenu}
+                  fontSize={{ base: '20px', md: '24px' }}
+                  color="white"
+                  verticalAlign="middle"
+                />
+              </MenuButton>
+              <MenuList>
+                <Link href="/about" passHref>
+                  <MenuItem as="a" fontSize={{ base: '14px', sm: '16px' }}>
+                    このサイトについて
+                  </MenuItem>
+                </Link>
+                <Link href="/privacy" passHref>
+                  <MenuItem as="a" fontSize={{ base: '14px', sm: '16px' }}>
+                    プライバシーポリシー
+                  </MenuItem>
+                </Link>
+              </MenuList>
+            </Menu>
+            <Button
+              variant="unstyled"
+              onClick={onOpen}
+              display="flex"
+              alignContent="center"
+            >
+              <Icon
+                as={AiOutlineSearch}
+                fontSize={{ base: '20px', md: '24px' }}
+                color="white"
+              />
+            </Button>
+          </HStack>
         </Flex>
       </Container>
     </Box>
