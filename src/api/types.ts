@@ -1,6 +1,7 @@
 import { MicroCMSListResponse } from 'microcms-js-sdk'
 
 export type Content = {
+  id: string
   title: string
   description: string
   content: string

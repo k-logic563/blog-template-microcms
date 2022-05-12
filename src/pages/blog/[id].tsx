@@ -6,6 +6,7 @@ import {
 } from 'next'
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
+import { ParsedUrlQuery } from 'querystring'
 
 import Layout from '@/layout'
 import { Main } from '@/components/pages/blog'
@@ -14,9 +15,12 @@ import { client } from '@/utils/httpUtils'
 
 export type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 
-type Params = {
+type Params = ParsedUrlQuery & {
   id: string
 }
+
+const isDraft = (item: any): item is { draftKey: string } =>
+  !!(item?.draftKey && typeof item.draftKey === 'string')
 
 export const getStaticPaths = async () => {
   const data = await client.blogs.$get()
@@ -29,8 +33,11 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
-  const { params } = ctx
-  const res = await client.blogs._id(`${params?.id}`).$get()
+  const { params, previewData } = ctx
+  const draftKey = isDraft(previewData) ? previewData.draftKey : ''
+  const res = await client.blogs
+    ._id(`${params?.id}`)
+    .$get({ query: { draftKey } })
   const $ = cheerio.load(res.content)
   $('pre code').each((_, elm) => {
     const result = hljs.highlightAuto($(elm).text())
