@@ -14,10 +14,10 @@ export const Main: NextPage<BlogDetailProps> = ({ data, toc }) => {
   return (
     <>
       <NextSeo
-        title={`${data.title}:my-micro-blog`}
+        title={`${data.title}`}
         description={data.description}
         openGraph={{
-          title: `${data.title}:my-micro-blog`,
+          title: `${data.title}`,
           description: data.description,
           url: `https://iwtttter.tech/blog/${data.id}`,
         }}
