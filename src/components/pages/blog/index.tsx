@@ -19,7 +19,9 @@ export const Main: NextPage<BlogDetailProps> = ({ data, toc }) => {
       <Heading as="h1" fontSize={{ base: '24px', lg: '32px' }} mb={4}>
         {data.title}
       </Heading>
-      <Text mb={8}>投稿日&ensp;{formatDate(data.publishedAt)}</Text>
+      <Text mb={8}>
+        投稿日&ensp;{formatDate(data.publishedAt ?? data.createdAt)}
+      </Text>
       <Box mb={6}>
         <Image src={data.eyecatch.url} alt="" />
       </Box>
