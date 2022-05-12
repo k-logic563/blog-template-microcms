@@ -15,7 +15,7 @@ import * as constants from '@/constants'
 export type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
 type Params = {
-  id: string
+  pageId: string
   catId: string
 }
 
@@ -50,14 +50,18 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params } = ctx
 
-  if (!params?.catId || !params?.id) {
-    throw new Error('ID not found')
+  if (!params?.pageId) {
+    throw new Error('pageID not found.')
+  }
+
+  if (!params?.catId) {
+    throw new Error('catID not found.')
   }
 
   const data = await client.blogs.$get({
     query: {
       filters: `category[equals]${params?.catId}`,
-      offset: (Number(params?.id) - 1) * constants.pagination.PER_PAGE,
+      offset: (Number(params?.pageId) - 1) * constants.pagination.PER_PAGE,
       limit: constants.pagination.PER_PAGE,
     },
   })
@@ -70,7 +74,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
       data,
       catName,
       catId: params?.catId,
-      pageId: params?.id,
+      pageId: params?.pageId,
     },
     revalidate: 1,
   }

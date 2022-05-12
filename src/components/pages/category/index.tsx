@@ -5,7 +5,7 @@ import { Box, Heading } from '@chakra-ui/react'
 
 import List from '@/components/organisms/blog/List'
 import Pagination from '@/components/organisms/Pagination'
-import { CategoryPageProps } from '@/pages/blog/category/[catId]/[id]'
+import { CategoryPageProps } from '@/pages/blog/category/[catId]/[pageId]'
 
 export const Main: NextPage<CategoryPageProps> = ({
   data,

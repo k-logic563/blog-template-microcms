@@ -5,7 +5,7 @@ import { Box, Heading } from '@chakra-ui/react'
 
 import List from '@/components/organisms/blog/List'
 import Pagination from '@/components/organisms/Pagination'
-import { TagPageProps } from '@/pages/blog/tag/[tagId]/[id]'
+import { TagPageProps } from '@/pages/blog/tag/[tagId]/[pageId]'
 
 export const Main: NextPage<TagPageProps> = ({
   data,

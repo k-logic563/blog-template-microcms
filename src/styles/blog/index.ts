@@ -92,9 +92,6 @@ export const contents = css`
   ol {
     list-style-position: inside;
     line-height: 1.8;
-    padding: 0.8em 1em;
-    background-color: ${theme.colors.gray['200']};
-    border-radius: 5px;
   }
 
   h2 {

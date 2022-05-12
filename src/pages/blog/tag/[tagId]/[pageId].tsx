@@ -15,7 +15,7 @@ import * as constants from '@/constants'
 export type TagPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
 type Params = {
-  id: string
+  pageId: string
   tagId: string
 }
 
@@ -50,14 +50,18 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params } = ctx
 
-  if (!params?.tagId || !params?.id) {
-    throw new Error('ID not found')
+  if (!params?.pageId) {
+    throw new Error('pageID not found.')
+  }
+
+  if (!params?.tagId) {
+    throw new Error('tagID not found.')
   }
 
   const data = await client.blogs.$get({
     query: {
       filters: `tag[contains]${params?.tagId}`,
-      offset: (Number(params?.id) - 1) * constants.pagination.PER_PAGE,
+      offset: (Number(params?.pageId) - 1) * constants.pagination.PER_PAGE,
       limit: constants.pagination.PER_PAGE,
     },
   })
@@ -69,7 +73,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
       data,
       tagName,
       tagId: params?.tagId,
-      pageId: params?.id,
+      pageId: params?.pageId,
     },
     revalidate: 1,
   }

@@ -35,7 +35,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params } = ctx
 
   if (!params?.pageId) {
-    throw new Error('ID not found')
+    throw new Error('pageID not found.')
   }
 
   const data = await client.blogs.$get({
