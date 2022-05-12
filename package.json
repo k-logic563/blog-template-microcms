@@ -1,6 +1,5 @@
 {
   "name": "iwtttter-blog",
-  "description": "フロントエンドiwtがつぶやく技術系サイトです。",
   "version": "0.1.0",
   "private": true,
   "scripts": {

@@ -33,7 +33,7 @@ const List: React.FC<Props> = ({ contents }) => {
                   py={1}
                   px={2}
                   fontSize={{ base: '12px' }}
-                  bg="whiteAlpha.700"
+                  bg="whiteAlpha.800"
                   borderBottomRightRadius="5px"
                 >
                   {item.category.name}

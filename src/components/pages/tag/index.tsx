@@ -16,8 +16,13 @@ export const Main: NextPage<TagPageProps> = ({
   return (
     <>
       <NextSeo
-        title={`タグ【${tagName}】の記事一覧ページです`}
+        title={`タグ【${tagName}】記事一覧ページ`}
         description={`タグ【${tagName}】の記事一覧ページです`}
+        openGraph={{
+          title: `タグ【${tagName}】記事一覧ページ`,
+          description: `タグ【${tagName}】の記事一覧ページです`,
+          url: `https://iwtttter.tech/blog/tag/${tagId}/${pageId}`,
+        }}
       />
       <Box>
         <Heading mb={4} as="h2" fontSize={['base', 'lg', '2xl']}>

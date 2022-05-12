@@ -1,5 +1,6 @@
 import React from 'react'
 import type { NextPageWithLayout } from 'next'
+import { NextSeo } from 'next-seo'
 import { Box, Text, Heading, Link } from '@chakra-ui/react'
 
 import Layout from '@/layout'
@@ -7,6 +8,14 @@ import Layout from '@/layout'
 const PrivacyPage: NextPageWithLayout = () => {
   return (
     <>
+      <NextSeo
+        title="プライバシーポリシー"
+        openGraph={{
+          title: 'プライバシーポリシー',
+          description: 'iwtttter-blogサイトのプライバシーポリシーページです。',
+          url: 'https://iwtttter.tech/privacy',
+        }}
+      />
       <Box mb={12}>
         <Heading as="h1" fontSize={{ base: '24px', md: '28px' }} mb={4}>
           プライバシーポリシー

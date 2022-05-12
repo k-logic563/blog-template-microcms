@@ -15,7 +15,12 @@ export const Main: NextPage<BlogDetailProps> = ({ data, toc }) => {
     <>
       <NextSeo
         title={`${data.title}:my-micro-blog`}
-        description="記事詳細ページです。"
+        description={data.description}
+        openGraph={{
+          title: `${data.title}:my-micro-blog`,
+          description: data.description,
+          url: `https://iwtttter.tech/blog/${data.id}`,
+        }}
       />
       <Heading as="h1" fontSize={{ base: '24px', lg: '32px' }} mb={4}>
         {data.title}

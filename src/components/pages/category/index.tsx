@@ -16,8 +16,13 @@ export const Main: NextPage<CategoryPageProps> = ({
   return (
     <>
       <NextSeo
-        title={`カテゴリー【${catName}】の記事一覧ページです`}
+        title={`カテゴリー【${catName}】記事一覧ページ`}
         description={`カテゴリー【${catName}】の記事一覧ページです`}
+        openGraph={{
+          title: `カテゴリー【${catName}】記事一覧ページ`,
+          description: `カテゴリー【${catName}】の記事一覧ページです`,
+          url: `https://iwtttter.tech/blog/category/${catId}/${pageId}`,
+        }}
       />
       <Box>
         <Heading mb={4} as="h2" fontSize={['base', 'lg', '2xl']}>

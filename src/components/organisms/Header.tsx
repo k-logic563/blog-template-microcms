@@ -13,10 +13,9 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Image,
 } from '@chakra-ui/react'
 import { AiOutlineSearch, AiOutlineMenu } from 'react-icons/ai'
-
-import pkg from '~/package.json'
 
 type Props = {
   onOpen: () => void
@@ -49,7 +48,7 @@ const Header: React.FC<Props> = ({ onOpen }) => {
               fontSize={['lg', 'xl', '4xl']}
               fontWeight="bold"
             >
-              {pkg.name}
+              <Image w="140px" src="/assets/images/logo.png" alt="iwtttter" />
             </Text>
           ) : (
             <Text
@@ -58,7 +57,13 @@ const Header: React.FC<Props> = ({ onOpen }) => {
               color="white"
             >
               <Link href="/" passHref>
-                <a>{pkg.name}</a>
+                <a>
+                  <Image
+                    w="140px"
+                    src="/assets/images/logo.png"
+                    alt="iwtttter"
+                  />
+                </a>
               </Link>
             </Text>
           )}

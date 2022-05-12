@@ -10,7 +10,15 @@ import Pagination from '@/components/organisms/Pagination'
 export const Main: NextPage<BlogPageProps> = ({ data, pageId }) => {
   return (
     <>
-      <NextSeo title="記事一覧ページ" description="記事一覧ページです" />
+      <NextSeo
+        title="記事一覧ページ"
+        description="記事一覧ページです"
+        openGraph={{
+          title: '記事一覧ページ',
+          description: '記事一覧ページです',
+          url: `https://iwtttter.tech/blog/page/${pageId}`,
+        }}
+      />
       <Box mb={10}>
         <Heading mb={4} as="h2" fontSize={['base', 'lg', '2xl']}>
           記事一覧
