@@ -10,28 +10,28 @@ export const Main: NextPageWithLayout<HomeProps> = ({ response }) => {
   const contents = response.contents
 
   return (
-    <>
-      <Box>
-        <Heading
-          mb={4}
-          as="h2"
-          fontSize={{ base: '18px', md: '22px', lg: '26px' }}
-        >
-          最新記事
-        </Heading>
-        {contents.length !== 0 ? (
+    <Box>
+      <Heading
+        mb={4}
+        as="h2"
+        fontSize={{ base: '18px', md: '22px', lg: '26px' }}
+      >
+        最新記事
+      </Heading>
+      {contents.length !== 0 ? (
+        <>
           <List contents={contents} />
-        ) : (
-          <Text>記事がありません。</Text>
-        )}
-        <Box textAlign="center" mt={8}>
-          <Link href="/blog/page/1" color="white">
-            <Button colorScheme="teal" size="md" rounded="5px">
-              一覧を見る
-            </Button>
-          </Link>
-        </Box>
-      </Box>
-    </>
+          <Box textAlign="center" mt={8}>
+            <Link href="/blog/page/1" color="white">
+              <Button colorScheme="teal" size="md" rounded="5px">
+                一覧を見る
+              </Button>
+            </Link>
+          </Box>
+        </>
+      ) : (
+        <Text>記事がありません。</Text>
+      )}
+    </Box>
   )
 }
