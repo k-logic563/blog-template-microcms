@@ -17,7 +17,7 @@ export type Content = {
   tag: {
     id: string
     name: string
-  }
+  }[]
 }
 
 export type Category = {

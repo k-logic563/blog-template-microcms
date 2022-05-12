@@ -15,22 +15,24 @@ const AboutPage: NextPageWithLayout = () => {
           このサイトは、フロントエンジニア「iwt」のコード遊びの記録です。
         </Text>
         <Text mb={4}>
-          こんな質素なサイトでいいのかと。
-          <br />
-          いいんです、伝われば。
-        </Text>
-        <Text>
-          さて、運営している人はどんな人かといいますと、こんな感じです。
+          普段の業務上で知り得た知識と経験、あとは個人開発での知見など、備忘録として残していこうかと考えています。
         </Text>
       </Box>
       <Box>
         <Heading as="h2" fontSize={{ base: '18px', md: '24px' }} mb={4}>
           プロフィール
         </Heading>
-        <Image mb={4} rounded="5px" src="/assets/images/iwt.jpg" alt="iwt" />
+        <Image
+          mb={4}
+          w={{ sm: '50%' }}
+          rounded="5px"
+          src="/assets/images/iwt.jpg"
+          alt="iwt"
+        />
         <Text mb={4}>
           改めまして、iwtです。フロントエンドエンジニアをしています。
-          <br />
+        </Text>
+        <Text mb={4}>
           趣味は筋トレ、読書、ドラム演奏です。
           <br />
           カメラを構えていますが、趣味ではありません。

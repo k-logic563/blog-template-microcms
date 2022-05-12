@@ -87,7 +87,7 @@ const Layout = ({ children }: Props) => {
           rowGap={10}
           alignItems="start"
         >
-          <GridItem>{children}</GridItem>
+          <GridItem overflowX="scroll">{children}</GridItem>
           <GridItem position="sticky" top="6rem">
             <Sidebar categories={categories} tags={tags} />
           </GridItem>

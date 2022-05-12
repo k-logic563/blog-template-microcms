@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
 import { Box, Image, Stack, VStack, Text, Icon, Flex } from '@chakra-ui/react'
-import { AiOutlineFieldTime } from 'react-icons/ai'
+import { AiOutlineFieldTime, AiOutlineTag } from 'react-icons/ai'
 
 import { formatDate } from '@/utils/dateUtils'
 import { Content } from '@/api/types'
@@ -33,7 +33,8 @@ const List: React.FC<Props> = ({ contents }) => {
                   py={1}
                   px={2}
                   fontSize={{ base: '12px' }}
-                  bg="whiteAlpha.600"
+                  bg="whiteAlpha.700"
+                  borderBottomRightRadius="5px"
                 >
                   {item.category.name}
                 </Text>
@@ -47,6 +48,16 @@ const List: React.FC<Props> = ({ contents }) => {
                   >
                     {item.title}
                   </Text>
+                  <Flex gap={2}>
+                    <Box>
+                      <Icon verticalAlign="middle" mr={1} as={AiOutlineTag} />
+                      {item.tag.map((x) => (
+                        <Text display="inline-block" key={x.id}>
+                          {x.name}
+                        </Text>
+                      ))}
+                    </Box>
+                  </Flex>
                 </Box>
                 <Text
                   mt="auto"

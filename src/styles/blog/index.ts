@@ -9,6 +9,11 @@ export const tocList = css`
   font-size: clamp(14px, 3vw, 16px);
 
   & > li {
+    a:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
     &:before {
       content: '-';
       display: inline-block;
@@ -17,11 +22,11 @@ export const tocList = css`
     }
 
     &.h3 {
-      padding-left: 0.6em;
+      padding-left: 0.8em;
     }
 
     &.h4 {
-      padding-left: 1.2em;
+      padding-left: 1.4em;
     }
   }
 `
@@ -62,6 +67,10 @@ export const pagination = css`
 export const contents = css`
   overflow-x: auto;
 
+  code:not(.hljs) {
+    color: ${theme.colors.pink['400']};
+  }
+
   p {
     margin-bottom: 1em;
     line-height: 1.8;
@@ -70,6 +79,8 @@ export const contents = css`
 
   a {
     color: ${theme.colors.blue['600']};
+    display: inline-block;
+    line-height: 1.4;
 
     &:hover {
       text-decoration: underline;

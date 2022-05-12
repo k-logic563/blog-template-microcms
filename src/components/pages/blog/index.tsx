@@ -1,6 +1,7 @@
 import React from 'react'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
+import { Link as Scroll } from 'react-scroll'
 import { Heading, Text, Box, Image } from '@chakra-ui/react'
 
 import { BlogDetailProps } from '@/pages/blog/[id]'
@@ -26,7 +27,7 @@ export const Main: NextPage<BlogDetailProps> = ({ data, toc }) => {
         <Image src={data.eyecatch.url} alt="" />
       </Box>
       {toc?.length !== 0 && (
-        <Box px={4} py={6} bg="gray.100" rounded="5px">
+        <Box px={4} py={6} mb={10} bg="gray.100" rounded="5px">
           <Text
             fontSize={{ base: '16px', lg: '20px' }}
             fontWeight="bold"
@@ -37,7 +38,9 @@ export const Main: NextPage<BlogDetailProps> = ({ data, toc }) => {
           <ul css={styles.blog.tocList}>
             {toc.map((x) => (
               <li className={x.name} key={x.id}>
-                <a href={`#${x.id}`}>{x.text}</a>
+                <Scroll to={x.id} smooth offset={-100}>
+                  {x.text}
+                </Scroll>
               </li>
             ))}
           </ul>
