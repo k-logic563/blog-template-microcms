@@ -49,14 +49,14 @@ const List: React.FC<Props> = ({ contents }) => {
                     {item.title}
                   </Text>
                   <Flex gap={2}>
-                    <Box>
-                      <Icon verticalAlign="middle" mr={1} as={AiOutlineTag} />
-                      {item.tag.map((x) => (
+                    {item.tag.map((x) => (
+                      <Box key={x.id}>
+                        <Icon mr={1} verticalAlign="middle" as={AiOutlineTag} />
                         <Text display="inline-block" key={x.id}>
                           {x.name}
                         </Text>
-                      ))}
-                    </Box>
+                      </Box>
+                    ))}
                   </Flex>
                 </Box>
                 <Text

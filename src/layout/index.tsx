@@ -42,7 +42,10 @@ const Layout = ({ children }: Props) => {
       return
     }
 
-    const newArticles = articles.filter((x) => x.title.includes(word))
+    const newArticles = articles.filter((x) => {
+      const title = x.title.toLocaleLowerCase()
+      return title.includes(word)
+    })
     setFilteredArticles(newArticles)
   }
 
