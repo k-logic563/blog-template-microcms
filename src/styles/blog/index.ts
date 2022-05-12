@@ -66,6 +66,7 @@ export const pagination = css`
 
 export const contents = css`
   overflow-x: auto;
+  font-size: clamp(14px, 3vw, 16px);
 
   code:not(.hljs) {
     color: ${theme.colors.pink['400']};
@@ -74,13 +75,13 @@ export const contents = css`
   p {
     margin-bottom: 1em;
     line-height: 1.8;
-    font-size: clamp(14px, 3vw, 16px);
   }
 
   a {
     color: ${theme.colors.blue['600']};
     display: inline-block;
     line-height: 1.4;
+    word-break: break-all;
 
     &:hover {
       text-decoration: underline;
@@ -93,6 +94,7 @@ export const contents = css`
     line-height: 1.8;
     padding: 0.8em 1em;
     background-color: ${theme.colors.gray['200']};
+    border-radius: 5px;
   }
 
   h2 {
