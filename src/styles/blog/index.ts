@@ -66,7 +66,6 @@ export const pagination = css`
 
 export const contents = css`
   overflow-x: auto;
-  font-size: clamp(14px, 3vw, 16px);
 
   code:not(.hljs) {
     color: ${theme.colors.pink['400']};
