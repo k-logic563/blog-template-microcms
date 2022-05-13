@@ -39,11 +39,14 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     ._id(`${params?.id}`)
     .$get({ query: { draftKey } })
   const $ = cheerio.load(res.content)
+  // コードハイライト
   $('pre code').each((_, elm) => {
     const result = hljs.highlightAuto($(elm).text())
     $(elm).html(result.value)
     $(elm).addClass('hljs')
   })
+
+  // 目次
   const headings = $('h2, h3, h4').toArray()
   const toc = headings.map((x) => ({
     text: (x.children[0] as any).data,
