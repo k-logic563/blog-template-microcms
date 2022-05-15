@@ -44,13 +44,13 @@ const List: React.FC<Props> = ({ contents }) => {
                   <Text
                     fontSize={{ base: '16px', md: '18px', lg: '20px' }}
                     fontWeight="bold"
-                    mb={2}
+                    mb={{ base: 1, sm: 2 }}
                   >
                     {item.title}
                   </Text>
                   <Flex gap={2}>
                     {item.tag.map((x) => (
-                      <Box key={x.id}>
+                      <Box key={x.id} color="gray.500">
                         <Icon mr={1} verticalAlign="middle" as={AiOutlineTag} />
                         <Text display="inline-block" key={x.id}>
                           {x.name}
