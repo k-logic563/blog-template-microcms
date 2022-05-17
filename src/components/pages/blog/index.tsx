@@ -6,11 +6,14 @@ import { Heading, Text, Box, Image } from '@chakra-ui/react'
 
 import { BlogDetailProps } from '@/pages/blog/[id]'
 import { formatDate } from '@/utils/dateUtils'
+import { useBreakpoint } from '@/hooks/useBreakpoint'
 
 import * as styles from '@/styles'
 import 'highlight.js/styles/atom-one-dark.css'
 
 export const Main: NextPage<BlogDetailProps> = ({ data, toc }) => {
+  const isMobile = useBreakpoint()
+
   return (
     <>
       <NextSeo
@@ -31,7 +34,7 @@ export const Main: NextPage<BlogDetailProps> = ({ data, toc }) => {
       <Box mb={6}>
         <Image src={data.eyecatch.url} alt="" />
       </Box>
-      {toc?.length !== 0 && (
+      {isMobile && toc?.length !== 0 && (
         <Box px={4} py={6} mb={10} bg="gray.100" rounded="5px">
           <Text
             fontSize={{ base: '16px', lg: '20px' }}

@@ -28,6 +28,12 @@ export type Tag = {
   name: string
 }
 
+export type Toc = {
+  text: string
+  name: string
+  id: string
+}
+
 export type BlogContent = MicroCMSListResponse<Content>
 export type CategoryContent = MicroCMSListResponse<Category>
 export type TagContent = MicroCMSListResponse<Tag>

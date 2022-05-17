@@ -18,12 +18,17 @@ import { BlogContent, CategoryContent, TagContent } from '@/api/types'
 
 type Props = {
   children: React.ReactNode
+  toc?: {
+    text: string
+    id: string
+    name: string
+  }[]
 }
 
 const CATEGORY_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
 const TAG_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/tag`
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, toc }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [keyword, setKeyword] = useState('')
   const [articles, setArticles] = useState<BlogContent['contents']>([])
@@ -85,14 +90,14 @@ const Layout = ({ children }: Props) => {
         }}
       >
         <Grid
-          templateColumns={{ md: '1fr 0.35fr' }}
+          templateColumns={{ md: '1fr 0.4fr' }}
           columnGap={8}
           rowGap={10}
           alignItems="start"
         >
           <GridItem overflowX="scroll">{children}</GridItem>
           <GridItem position="sticky" top="6rem">
-            <Sidebar categories={categories} tags={tags} />
+            <Sidebar toc={toc} categories={categories} tags={tags} />
           </GridItem>
         </Grid>
       </Container>

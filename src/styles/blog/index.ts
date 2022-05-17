@@ -5,28 +5,37 @@ export const tocList = css`
   list-style-position: inside;
   list-style-type: none;
   color: ${theme.colors.gray['800']};
-  line-height: 1.8;
-  font-size: clamp(14px, 3vw, 16px);
+  font-size: clamp(12px, 3vw, 14px);
 
   & > li {
+    display: flex;
+    border-bottom: 1px solid ${theme.colors.gray['300']};
+
+    a {
+      display: block;
+      padding: 0.3em 0;
+      flex: 1;
+    }
+
     a:hover {
       cursor: pointer;
-      text-decoration: underline;
+      opacity: 0.6;
     }
 
     &:before {
       content: '-';
+      padding-top: 0.2em;
       display: inline-block;
       color: ${theme.colors.gray['400']};
       margin-right: 0.5em;
     }
 
     &.h3 {
-      padding-left: 0.8em;
+      margin-left: 1em;
     }
 
     &.h4 {
-      padding-left: 1.4em;
+      margin-left: 2em;
     }
   }
 `
@@ -104,7 +113,7 @@ export const contents = css`
 
   h3 {
     border-bottom: 1px solid ${theme.colors.teal['500']};
-    font-size: clamp(16px, 4vw, 20px);
+    font-size: clamp(18px, 4vw, 22px);
     font-weight: bold;
     margin: 1.2em 0 0.8em;
     padding: 0.2em 0.5em;

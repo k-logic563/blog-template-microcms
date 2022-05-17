@@ -1,20 +1,46 @@
 import React, { memo } from 'react'
 import { Box, Text, SimpleGrid } from '@chakra-ui/react'
+import { Link as Scroll } from 'react-scroll'
 
 import { Category } from '@/components/organisms/sidebar/Category'
 import { Tag } from '@/components/organisms/sidebar/Tag'
 import { Sns } from '@/components/organisms/sidebar/Sns'
 
-import { CategoryContent, TagContent } from '@/api/types'
+import { Toc, CategoryContent, TagContent } from '@/api/types'
+import * as styles from '@/styles'
+import { useBreakpoint } from '@/hooks/useBreakpoint'
 
 type Props = {
+  toc?: Toc[]
   categories: CategoryContent['contents']
   tags: TagContent['contents']
 }
 
-export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
+export const Sidebar: React.FC<Props> = ({ toc, categories, tags }) => {
+  const isMobile = useBreakpoint()
+
   return (
     <SimpleGrid gap={6}>
+      {!isMobile && toc && (
+        <Box px={4} py={6} bg="gray.50" rounded="5px">
+          <Text
+            fontSize={{ base: '16px', lg: '20px' }}
+            fontWeight="bold"
+            mb={3}
+          >
+            目次
+          </Text>
+          <ol css={styles.blog.tocList}>
+            {toc.map((x) => (
+              <li className={x.name} key={x.id}>
+                <Scroll to={x.id} smooth offset={-100}>
+                  {x.text}
+                </Scroll>
+              </li>
+            ))}
+          </ol>
+        </Box>
+      )}
       <Box>
         <Text
           mb={4}
@@ -45,19 +71,21 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
         </Text>
         {tags.length !== 0 ? <Tag tags={tags} /> : <p>loading tags...</p>}
       </Box>
-      <Box>
-        <Text
-          mb={4}
-          fontSize={['base', 'lg']}
-          fontWeight="bold"
-          p={2}
-          borderBottomWidth="2px"
-          borderColor="teal.500"
-        >
-          SNS
-        </Text>
-        <Sns />
-      </Box>
+      {!toc && (
+        <Box>
+          <Text
+            mb={4}
+            fontSize={['base', 'lg']}
+            fontWeight="bold"
+            p={2}
+            borderBottomWidth="2px"
+            borderColor="teal.500"
+          >
+            SNS
+          </Text>
+          <Sns />
+        </Box>
+      )}
     </SimpleGrid>
   )
 }

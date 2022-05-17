@@ -65,9 +65,13 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
 }
 
 const BlogId: NextPageWithLayout<BlogDetailProps> = (props) => {
-  return <Main {...props} />
+  return (
+    <Layout toc={props.toc}>
+      <Main {...props} />
+    </Layout>
+  )
 }
 
 export default BlogId
 
-BlogId.getLayout = (page) => <Layout>{page}</Layout>
+BlogId.getLayout = (page) => page
