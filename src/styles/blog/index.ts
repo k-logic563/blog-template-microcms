@@ -76,6 +76,7 @@ export const pagination = css`
 export const blogCard = css`
   display: grid;
   grid-template-columns: 0.4fr 1fr;
+  place-items: center;
   border: 1px solid ${theme.colors.gray['400']};
   border-radius: 5px;
   overflow: hidden;
