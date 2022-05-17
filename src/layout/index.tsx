@@ -95,7 +95,7 @@ const Layout = ({ children, toc }: Props) => {
           rowGap={10}
           alignItems="start"
         >
-          <GridItem overflowX="scroll">{children}</GridItem>
+          <GridItem overflow="auto">{children}</GridItem>
           <GridItem position="sticky" top="6rem">
             <Sidebar toc={toc} categories={categories} tags={tags} />
           </GridItem>

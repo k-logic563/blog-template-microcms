@@ -5,7 +5,7 @@ export const tocList = css`
   list-style-position: inside;
   list-style-type: none;
   color: ${theme.colors.gray['800']};
-  font-size: clamp(12px, 3vw, 14px);
+  font-size: 16px;
 
   & > li {
     display: flex;
@@ -73,6 +73,38 @@ export const pagination = css`
   }
 `
 
+export const blogCard = css`
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  border: 1px solid ${theme.colors.gray['400']};
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: ${theme.colors.gray['50']};
+
+  &:hover {
+    text-decoration: none;
+    opacity: 0.6;
+  }
+`
+
+export const blogCardTitle = css`
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: bold;
+  margin-bottom: 0.4em;
+  line-height: 1.4;
+`
+
+export const blogCardDesc = css`
+  font-size: clamp(12px, 2vw, 14px);
+`
+
+export const blogCardImage = css`
+  object-fit: cover;
+  width: 100%;
+  height: clamp(110px, 20vw, 130px);
+  border-right: 1px solid ${theme.colors.gray['400']};
+`
+
 export const contents = css`
   overflow-x: auto;
 
@@ -83,17 +115,6 @@ export const contents = css`
   p {
     margin-bottom: 1em;
     line-height: 1.8;
-  }
-
-  a {
-    color: ${theme.colors.blue['600']};
-    display: inline-block;
-    line-height: 1.4;
-    word-break: break-all;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   ul,

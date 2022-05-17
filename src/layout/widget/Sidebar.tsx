@@ -9,6 +9,7 @@ import { Sns } from '@/components/organisms/sidebar/Sns'
 import { Toc, CategoryContent, TagContent } from '@/api/types'
 import * as styles from '@/styles'
 import { useBreakpoint } from '@/hooks/useBreakpoint'
+import { useClient } from '@/hooks/useClient'
 
 type Props = {
   toc?: Toc[]
@@ -18,10 +19,11 @@ type Props = {
 
 export const Sidebar: React.FC<Props> = ({ toc, categories, tags }) => {
   const isMobile = useBreakpoint()
+  const isClient = useClient()
 
   return (
     <SimpleGrid gap={6}>
-      {!isMobile && toc && (
+      {isClient && !isMobile && toc && (
         <Box px={4} py={6} bg="gray.50" rounded="5px">
           <Text
             fontSize={{ base: '16px', lg: '20px' }}
