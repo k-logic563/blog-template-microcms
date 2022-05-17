@@ -33,7 +33,7 @@ const BlogCard: React.FC<Props> = ({ cardData, children }) => {
           <Image
             css={styles.blog.blogCardImage}
             src={
-              cardData.image ? cardData.image : '/assets/images/no-image.jpeg'
+              cardData.image ? cardData.image : '/assets/images/no-image.jpg'
             }
             alt=""
           />

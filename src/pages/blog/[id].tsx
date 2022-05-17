@@ -4,6 +4,7 @@ import {
   NextPageWithLayout,
   GetStaticPropsContext,
 } from 'next'
+import axios from 'axios'
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
 import { ParsedUrlQuery } from 'querystring'
@@ -61,17 +62,17 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
         data.attribs.href.indexOf('http') === -1
           ? `${process.env.NEXT_PUBLIC_BASE_URL}${data.attribs.href}`
           : data.attribs.href
-      return { url: url }
+      return { url }
     })
   let cardData: (CardProps | void)[] = []
   const temps = await Promise.all(
     links.map(async (link) => {
       //fetchでurl先のhtmlデータを取得
-      return await fetch(link.url)
-        .then((res) => res.text())
-        .then((text) => {
+      return await axios
+        .get(link.url)
+        .then(({ data }) => {
           //各サイトのmetaタグの情報をすべてmetasの配列に
-          const $ = cheerio.load(text)
+          const $ = cheerio.load(data)
           const metas = $('meta').toArray()
           const metaData = {
             url: link.url,
