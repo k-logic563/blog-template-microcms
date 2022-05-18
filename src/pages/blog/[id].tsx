@@ -70,6 +70,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
           ? ogpData['og:image'][0]
           : '/assets/images/no-image.jpg',
         url: ogpData['og:url'][0] ?? '',
+        siteName: ogpData['og:site_name'][0] ?? '',
       }
     }
   })

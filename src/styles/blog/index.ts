@@ -76,7 +76,6 @@ export const pagination = css`
 export const blogCard = css`
   display: grid;
   grid-template-columns: 0.4fr 1fr;
-  align-items: center;
   border: 1px solid ${theme.colors.gray['400']};
   border-radius: 5px;
   overflow: hidden;
@@ -88,15 +87,24 @@ export const blogCard = css`
   }
 `
 
+export const blogCardInner = css`
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 export const blogCardTitle = css`
-  font-size: clamp(14px, 2vw, 18px);
+  font-size: clamp(14px, 2vw, 16px);
   font-weight: bold;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.2em;
   line-height: 1.4;
 `
 
 export const blogCardDesc = css`
-  font-size: clamp(12px, 2vw, 14px);
+  font-size: clamp(12px, 2vw, 13px);
+  color: ${theme.colors.gray['500']};
+  line-height: 1.4;
 `
 
 export const blogCardImage = css`
@@ -104,6 +112,12 @@ export const blogCardImage = css`
   width: 100%;
   height: clamp(110px, 20vw, 130px);
   border-right: 1px solid ${theme.colors.gray['400']};
+`
+
+export const blogCardSiteName = css`
+  font-size: 11px;
+  color: ${theme.colors.gray['500']};
+  line-height: 1.4;
 `
 
 export const contents = css`

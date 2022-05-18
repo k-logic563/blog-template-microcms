@@ -20,6 +20,7 @@ type Props = {
         description: string
         url: string
         image: string
+        siteName: string
       }
     | undefined
   children: React.ReactNode
@@ -45,12 +46,21 @@ const BlogCard: React.FC<Props> = ({ cardData, children }) => {
           my={4}
         >
           <Image css={styles.blog.blogCardImage} src={cardData.image} alt="" />
-          <Text as="span" display="block" p={4}>
-            <Text as="span" css={styles.blog.blogCardTitle} noOfLines={2}>
-              {cardData.title}
+          <Text as="span" css={styles.blog.blogCardInner} display="block">
+            <Text as="span">
+              <Text as="span" css={styles.blog.blogCardTitle} noOfLines={1}>
+                {cardData.title}
+              </Text>
+              <Text
+                as="span"
+                css={styles.blog.blogCardDesc}
+                noOfLines={{ base: 1, md: 2 }}
+              >
+                {cardData.description}
+              </Text>
             </Text>
-            <Text as="span" css={styles.blog.blogCardDesc} noOfLines={1}>
-              {cardData.description}
+            <Text as="span" css={styles.blog.blogCardSiteName}>
+              {cardData.siteName}
             </Text>
           </Text>
         </Link>
