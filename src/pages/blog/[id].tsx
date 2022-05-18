@@ -4,7 +4,7 @@ import {
   NextPageWithLayout,
   GetStaticPropsContext,
 } from 'next'
-import axios from 'axios'
+import parser, { OgpParserResult } from 'ogp-parser'
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
 import { ParsedUrlQuery } from 'querystring'
@@ -18,13 +18,6 @@ export type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 
 type Params = ParsedUrlQuery & {
   id: string
-}
-
-export type CardProps = {
-  title: string
-  description: string
-  url: string
-  image: string
 }
 
 const isDraft = (item: any): item is { draftKey: string } =>
@@ -47,6 +40,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     ._id(`${params?.id}`)
     .$get({ query: { draftKey } })
   const $ = cheerio.load(res.content, null, false)
+
   // コードハイライト
   $('pre code').each((_, elm) => {
     const result = hljs.highlightAuto($(elm).text())
@@ -64,39 +58,19 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
           : data.attribs.href
       return { url }
     })
-  let cardData: (CardProps | void)[] = []
-  const temps = await Promise.all(
-    links.map(async (link) => {
-      //fetchでurl先のhtmlデータを取得
-      return await axios
-        .get(link.url)
-        .then(({ data }) => {
-          //各サイトのmetaタグの情報をすべてmetasの配列に
-          const $ = cheerio.load(data)
-          const metas = $('meta').toArray()
-          const metaData = {
-            url: link.url,
-            title: '',
-            description: '',
-            image: '',
-          }
-          //各サイトのmeta情報
-          for (let i = 0; i < metas.length; i++) {
-            if (metas[i].attribs?.property === 'og:title')
-              metaData.title = metas[i].attribs.content
-            if (metas[i].attribs?.property === 'og:description')
-              metaData.description = metas[i].attribs.content
-            if (metas[i].attribs?.property === 'og:image')
-              metaData.image = metas[i].attribs.content
-          }
-          return metaData
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-    })
-  )
-  cardData = temps.filter((temp) => temp !== undefined)
+  const promises = links.map(({ url }) => parser(url, { skipOembed: true }))
+  const resultLinkParsers = await Promise.allSettled(promises)
+  const cardData = resultLinkParsers.map((x) => {
+    if (x.status === 'fulfilled') {
+      const ogpData = x.value.ogp
+      return {
+        title: ogpData['og:title'] ?? '',
+        description: ogpData['og:description'] ?? '',
+        image: ogpData['og:image'] ?? '/assets/images/no-image.jpg',
+        url: ogpData['og:url'] ?? '',
+      }
+    }
+  })
 
   // 目次
   const headings = $('h2, h3, h4').toArray()

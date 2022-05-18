@@ -3,20 +3,34 @@ import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { Link as Scroll } from 'react-scroll'
 import { Heading, Text, Box, Image, Link } from '@chakra-ui/react'
-import parse, { domToReact } from 'html-react-parser'
+import parse, { DOMNode, domToReact } from 'html-react-parser'
 
 import { BlogDetailProps } from '@/pages/blog/[id]'
 import { formatDate } from '@/utils/dateUtils'
 import { useBreakpoint } from '@/hooks/useBreakpoint'
 import { useClient } from '@/hooks/useClient'
 
-import { CardProps } from '@/pages/blog/[id]'
 import * as styles from '@/styles'
 import 'highlight.js/styles/atom-one-dark.css'
 
 type Props = {
-  cardData: CardProps | void
+  cardData:
+    | {
+        title: string[]
+        description: string[]
+        url: string[]
+        image: string[]
+      }
+    | undefined
   children: React.ReactNode
+}
+
+type ReplaceDOMNode = DOMNode & {
+  name?: string
+  attribs?: {
+    href?: string
+  }
+  children?: DOMNode[]
 }
 
 const BlogCard: React.FC<Props> = ({ cardData, children }) => {
@@ -25,42 +39,40 @@ const BlogCard: React.FC<Props> = ({ cardData, children }) => {
       return (
         <Link
           css={styles.blog.blogCard}
-          href={cardData.url}
+          href={cardData.url[0]}
           target="_blank"
           rel="noreferrer noopener"
           my={4}
         >
           <Image
             css={styles.blog.blogCardImage}
-            src={
-              cardData.image ? cardData.image : '/assets/images/no-image.jpg'
-            }
+            src={cardData.image[0]}
             alt=""
           />
           <Text as="span" display="block" p={4}>
             <Text as="span" css={styles.blog.blogCardTitle} noOfLines={2}>
-              {cardData.title && cardData.title}
+              {cardData.title[0]}
             </Text>
             <Text as="span" css={styles.blog.blogCardDesc} noOfLines={1}>
-              {cardData.description && cardData.description}
+              {cardData.description[0]}
             </Text>
           </Text>
         </Link>
       )
     }
-    return <a href={cardData.url}>{children}</a>
+    return <a href={cardData.url[0]}>{children}</a>
   }
-  return null
+  return <Text>{children}(broken link...)</Text>
 }
 
 export const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
   const isMobile = useBreakpoint()
   const isClient = useClient()
   // TODO:any
-  const replace = (node: any) => {
-    if (node.name === 'a') {
+  const replace = (node: ReplaceDOMNode) => {
+    if (node.name === 'a' && node.children) {
       const indexOfUrl = cardData.findIndex((obj) => {
-        return obj && obj.url.indexOf(node.attribs?.href) !== -1
+        return obj && obj.url.indexOf(`${node.attribs?.href}`) !== -1
       })
       return (
         <BlogCard cardData={cardData[indexOfUrl]}>

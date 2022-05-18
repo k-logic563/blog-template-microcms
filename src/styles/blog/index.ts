@@ -5,7 +5,7 @@ export const tocList = css`
   list-style-position: inside;
   list-style-type: none;
   color: ${theme.colors.gray['800']};
-  font-size: 16px;
+  font-size: 14px;
 
   & > li {
     display: flex;
