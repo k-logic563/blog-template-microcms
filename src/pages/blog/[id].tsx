@@ -64,10 +64,12 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     if (x.status === 'fulfilled') {
       const ogpData = x.value.ogp
       return {
-        title: ogpData['og:title'] ?? '',
-        description: ogpData['og:description'] ?? '',
-        image: ogpData['og:image'] ?? '/assets/images/no-image.jpg',
-        url: ogpData['og:url'] ?? '',
+        title: ogpData['og:title'][0] ?? '',
+        description: ogpData['og:description'][0] ?? '',
+        image: ogpData['og:image']
+          ? ogpData['og:image'][0]
+          : '/assets/images/no-image.jpg',
+        url: ogpData['og:url'][0] ?? '',
       }
     }
   })
