@@ -104,7 +104,6 @@ export const blogCardTitle = css`
 export const blogCardDesc = css`
   font-size: clamp(12px, 2vw, 13px);
   color: ${theme.colors.gray['500']};
-  line-height: 1.4;
 `
 
 export const blogCardImage = css`

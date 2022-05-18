@@ -64,16 +64,18 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     if (x.status === 'fulfilled') {
       const ogpData = x.value.ogp
       return {
-        title: ogpData['og:title'][0] ?? '',
-        description: ogpData['og:description'][0] ?? '',
+        title: ogpData['og:title'] ? ogpData['og:title'][0] : '',
+        description: ogpData['og:description'] ? ogpData['og:description'][0] : '',
+        url: ogpData['og:url'] ? ogpData['og:url'][0] : '',
         image: ogpData['og:image']
           ? ogpData['og:image'][0]
           : '/assets/images/no-image.jpg',
-        url: ogpData['og:url'][0] ?? '',
-        siteName: ogpData['og:site_name'][0] ?? '',
+        siteName: ogpData['og:site_name'] ? ogpData['og:site_name'][0] : '',
       }
     }
   })
+
+  console.log(cardData)
 
   // 目次
   const headings = $('h2, h3, h4').toArray()

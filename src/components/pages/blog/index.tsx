@@ -36,7 +36,7 @@ type ReplaceDOMNode = DOMNode & {
 
 const BlogCard: React.FC<Props> = ({ cardData, children }) => {
   if (cardData) {
-    if (cardData.title && cardData.description) {
+    if (cardData.title) {
       return (
         <Link
           css={styles.blog.blogCard}
@@ -48,20 +48,22 @@ const BlogCard: React.FC<Props> = ({ cardData, children }) => {
           <Image css={styles.blog.blogCardImage} src={cardData.image} alt="" />
           <Text as="span" css={styles.blog.blogCardInner} display="block">
             <Text as="span">
-              <Text as="span" css={styles.blog.blogCardTitle} noOfLines={1}>
+              <Text as="span" css={styles.blog.blogCardTitle} noOfLines={2}>
                 {cardData.title}
               </Text>
               <Text
                 as="span"
                 css={styles.blog.blogCardDesc}
-                noOfLines={{ base: 1, md: 2 }}
+                noOfLines={1}
               >
                 {cardData.description}
               </Text>
             </Text>
-            <Text as="span" css={styles.blog.blogCardSiteName}>
-              {cardData.siteName}
-            </Text>
+            { cardData.siteName && (
+              <Text as="span" css={styles.blog.blogCardSiteName}>
+                {cardData.siteName}
+              </Text>
+            )}
           </Text>
         </Link>
       )
@@ -108,7 +110,7 @@ export const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
       <Box mb={6}>
         <Image src={data.eyecatch.url} alt="" />
       </Box>
-      {isClient && isMobile && toc?.length !== 0 && (
+      { isClient && isMobile && toc?.length !== 0 && (
         <Box px={4} py={6} mb={10} bg="gray.100" rounded="5px">
           <Text
             fontSize={{ base: '16px', lg: '20px' }}
