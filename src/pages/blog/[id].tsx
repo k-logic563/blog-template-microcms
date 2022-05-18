@@ -4,7 +4,7 @@ import {
   NextPageWithLayout,
   GetStaticPropsContext,
 } from 'next'
-import parser, { OgpParserResult } from 'ogp-parser'
+import parser from 'ogp-parser'
 import cheerio from 'cheerio'
 import hljs from 'highlight.js'
 import { ParsedUrlQuery } from 'querystring'
@@ -65,7 +65,9 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
       const ogpData = x.value.ogp
       return {
         title: ogpData['og:title'] ? ogpData['og:title'][0] : '',
-        description: ogpData['og:description'] ? ogpData['og:description'][0] : '',
+        description: ogpData['og:description']
+          ? ogpData['og:description'][0]
+          : '',
         url: ogpData['og:url'] ? ogpData['og:url'][0] : '',
         image: ogpData['og:image']
           ? ogpData['og:image'][0]
@@ -74,8 +76,6 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
       }
     }
   })
-
-  console.log(cardData)
 
   // 目次
   const headings = $('h2, h3, h4').toArray()

@@ -43,7 +43,6 @@ const BlogCard: React.FC<Props> = ({ cardData, children }) => {
           href={cardData.url}
           target="_blank"
           rel="noreferrer noopener"
-          my={4}
         >
           <Image css={styles.blog.blogCardImage} src={cardData.image} alt="" />
           <Text as="span" css={styles.blog.blogCardInner} display="block">
@@ -51,15 +50,11 @@ const BlogCard: React.FC<Props> = ({ cardData, children }) => {
               <Text as="span" css={styles.blog.blogCardTitle} noOfLines={2}>
                 {cardData.title}
               </Text>
-              <Text
-                as="span"
-                css={styles.blog.blogCardDesc}
-                noOfLines={1}
-              >
+              <Text as="span" css={styles.blog.blogCardDesc} noOfLines={1}>
                 {cardData.description}
               </Text>
             </Text>
-            { cardData.siteName && (
+            {cardData.siteName && (
               <Text as="span" css={styles.blog.blogCardSiteName}>
                 {cardData.siteName}
               </Text>
@@ -110,7 +105,7 @@ export const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
       <Box mb={6}>
         <Image src={data.eyecatch.url} alt="" />
       </Box>
-      { isClient && isMobile && toc?.length !== 0 && (
+      {isClient && isMobile && toc?.length !== 0 && (
         <Box px={4} py={6} mb={10} bg="gray.100" rounded="5px">
           <Text
             fontSize={{ base: '16px', lg: '20px' }}
