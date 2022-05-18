@@ -35,7 +35,7 @@ type ReplaceDOMNode = DOMNode & {
 
 const BlogCard: React.FC<Props> = ({ cardData, children }) => {
   if (cardData) {
-    if (cardData.title) {
+    if (cardData.title && cardData.description) {
       return (
         <Link
           css={styles.blog.blogCard}
@@ -62,7 +62,7 @@ const BlogCard: React.FC<Props> = ({ cardData, children }) => {
     }
     return <a href={cardData.url[0]}>{children}</a>
   }
-  return <Text>{children}(broken link...)</Text>
+  return <Text>{children}</Text>
 }
 
 export const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
