@@ -1,6 +1,6 @@
 body {
-  font-feature-settings: 'palt' !important;
+  font-feature-settings: 'pkna' !important;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  letter-spacing: 0.01em;
+  letter-spacing: .01em;
 }
