@@ -10,7 +10,7 @@ import Layout from '@/layout'
 
 import { range } from '@/utils/blogUtils'
 import { client } from '@/utils/httpUtils'
-import { perPage } from '@/constants/pagination' 
+import { perPage } from '@/constants/pagination'
 
 export type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -28,10 +28,9 @@ const getAllCategoryPagePaths = async () => {
           query: { filters: `category[equals]${x.id}` },
         })
         .then((y) => {
-          return range(
-            1,
-            Math.ceil(y.totalCount / perPage)
-          ).map((repo) => `/blog/category/${x.id}/${repo}`)
+          return range(1, Math.ceil(y.totalCount / perPage)).map(
+            (repo) => `/blog/category/${x.id}/${repo}`
+          )
         })
     })
   )

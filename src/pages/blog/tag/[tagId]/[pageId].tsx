@@ -10,7 +10,7 @@ import { Main } from '@/components/pages/tag'
 import Layout from '@/layout'
 import { range } from '@/utils/blogUtils'
 import { client } from '@/utils/httpUtils'
-import { perPage } from '@/constants/pagination' 
+import { perPage } from '@/constants/pagination'
 
 export type TagPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -28,10 +28,9 @@ const getAllTagPagePaths = async () => {
           query: { filters: `tag[contains]${x.id}` },
         })
         .then((y) => {
-          return range(
-            1,
-            Math.ceil(y.totalCount / perPage)
-          ).map((repo) => `/blog/tag/${x.id}/${repo}`)
+          return range(1, Math.ceil(y.totalCount / perPage)).map(
+            (repo) => `/blog/tag/${x.id}/${repo}`
+          )
         })
     })
   )

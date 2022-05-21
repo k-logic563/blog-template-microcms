@@ -8,7 +8,7 @@ import { Button, Box, Text } from '@chakra-ui/react'
 
 import Layout from '@/layout'
 import { FormInputGroup } from '@/components/molecules/contact/FormInputGroup'
-import { FormTextAreaGroup } from "@/components/molecules/contact/FormTextAreaGroup";
+import { FormTextAreaGroup } from '@/components/molecules/contact/FormTextAreaGroup'
 
 import { wait } from '@/utils/commonUtils'
 
@@ -51,7 +51,12 @@ const ContactPage: NextPageWithLayout = () => {
           url: 'https://iwtttter.tech/contact',
         }}
       />
-      <Text align="center" mb={10}>以下のフォームよりご記入の上、<Text as="span" display="inline-block">送信してください。</Text></Text>
+      <Text align="center" mb={10}>
+        以下のフォームよりご記入の上、
+        <Text as="span" display="inline-block">
+          送信してください。
+        </Text>
+      </Text>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box display="grid" rowGap={4} px={1} mb={12}>
           <Box>
@@ -71,7 +76,13 @@ const ContactPage: NextPageWithLayout = () => {
             />
           </Box>
           <Box>
-            <FormTextAreaGroup registerProps={register('contents')} fieldName="contents" label="お問い合わせ内容" errorMsg={errors.contents?.message} />
+            <FormTextAreaGroup
+              rows={8}
+              registerProps={register('contents')}
+              fieldName="contents"
+              label="お問い合わせ内容"
+              errorMsg={errors.contents?.message}
+            />
           </Box>
         </Box>
         <Button

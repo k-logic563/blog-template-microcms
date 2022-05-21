@@ -10,7 +10,7 @@ import Layout from '@/layout'
 
 import { client } from '@/utils/httpUtils'
 import { range } from '@/utils/blogUtils'
-import { perPage } from '@/constants/pagination' 
+import { perPage } from '@/constants/pagination'
 
 export type BlogPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -20,10 +20,9 @@ type Params = {
 
 export const getStaticPaths = async () => {
   const data = await client.blogs.$get()
-  const paths = range(
-    1,
-    Math.ceil(data.totalCount / perPage)
-  ).map((repo) => `/blog/page/${repo}`)
+  const paths = range(1, Math.ceil(data.totalCount / perPage)).map(
+    (repo) => `/blog/page/${repo}`
+  )
 
   return {
     paths,
