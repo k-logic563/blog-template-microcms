@@ -49,6 +49,7 @@ const SearchModal: React.FC<Props> = ({
               }
             />
             <Input
+              variant="flushed"
               type="text"
               placeholder="Search the Articles"
               value={keyword}

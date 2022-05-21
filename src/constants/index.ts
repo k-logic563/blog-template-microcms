@@ -1,3 +1,4 @@
 import * as pagination from './pagination'
+import * as pages from './pages'
 
-export { pagination }
+export { pages, pagination }
