@@ -10,7 +10,7 @@ import { Main } from '@/components/pages/tag'
 import Layout from '@/layout'
 import { range } from '@/utils/blogUtils'
 import { client } from '@/utils/httpUtils'
-import * as constants from '@/constants'
+import { perPage } from '@/constants/pagination' 
 
 export type TagPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -30,7 +30,7 @@ const getAllTagPagePaths = async () => {
         .then((y) => {
           return range(
             1,
-            Math.ceil(y.totalCount / constants.pagination.PER_PAGE)
+            Math.ceil(y.totalCount / perPage)
           ).map((repo) => `/blog/tag/${x.id}/${repo}`)
         })
     })
@@ -61,8 +61,8 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const data = await client.blogs.$get({
     query: {
       filters: `tag[contains]${params?.tagId}`,
-      offset: (Number(params?.pageId) - 1) * constants.pagination.PER_PAGE,
-      limit: constants.pagination.PER_PAGE,
+      offset: (Number(params?.pageId) - 1) * perPage,
+      limit: perPage,
     },
   })
   const tags = await client.tags.$get()

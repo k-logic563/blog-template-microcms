@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react'
 import { AiOutlineSearch, AiOutlineMenu } from 'react-icons/ai'
 
-import * as constants from '@/constants'
+import { menuItems } from '@/constants/pages'
 
 type Props = {
   onOpen: () => void
@@ -80,7 +80,7 @@ const Header: React.FC<Props> = ({ onOpen }) => {
                 />
               </MenuButton>
               <MenuList>
-                {constants.pages.menuItems.map((item, idx) => (
+                {menuItems.map((item, idx) => (
                   <Link key={idx} href={item.link} passHref>
                     <MenuItem as="a" fontSize={{ base: '14px', sm: '16px' }}>
                       {item.name}
