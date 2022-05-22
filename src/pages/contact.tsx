@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { Button, Box, Text } from '@chakra-ui/react'
+import { Button, Box, Text, Heading } from '@chakra-ui/react'
 
 import Layout from '@/layout'
 import { FormInputGroup } from '@/components/molecules/contact/FormInputGroup'
@@ -51,7 +51,10 @@ const ContactPage: NextPageWithLayout = () => {
           url: 'https://iwtttter.tech/contact',
         }}
       />
-      <Text align="center" mb={10}>
+      <Heading as="h1" fontSize={{ base: '24px', md: '28px' }} mb={4}>
+        お問い合わせ
+      </Heading>
+      <Text mb={10}>
         以下のフォームよりご記入の上、
         <Text as="span" display="inline-block">
           送信してください。

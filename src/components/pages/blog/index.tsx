@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo'
 import { Link as Scroll } from 'react-scroll'
 import { Heading, Text, Box, Image, Link } from '@chakra-ui/react'
 import parse, { DOMNode, domToReact } from 'html-react-parser'
+import Disqus from 'disqus-react'
 
 import { BlogDetailProps } from '@/pages/blog/[id]'
 import { formatDate } from '@/utils/dateUtils'
@@ -68,9 +69,17 @@ const BlogCard: React.FC<Props> = ({ cardData, children }) => {
   return <Text as="span">{children}</Text>
 }
 
+const disqusShortName = process.env.NEXT_PUBLIC_DISQUS_SHORT_NAME
+
 export const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
   const isMobile = useBreakpoint()
   const isClient = useClient()
+
+  const disqusConfig = {
+    url: `https://iwtttter.tech/blog/${data.id}`,
+    identifier: data.id,
+    title: data.title,
+  }
 
   const replace = (node: ReplaceDOMNode) => {
     if (node.name === 'a' && node.children) {
@@ -125,9 +134,13 @@ export const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
           </ul>
         </Box>
       )}
-      <Box css={styles.blog.contents}>
+      <Box mb={12} css={styles.blog.contents}>
         <div>{isClient && parse(data.content, { replace })}</div>
       </Box>
+      <Disqus.DiscussionEmbed
+        shortname={disqusShortName}
+        config={disqusConfig}
+      />
     </>
   )
 }
