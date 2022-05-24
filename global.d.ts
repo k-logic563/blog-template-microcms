@@ -6,5 +6,7 @@ declare namespace NodeJS {
     readonly NEXT_PUBLIC_BASE_URL: string
     readonly NEXT_PUBLIC_GA_MEASUREMENT_ID: string
     readonly NEXT_PUBLIC_DISQUS_SHORT_NAME: string
+    readonly NEXT_PUBLIC_SENDMAIL_API_KEY: string
+    readonly NEXT_PUBLIC_TEMPLATE_ID: string
   }
 }

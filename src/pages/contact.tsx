@@ -1,5 +1,7 @@
 import React from 'react'
+import axios from 'axios'
 import type { NextPageWithLayout } from 'next'
+import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -28,6 +30,8 @@ const schema = z.object({
 })
 
 const ContactPage: NextPageWithLayout = () => {
+  const { push } = useRouter()
+  const [error, setError] = React.useState('')
   const {
     handleSubmit,
     register,
@@ -37,8 +41,15 @@ const ContactPage: NextPageWithLayout = () => {
   })
 
   const onSubmit = async (values: Props) => {
-    await wait(1000)
-    alert(JSON.stringify(values, null, 2))
+    try {
+      await axios.post('api/contact', values)
+      await wait(1000)
+      await push('/thanks')
+    } catch {
+      setError(
+        '申し訳ありません。エラーにより送信できませんでした。<br>今しばらくお待ちください。'
+      )
+    }
   }
 
   return (
@@ -99,6 +110,14 @@ const ContactPage: NextPageWithLayout = () => {
         >
           送信する
         </Button>
+        {error && (
+          <Text
+            mt={4}
+            color="red.600"
+            fontSize="14px"
+            dangerouslySetInnerHTML={{ __html: error }}
+          />
+        )}
       </form>
     </>
   )
