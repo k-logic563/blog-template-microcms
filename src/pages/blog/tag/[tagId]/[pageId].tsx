@@ -9,7 +9,7 @@ import { Main } from '@/components/pages/tag'
 
 import Layout from '@/layout'
 import { range } from '@/utils/blogUtils'
-import { client } from '@/utils/httpUtils'
+import { microClient } from '@/utils/httpUtils'
 import { perPage } from '@/constants/pagination'
 
 export type TagPageProps = InferGetStaticPropsType<typeof getStaticProps>
@@ -20,10 +20,10 @@ type Params = {
 }
 
 const getAllTagPagePaths = async () => {
-  const tags = await client.tags.$get()
+  const tags = await microClient.tags.$get()
   const paths = await Promise.all(
     tags.contents.map((x) => {
-      return client.blogs
+      return microClient.blogs
         .$get({
           query: { filters: `tag[contains]${x.id}` },
         })
@@ -57,14 +57,14 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     throw new Error('tagID not found.')
   }
 
-  const data = await client.blogs.$get({
+  const data = await microClient.blogs.$get({
     query: {
       filters: `tag[contains]${params?.tagId}`,
       offset: (Number(params?.pageId) - 1) * perPage,
       limit: perPage,
     },
   })
-  const tags = await client.tags.$get()
+  const tags = await microClient.tags.$get()
   const tagName = tags.contents.find((x) => x.id === params?.tagId)?.name ?? ''
 
   return {

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { client } from '@/utils/httpUtils'
+import { microClient } from '@/utils/httpUtils'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (!req.query.id) {
@@ -8,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const content = await client.blogs
+    const content = await microClient.blogs
       ._id(`${req.query.id}`)
       .$get({ query: { draftKey: `${req.query.draftKey}` } })
     res.setPreviewData({

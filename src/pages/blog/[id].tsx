@@ -12,7 +12,7 @@ import { ParsedUrlQuery } from 'querystring'
 import Layout from '@/layout'
 import { Main } from '@/components/pages/blog'
 
-import { client } from '@/utils/httpUtils'
+import { microClient } from '@/utils/httpUtils'
 
 export type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -24,7 +24,7 @@ const isDraft = (item: any): item is { draftKey: string } =>
   !!(item?.draftKey && typeof item.draftKey === 'string')
 
 export const getStaticPaths = async () => {
-  const data = await client.blogs.$get()
+  const data = await microClient.blogs.$get()
   const paths = data.contents.map((x) => `/blog/${x.id}`)
 
   return {
@@ -36,7 +36,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params, previewData } = ctx
   const draftKey = isDraft(previewData) ? previewData.draftKey : ''
-  const res = await client.blogs
+  const res = await microClient.blogs
     ._id(`${params?.id}`)
     .$get({ query: { draftKey } })
   const $ = cheerio.load(res.content, null, false)

@@ -2,13 +2,13 @@ import React from 'react'
 import type { InferGetStaticPropsType, NextPageWithLayout } from 'next'
 
 import { Main } from '@/components/pages'
-import { client } from '@/utils/httpUtils'
+import { microClient } from '@/utils/httpUtils'
 import Layout from '@/layout'
 
 export type HomeProps = InferGetStaticPropsType<typeof getStaticProps>
 
 export const getStaticProps = async () => {
-  const response = await client.blogs.$get({
+  const response = await microClient.blogs.$get({
     query: { limit: 4, offset: 0 },
   })
   return {

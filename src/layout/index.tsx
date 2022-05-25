@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import {
   ChakraProvider,
   Container,
@@ -15,6 +14,7 @@ import { Sidebar } from '@/layout/widget/Sidebar'
 
 import { theme } from '@/config/chakraTheme'
 import { BlogContent, CategoryContent, TagContent } from '@/api/types'
+import { microClient } from '@/utils/httpUtils'
 
 type Props = {
   children: React.ReactNode
@@ -24,9 +24,6 @@ type Props = {
     name: string
   }[]
 }
-
-const CATEGORY_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
-const TAG_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/tag`
 
 const Layout = ({ children, toc }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -60,22 +57,25 @@ const Layout = ({ children, toc }: Props) => {
   }
 
   useEffect(() => {
-    // set tag and category
-    const promise1 = axios.get<CategoryContent>(CATEGORY_URL)
-    const promise2 = axios.get<TagContent>(TAG_URL)
-    Promise.all([promise1, promise2]).then((responses) => {
-      setCategories(responses[0].data.contents)
-      setTags(responses[1].data.contents)
-    })
-    // set articles
-    axios
-      .get<BlogContent>('/api/blog')
-      .then((res) => {
-        setArticles(res.data.contents)
-      })
-      .catch((e) => {
+    ;(async () => {
+      // set tag and category
+      const categoryPromise = microClient.categories.$get()
+      const tagPromise = microClient.tags.$get()
+      const postsPromise = microClient.blogs.$get()
+
+      try {
+        const responses = await Promise.all([
+          categoryPromise,
+          tagPromise,
+          postsPromise,
+        ])
+        setCategories(responses[0].contents)
+        setTags(responses[1].contents)
+        setArticles(responses[2].contents)
+      } catch (e) {
         console.log(e)
-      })
+      }
+    })()
   }, [])
 
   return (

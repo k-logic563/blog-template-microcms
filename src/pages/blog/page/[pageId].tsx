@@ -8,7 +8,7 @@ import {
 import { Main } from '@/components/pages/blog/page'
 import Layout from '@/layout'
 
-import { client } from '@/utils/httpUtils'
+import { microClient } from '@/utils/httpUtils'
 import { range } from '@/utils/blogUtils'
 import { perPage } from '@/constants/pagination'
 
@@ -19,7 +19,7 @@ type Params = {
 }
 
 export const getStaticPaths = async () => {
-  const data = await client.blogs.$get()
+  const data = await microClient.blogs.$get()
   const paths = range(1, Math.ceil(data.totalCount / perPage)).map(
     (repo) => `/blog/page/${repo}`
   )
@@ -37,7 +37,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     throw new Error('pageID not found.')
   }
 
-  const data = await client.blogs.$get({
+  const data = await microClient.blogs.$get({
     query: {
       offset: (Number(params?.pageId) - 1) * perPage,
       limit: perPage,

@@ -9,7 +9,7 @@ import { Main } from '@/components/pages/category'
 import Layout from '@/layout'
 
 import { range } from '@/utils/blogUtils'
-import { client } from '@/utils/httpUtils'
+import { microClient } from '@/utils/httpUtils'
 import { perPage } from '@/constants/pagination'
 
 export type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
@@ -20,10 +20,10 @@ type Params = {
 }
 
 const getAllCategoryPagePaths = async () => {
-  const cats = await client.categories.$get()
+  const cats = await microClient.categories.$get()
   const paths = await Promise.all(
     cats.contents.map((x) => {
-      return client.blogs
+      return microClient.blogs
         .$get({
           query: { filters: `category[equals]${x.id}` },
         })
@@ -57,14 +57,14 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     throw new Error('catID not found.')
   }
 
-  const data = await client.blogs.$get({
+  const data = await microClient.blogs.$get({
     query: {
       filters: `category[equals]${params?.catId}`,
       offset: (Number(params?.pageId) - 1) * perPage,
       limit: perPage,
     },
   })
-  const categories = await client.categories.$get()
+  const categories = await microClient.categories.$get()
   const catName =
     categories.contents.find((x) => x.id === params?.catId)?.name ?? ''
 

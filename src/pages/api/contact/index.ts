@@ -34,14 +34,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       .send(payload)
       .then(() => {
         res.statusCode = 200
-        res.send({ message: 'done' })
+        res.send({ message: 'success to send email' })
       })
-      .catch((error) => {
+      .catch(() => {
         res.statusCode = 500
-        res.send(error)
+        res.send({ message: 'internal server error' })
       })
   } else {
     res.statusCode = 400
-    res.send({ error: new Error('invalid parameters') })
+    res.send({ message: 'invalid method' })
   }
 }

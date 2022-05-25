@@ -97,13 +97,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       post: (option: {
         body: Methods3['post']['reqBody']
         config?: T | undefined
-      }) => fetch(prefix, PATH2, POST, option).send(),
+      }) =>
+        fetch<Methods3['post']['resBody']>(prefix, PATH2, POST, option).json(),
       $post: (option: {
         body: Methods3['post']['reqBody']
         config?: T | undefined
       }) =>
-        fetch(prefix, PATH2, POST, option)
-          .send()
+        fetch<Methods3['post']['resBody']>(prefix, PATH2, POST, option)
+          .json()
           .then((r) => r.body),
       $path: () => `${prefix}${PATH2}`,
     },

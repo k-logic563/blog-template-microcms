@@ -5,13 +5,14 @@ import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
 import { Button, Box, Text, Heading } from '@chakra-ui/react'
 
 import Layout from '@/layout'
 import { FormInputGroup } from '@/components/molecules/contact/FormInputGroup'
 import { FormTextAreaGroup } from '@/components/molecules/contact/FormTextAreaGroup'
 
+import { pageClient } from '@/utils/httpUtils'
+import { schema } from '@/constants/schema'
 import { wait } from '@/utils/commonUtils'
 
 type Props = {
@@ -19,15 +20,6 @@ type Props = {
   email: string
   contents: string
 }
-
-const schema = z.object({
-  name: z.string().min(1, { message: '※必須項目です' }),
-  email: z
-    .string()
-    .min(1, { message: '※必須項目です' })
-    .email({ message: '※不正なメールアドレスです' }),
-  contents: z.string().min(1, { message: '※必須項目です' }),
-})
 
 const ContactPage: NextPageWithLayout = () => {
   const { push } = useRouter()
@@ -42,7 +34,7 @@ const ContactPage: NextPageWithLayout = () => {
 
   const onSubmit = async (values: Props) => {
     try {
-      await axios.post('api/contact', values)
+      await pageClient.contact.$post({ body: values })
       await wait(1000)
       await push('/thanks')
     } catch {
