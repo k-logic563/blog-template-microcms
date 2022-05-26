@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import {
   ChakraProvider,
   Container,
@@ -73,7 +74,12 @@ const Layout = ({ children, toc }: Props) => {
         setTags(responses[1].contents)
         setArticles(responses[2].contents)
       } catch (e) {
-        console.log(e)
+        if (axios.isAxiosError(e) && e.response) {
+          console.error(`${e.response.status}: ${e.message}`)
+        }
+        if (e instanceof Error) {
+          console.error(e.message)
+        }
       }
     })()
   }, [])
