@@ -78,7 +78,7 @@ const Layout = ({ children, toc }: Props) => {
           console.error(`${e.response.status}: ${e.message}`)
         }
         if (e instanceof Error) {
-          console.error(e.message)
+          console.error(`${e.name}: ${e.message}`)
         }
       }
     })()
