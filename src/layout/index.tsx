@@ -74,8 +74,8 @@ const Layout = ({ children, toc }: Props) => {
         setTags(responses[1].contents)
         setArticles(responses[2].contents)
       } catch (e) {
-        if (axios.isAxiosError(e) && e.response) {
-          console.error(`${e.response.status}: ${e.message}`)
+        if (axios.isAxiosError(e)) {
+          console.error(`${e.response?.status}: ${e.message}`)
         }
         if (e instanceof Error) {
           console.error(`${e.name}: ${e.message}`)
