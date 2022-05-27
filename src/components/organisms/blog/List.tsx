@@ -48,9 +48,9 @@ const List: React.FC<Props> = ({ contents }) => {
                   >
                     {item.title}
                   </Text>
-                  <Flex gap={2}>
+                  <Flex columnGap={2} rowGap={1} wrap="wrap" mb={2}>
                     {item.tag.map((x) => (
-                      <Box key={x.id} color="gray.500">
+                      <Box key={x.id} color="gray.500" fontSize="14px">
                         <Icon mr={1} verticalAlign="middle" as={AiOutlineTag} />
                         <Text display="inline-block" key={x.id}>
                           {x.name}
