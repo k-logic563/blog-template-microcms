@@ -12,4 +12,9 @@ export const seoConfig: NextSeoProps = {
     description: 'フロントエンドiwtがつぶやく技術系サイトです。',
     site_name: pkg.name,
   },
+  twitter: {
+    handle: '@webD_hello21',
+    site: 'https://iwtttter.tech',
+    cardType: 'summary_large_image'
+  }
 }

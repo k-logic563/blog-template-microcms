@@ -9,7 +9,7 @@ export type HomeProps = InferGetStaticPropsType<typeof getStaticProps>
 
 export const getStaticProps = async () => {
   const response = await microClient.blogs.$get({
-    query: { limit: 4, offset: 0 },
+    query: { limit: 6, offset: 0 },
   })
   return {
     props: {

@@ -104,6 +104,9 @@ export const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
           description: data.description,
           url: `https://iwtttter.tech/blog/${data.id}`,
         }}
+        twitter={{
+          site: `https://iwtttter.tech/blog/${data.id}`
+        }}
       />
       <Heading as="h1" fontSize={{ base: '24px', lg: '32px' }} mb={4}>
         {data.title}
