@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import { Link as Scroll } from 'react-scroll'
@@ -37,7 +37,7 @@ type ReplaceDOMNode = DOMNode & {
 
 const BlogCard: React.FC<Props> = ({ cardData, children }) => {
   if (cardData) {
-    if (cardData.title) {
+    if (cardData.title && cardData.url) {
       return (
         <Link
           css={styles.blog.blogCard}
@@ -64,14 +64,18 @@ const BlogCard: React.FC<Props> = ({ cardData, children }) => {
         </Link>
       )
     }
-    return <a href={cardData.url[0]}>{children}</a>
+    return (
+      <Link color="blue.500" href={cardData.url} target="_blank">
+        {children}
+      </Link>
+    )
   }
   return <Text as="span">{children}</Text>
 }
 
 const disqusShortName = process.env.NEXT_PUBLIC_DISQUS_SHORT_NAME
 
-export const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
+const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
   const isMobile = useBreakpoint()
   const isClient = useClient()
 
@@ -147,3 +151,5 @@ export const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
     </>
   )
 }
+
+export default memo(Main)

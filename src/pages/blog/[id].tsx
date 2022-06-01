@@ -10,7 +10,7 @@ import hljs from 'highlight.js'
 import { ParsedUrlQuery } from 'querystring'
 
 import Layout from '@/layout'
-import { Main } from '@/components/pages/blog'
+import Main from '@/components/pages/blog'
 
 import { microClient } from '@/utils/httpUtils'
 
@@ -60,7 +60,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     })
   const promises = links.map(({ url }) => parser(url, { skipOembed: true }))
   const resultLinkParsers = await Promise.allSettled(promises)
-  const cardData = resultLinkParsers.map((x) => {
+  const cardData = resultLinkParsers.map((x, idx) => {
     if (x.status === 'fulfilled') {
       const ogpData = x.value.ogp
       return {
@@ -68,7 +68,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
         description: ogpData['og:description']
           ? ogpData['og:description'][0]
           : '',
-        url: ogpData['og:url'] ? ogpData['og:url'][0] : '',
+        url: ogpData['og:url'] ? ogpData['og:url'][0] : links[idx].url,
         image: ogpData['og:image']
           ? ogpData['og:image'][0]
           : '/assets/images/no-image.jpg',
