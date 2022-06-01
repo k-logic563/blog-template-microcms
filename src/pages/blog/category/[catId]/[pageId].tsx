@@ -75,7 +75,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
       catId: params?.catId,
       pageId: params?.pageId,
     },
-    revalidate: 1,
+    revalidate: 10,
   }
 }
 

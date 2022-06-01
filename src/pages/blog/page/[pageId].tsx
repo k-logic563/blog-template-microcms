@@ -49,7 +49,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
       data,
       pageId: params?.pageId,
     },
-    revalidate: 1,
+    revalidate: 10,
   }
 }
 

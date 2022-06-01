@@ -19,13 +19,13 @@ const List: React.FC<Props> = ({ contents }) => {
         <Link key={item.id} href={`/blog/${item.id}`} passHref>
           <a css={styles.blog.listLink}>
             <Stack columnGap={6} direction={{ base: 'column', sm: 'row' }}>
-              <Box
-                position="relative"
-                w={{ base: '100%', sm: '40%' }}
-                rounded="5px"
-                overflow="hidden"
-              >
-                <Image objectFit="cover" src={item.eyecatch.url} alt="" />
+              <Box position="relative" w={{ base: '100%', sm: '40%' }}>
+                <Image
+                  objectFit="cover"
+                  rounded="5px"
+                  src={item.eyecatch.url}
+                  alt=""
+                />
                 <Text
                   position="absolute"
                   top={0}

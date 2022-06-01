@@ -92,7 +92,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
       cardData,
       toc,
     },
-    revalidate: 1,
+    revalidate: 10,
   }
 }
 

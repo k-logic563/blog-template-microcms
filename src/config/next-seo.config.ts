@@ -15,6 +15,6 @@ export const seoConfig: NextSeoProps = {
   twitter: {
     handle: '@webD_hello21',
     site: 'https://iwtttter.tech',
-    cardType: 'summary_large_image'
-  }
+    cardType: 'summary_large_image',
+  },
 }
