@@ -12,7 +12,7 @@ import { ParsedUrlQuery } from 'querystring'
 import Layout from '@/layout'
 import Main from '@/components/pages/blog'
 
-import { microClient } from '@/utils/httpUtils'
+import { microClient } from '@/lib/aspida'
 
 export type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 

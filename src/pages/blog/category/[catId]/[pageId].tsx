@@ -8,8 +8,8 @@ import {
 import { Main } from '@/components/pages/category'
 import Layout from '@/layout'
 
-import { range } from '@/utils/blogUtils'
-import { microClient } from '@/utils/httpUtils'
+import { range } from '@/utils/range'
+import { microClient } from '@/lib/aspida'
 import { perPage } from '@/constants/pagination'
 
 export type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>

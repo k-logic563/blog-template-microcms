@@ -7,7 +7,7 @@ import parse, { DOMNode, domToReact } from 'html-react-parser'
 import Disqus from 'disqus-react'
 
 import { BlogDetailProps } from '@/pages/blog/[id]'
-import { formatDate } from '@/utils/dateUtils'
+import { formatDate } from '@/utils/format'
 import { useBreakpoint } from '@/hooks/useBreakpoint'
 import { useClient } from '@/hooks/useClient'
 

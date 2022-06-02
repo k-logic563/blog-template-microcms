@@ -4,7 +4,7 @@ import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
 import { Box, Image, Stack, VStack, Text, Icon, Flex } from '@chakra-ui/react'
 import { AiOutlineFieldTime, AiOutlineTag } from 'react-icons/ai'
 
-import { formatDate } from '@/utils/dateUtils'
+import { formatDate } from '@/utils/format'
 import { Content } from '@/api/types'
 import * as styles from '@/styles'
 

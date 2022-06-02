@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import {
   ChakraProvider,
   Container,
@@ -14,8 +13,9 @@ import SearchModal from '@/layout/widget/SearchModal'
 import { Sidebar } from '@/layout/widget/Sidebar'
 
 import { theme } from '@/config/chakraTheme'
-import { BlogContent, CategoryContent, TagContent } from '@/api/types'
-import { microClient } from '@/utils/httpUtils'
+import { CategoryContent, TagContent } from '@/api/types'
+import { microClient } from '@/lib/aspida'
+import { useSearch } from '@/hooks/useSearch'
 
 type Props = {
   children: React.ReactNode
@@ -27,59 +27,24 @@ type Props = {
 }
 
 const Layout = ({ children, toc }: Props) => {
+  const { filteredArticles, handleSearch, handleModalEnd, keyword } =
+    useSearch()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [keyword, setKeyword] = useState('')
-  const [articles, setArticles] = useState<BlogContent['contents']>([])
-  const [filteredArticles, setFilteredArticles] = useState<
-    BlogContent['contents']
-  >([])
   const [categories, setCategories] = useState<CategoryContent['contents']>([])
   const [tags, setTags] = useState<TagContent['contents']>([])
-
-  const handleSearch = (keyword: string) => {
-    const word = keyword.trim()
-    setKeyword(word)
-
-    if (!word) {
-      setFilteredArticles([])
-      return
-    }
-
-    const newArticles = articles.filter((x) => {
-      const title = x.title.toLocaleLowerCase()
-      return title.includes(word)
-    })
-    setFilteredArticles(newArticles)
-  }
-
-  const handleModalEnd = () => {
-    setKeyword('')
-    setFilteredArticles([])
-  }
 
   useEffect(() => {
     ;(async () => {
       // set tag and category
       const categoryPromise = microClient.categories.$get()
       const tagPromise = microClient.tags.$get()
-      const postsPromise = microClient.blogs.$get()
 
       try {
-        const responses = await Promise.all([
-          categoryPromise,
-          tagPromise,
-          postsPromise,
-        ])
+        const responses = await Promise.all([categoryPromise, tagPromise])
         setCategories(responses[0].contents)
         setTags(responses[1].contents)
-        setArticles(responses[2].contents)
       } catch (e) {
-        if (axios.isAxiosError(e)) {
-          console.error(`${e.response?.status}: ${e.message}`)
-        }
-        if (e instanceof Error) {
-          console.error(`${e.name}: ${e.message}`)
-        }
+        console.error(e)
       }
     })()
   }, [])

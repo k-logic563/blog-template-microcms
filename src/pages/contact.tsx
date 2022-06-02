@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import type { NextPageWithLayout } from 'next'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
@@ -11,9 +10,9 @@ import Layout from '@/layout'
 import { FormInputGroup } from '@/components/molecules/contact/FormInputGroup'
 import { FormTextAreaGroup } from '@/components/molecules/contact/FormTextAreaGroup'
 
-import { pageClient } from '@/utils/httpUtils'
+import { pageClient } from '@/lib/aspida'
 import { schema } from '@/constants/schema'
-import { wait } from '@/utils/commonUtils'
+import { wait } from '@/utils/wait'
 
 type Props = {
   name: string

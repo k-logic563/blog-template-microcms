@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { microClient } from '@/utils/httpUtils'
+import { microClient } from '@/lib/aspida'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (!req.query.id) {

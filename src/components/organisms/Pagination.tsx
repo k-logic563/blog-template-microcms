@@ -4,7 +4,7 @@ import { Flex } from '@chakra-ui/react'
 
 import * as styles from '@/styles'
 import { perPage } from '@/constants/pagination'
-import { range } from '@/utils/blogUtils'
+import { range } from '@/utils/range'
 
 type Props = {
   totalCount: number

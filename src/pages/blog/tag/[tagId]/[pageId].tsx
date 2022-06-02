@@ -6,10 +6,10 @@ import {
 } from 'next'
 
 import { Main } from '@/components/pages/tag'
-
 import Layout from '@/layout'
-import { range } from '@/utils/blogUtils'
-import { microClient } from '@/utils/httpUtils'
+
+import { range } from '@/utils/range'
+import { microClient } from '@/lib/aspida'
 import { perPage } from '@/constants/pagination'
 
 export type TagPageProps = InferGetStaticPropsType<typeof getStaticProps>

@@ -2,7 +2,7 @@ import React from 'react'
 import type { InferGetStaticPropsType, NextPageWithLayout } from 'next'
 
 import { Main } from '@/components/pages'
-import { microClient } from '@/utils/httpUtils'
+import { microClient } from '@/lib/aspida'
 import Layout from '@/layout'
 
 export type HomeProps = InferGetStaticPropsType<typeof getStaticProps>
