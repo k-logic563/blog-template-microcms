@@ -125,6 +125,10 @@ export const contents = css`
   code:not(.hljs) {
     color: ${theme.colors.pink['400']};
   }
+  
+  iframe {
+    width: 100% !important;
+  }
 
   p {
     margin-bottom: 1em;
