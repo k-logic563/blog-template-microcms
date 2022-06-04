@@ -5,7 +5,7 @@
   "scripts": {
     "tsc": "tsc",
     "dev": "next dev",
-    "build": "next build && npm run sitemap",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}'",
