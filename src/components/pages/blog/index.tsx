@@ -87,6 +87,15 @@ const Main: NextPage<BlogDetailProps> = ({ data, cardData, toc }) => {
 
   const replace = (node: ReplaceDOMNode) => {
     if (node.name === 'a' && node.children) {
+      // 文中テキストリンクならばそのまま出力する
+      const text = (node.children[0] as any).data
+      if (!/^http/.test(text)) {
+        return (
+          <Link color="blue.500" href={node.attribs?.href} target="_blank">
+            {domToReact(node.children)}
+          </Link>
+        )
+      }
       const indexOfUrl = cardData.findIndex((x) => {
         return x && x.url.indexOf(`${node.attribs?.href}`) !== -1
       })

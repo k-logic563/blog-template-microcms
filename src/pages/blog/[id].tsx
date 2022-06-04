@@ -58,6 +58,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
           : data.attribs.href
       return { url }
     })
+    .filter((x) => x)
   const promises = links.map(({ url }) => parser(url, { skipOembed: true }))
   const resultLinkParsers = await Promise.allSettled(promises)
   const cardData = resultLinkParsers.map((x, idx) => {
