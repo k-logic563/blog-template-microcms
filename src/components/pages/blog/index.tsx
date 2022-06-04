@@ -6,26 +6,14 @@ import { Heading, Text, Box, Image, Link } from '@chakra-ui/react'
 import parse, { DOMNode, domToReact } from 'html-react-parser'
 import Disqus from 'disqus-react'
 
+import { BlogCard } from '@/components/molecules/blog/BlogCard'
+
 import { BlogDetailProps } from '@/pages/blog/[id]'
 import { formatDate } from '@/utils/format'
 import { useBreakpoint } from '@/hooks/useBreakpoint'
 import { useClient } from '@/hooks/useClient'
 
 import * as styles from '@/styles'
-import 'highlight.js/styles/atom-one-dark.css'
-
-type Props = {
-  cardData:
-    | {
-        title: string
-        description: string
-        url: string
-        image: string
-        siteName: string
-      }
-    | undefined
-  children: React.ReactNode
-}
 
 type ReplaceDOMNode = DOMNode & {
   name?: string
@@ -33,44 +21,6 @@ type ReplaceDOMNode = DOMNode & {
     href?: string
   }
   children?: DOMNode[]
-}
-
-const BlogCard: React.FC<Props> = ({ cardData, children }) => {
-  if (cardData) {
-    if (cardData.title && cardData.url) {
-      return (
-        <Link
-          css={styles.blog.blogCard}
-          href={cardData.url}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <Image css={styles.blog.blogCardImage} src={cardData.image} alt="" />
-          <Text as="span" css={styles.blog.blogCardInner} display="block">
-            <Text as="span">
-              <Text as="span" css={styles.blog.blogCardTitle} noOfLines={2}>
-                {cardData.title}
-              </Text>
-              <Text as="span" css={styles.blog.blogCardDesc} noOfLines={1}>
-                {cardData.description}
-              </Text>
-            </Text>
-            {cardData.siteName && (
-              <Text as="span" css={styles.blog.blogCardSiteName}>
-                {cardData.siteName}
-              </Text>
-            )}
-          </Text>
-        </Link>
-      )
-    }
-    return (
-      <Link color="blue.500" href={cardData.url} target="_blank">
-        {children}
-      </Link>
-    )
-  }
-  return <Text as="span">{children}</Text>
 }
 
 const disqusShortName = process.env.NEXT_PUBLIC_DISQUS_SHORT_NAME

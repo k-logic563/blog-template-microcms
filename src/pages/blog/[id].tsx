@@ -4,15 +4,18 @@ import {
   NextPageWithLayout,
   GetStaticPropsContext,
 } from 'next'
-import parser from 'ogp-parser'
 import cheerio from 'cheerio'
-import hljs from 'highlight.js'
 import { ParsedUrlQuery } from 'querystring'
 
 import Layout from '@/layout'
 import Main from '@/components/pages/blog'
 
 import { microClient } from '@/lib/aspida'
+import { codeHighlight } from '@/utils/code-highlight'
+import { blogCard } from '@/utils/blog-card'
+import { generateToc } from '@/utils/toc'
+
+import 'highlight.js/styles/atom-one-dark.css'
 
 export type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -42,57 +45,17 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const $ = cheerio.load(res.content, null, false)
 
   // コードハイライト
-  $('pre code').each((_, elm) => {
-    const result = hljs.highlightAuto($(elm).text())
-    $(elm).html(result.value)
-    $(elm).addClass('hljs')
-  })
+  codeHighlight($)
 
-  // ブログカード
-  const links = $('a')
-    .toArray()
-    .map((data) => {
-      const url =
-        data.attribs.href.indexOf('http') === -1
-          ? `${process.env.NEXT_PUBLIC_BASE_URL}${data.attribs.href}`
-          : data.attribs.href
-      return { url }
-    })
-    .filter((x) => x)
-  const promises = links.map(({ url }) => parser(url, { skipOembed: true }))
-  const resultLinkParsers = await Promise.allSettled(promises)
-  const cardData = resultLinkParsers.map((x, idx) => {
-    if (x.status === 'fulfilled') {
-      const ogpData = x.value.ogp
-      return {
-        title: ogpData['og:title'] ? ogpData['og:title'][0] : '',
-        description: ogpData['og:description']
-          ? ogpData['og:description'][0]
-          : '',
-        url: ogpData['og:url'] ? ogpData['og:url'][0] : links[idx].url,
-        image: ogpData['og:image']
-          ? ogpData['og:image'][0]
-          : '/assets/images/no-image.jpg',
-        siteName: ogpData['og:site_name'] ? ogpData['og:site_name'][0] : '',
-      }
-    }
-  })
-
-  // 目次
-  const headings = $('h2, h3, h4').toArray()
-  const toc = headings.map((x) => ({
-    text: (x.children[0] as any).data,
-    id: x.attribs.id,
-    name: x.name,
-  }))
-  const data = { ...res, content: $.html() }
+  // ブログカード、目次、記事データを集約
+  const props = {
+    data: { ...res, content: $.html() },
+    cardData: await blogCard($),
+    toc: generateToc($),
+  }
 
   return {
-    props: {
-      data,
-      cardData,
-      toc,
-    },
+    props,
     revalidate: 10,
   }
 }
