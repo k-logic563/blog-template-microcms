@@ -2,9 +2,9 @@ import React, { memo } from 'react'
 import { Box, Text, SimpleGrid } from '@chakra-ui/react'
 import { Link as Scroll } from 'react-scroll'
 
-import { Category } from '@/components/organisms/sidebar/Category'
-import { Tag } from '@/components/organisms/sidebar/Tag'
-import { Sns } from '@/components/organisms/sidebar/Sns'
+import { Category } from './Category'
+import { Tag } from './Tag'
+import { Sns } from './Sns'
 
 import { Toc, CategoryContent, TagContent } from '@/api/types'
 import * as styles from '@/styles'

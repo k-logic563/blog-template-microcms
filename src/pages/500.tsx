@@ -3,7 +3,7 @@ import type { NextPageWithLayout } from 'next'
 import Link from 'next/link'
 import { Button, Heading, Text } from '@chakra-ui/react'
 
-import Layout from '@/layout'
+import { MainLayout } from '@/components/Layout'
 
 const Custom500: NextPageWithLayout = () => {
   return (
@@ -23,4 +23,4 @@ const Custom500: NextPageWithLayout = () => {
 
 export default Custom500
 
-Custom500.getLayout = (page) => <Layout>{page}</Layout>
+Custom500.getLayout = (page) => <MainLayout>{page}</MainLayout>

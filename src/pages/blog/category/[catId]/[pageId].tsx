@@ -4,16 +4,18 @@ import {
   InferGetStaticPropsType,
   NextPageWithLayout,
 } from 'next'
+import { NextSeo } from 'next-seo'
+import { Box, Heading } from '@chakra-ui/react'
 
-import { Main } from '@/components/pages/category'
-import Layout from '@/layout'
+import { List } from '@/components/List'
+import { Pagination } from '@/components/Element/Pagination'
+import { MainLayout } from '@/components/Layout'
 
 import { range } from '@/utils/range'
 import { microClient } from '@/lib/aspida'
 import { perPage } from '@/constants/pagination'
 
-export type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
-
+type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = {
   pageId: string
   catId: string
@@ -85,9 +87,42 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
   catId,
   pageId,
 }) => {
-  return <Main data={data} catName={catName} pageId={pageId} catId={catId} />
+  return (
+    <>
+      <NextSeo
+        title={`カテゴリー【${catName}】記事一覧ページ`}
+        description={`カテゴリー【${catName}】の記事一覧ページです`}
+        openGraph={{
+          title: `カテゴリー【${catName}】記事一覧ページ`,
+          description: `カテゴリー【${catName}】の記事一覧ページです`,
+          url: `https://iwtttter.tech/blog/category/${catId}/${pageId}`,
+        }}
+      />
+      <Box>
+        <Heading mb={4} as="h2" fontSize={['base', 'lg', '2xl']}>
+          カテゴリー&ensp;【{catName}】
+        </Heading>
+        {data.contents.length !== 0 ? (
+          <>
+            <Box mb={10}>
+              <List contents={data.contents} />
+            </Box>
+            <Box textAlign="center">
+              <Pagination
+                totalCount={data.totalCount}
+                path={`blog/category/${catId}`}
+                pageId={Number(pageId)}
+              />
+            </Box>
+          </>
+        ) : (
+          <p>記事がありません</p>
+        )}
+      </Box>
+    </>
+  )
 }
 
 export default CategoryPage
 
-CategoryPage.getLayout = (page) => <Layout>{page}</Layout>
+CategoryPage.getLayout = (page) => <MainLayout>{page}</MainLayout>

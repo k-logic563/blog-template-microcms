@@ -6,9 +6,8 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Box, Text, Heading } from '@chakra-ui/react'
 
-import Layout from '@/layout'
-import { FormInputGroup } from '@/components/molecules/contact/FormInputGroup'
-import { FormTextAreaGroup } from '@/components/molecules/contact/FormTextAreaGroup'
+import { MainLayout } from '@/components/Layout'
+import { FormInputGroup, FormTextAreaGroup } from '@/components/Form'
 
 import { pageClient } from '@/lib/aspida'
 import { schema } from '@/constants/schema'
@@ -116,4 +115,4 @@ const ContactPage: NextPageWithLayout = () => {
 
 export default ContactPage
 
-ContactPage.getLayout = (page) => <Layout>{page}</Layout>
+ContactPage.getLayout = (page) => <MainLayout>{page}</MainLayout>

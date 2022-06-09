@@ -12,7 +12,7 @@ type Props = {
   contents: (Content & MicroCMSContentId & MicroCMSDate)[]
 }
 
-const List: React.FC<Props> = ({ contents }) => {
+export const List: React.FC<Props> = ({ contents }) => {
   return (
     <VStack spacing={6}>
       {contents.map((item) => (
@@ -76,5 +76,3 @@ const List: React.FC<Props> = ({ contents }) => {
     </VStack>
   )
 }
-
-export default List

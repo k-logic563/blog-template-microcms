@@ -3,7 +3,7 @@ import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
 import { Box, Text, Heading, Link } from '@chakra-ui/react'
 
-import Layout from '@/layout'
+import { MainLayout } from '@/components/Layout'
 
 const PrivacyPage: NextPageWithLayout = () => {
   return (
@@ -107,4 +107,4 @@ const PrivacyPage: NextPageWithLayout = () => {
 
 export default PrivacyPage
 
-PrivacyPage.getLayout = (page) => <Layout>{page}</Layout>
+PrivacyPage.getLayout = (page) => <MainLayout>{page}</MainLayout>

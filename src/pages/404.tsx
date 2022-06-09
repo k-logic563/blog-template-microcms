@@ -3,7 +3,7 @@ import type { NextPageWithLayout } from 'next'
 import Link from 'next/link'
 import { Button, Heading, Text } from '@chakra-ui/react'
 
-import Layout from '@/layout'
+import { MainLayout } from '@/components/Layout'
 
 const Custom404: NextPageWithLayout = () => {
   return (
@@ -21,5 +21,5 @@ const Custom404: NextPageWithLayout = () => {
   )
 }
 
-Custom404.getLayout = (page) => <Layout>{page}</Layout>
+Custom404.getLayout = (page) => <MainLayout>{page}</MainLayout>
 export default Custom404

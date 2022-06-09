@@ -4,9 +4,12 @@ import {
   InferGetStaticPropsType,
   NextPageWithLayout,
 } from 'next'
+import { NextSeo } from 'next-seo'
+import { Box, Heading } from '@chakra-ui/react'
 
-import { Main } from '@/components/pages/tag'
-import Layout from '@/layout'
+import { MainLayout } from '@/components/Layout'
+import { List } from '@/components/List'
+import { Pagination } from '@/components/Element/Pagination'
 
 import { range } from '@/utils/range'
 import { microClient } from '@/lib/aspida'
@@ -84,9 +87,42 @@ const CategoryPage: NextPageWithLayout<TagPageProps> = ({
   tagId,
   pageId,
 }) => {
-  return <Main data={data} tagName={tagName} pageId={pageId} tagId={tagId} />
+  return (
+    <>
+      <NextSeo
+        title={`タグ【${tagName}】記事一覧ページ`}
+        description={`タグ【${tagName}】の記事一覧ページです`}
+        openGraph={{
+          title: `タグ【${tagName}】記事一覧ページ`,
+          description: `タグ【${tagName}】の記事一覧ページです`,
+          url: `https://iwtttter.tech/blog/tag/${tagId}/${pageId}`,
+        }}
+      />
+      <Box>
+        <Heading mb={4} as="h2" fontSize={['base', 'lg', '2xl']}>
+          タグ&ensp;【{tagName}】
+        </Heading>
+        {data.contents.length !== 0 ? (
+          <>
+            <Box mb={10}>
+              <List contents={data.contents} />
+            </Box>
+            <Box textAlign="center">
+              <Pagination
+                totalCount={data.totalCount}
+                path={`blog/tag/${tagId}`}
+                pageId={Number(pageId)}
+              />
+            </Box>
+          </>
+        ) : (
+          <p>記事がありません</p>
+        )}
+      </Box>
+    </>
+  )
 }
 
 export default CategoryPage
 
-CategoryPage.getLayout = (page) => <Layout>{page}</Layout>
+CategoryPage.getLayout = (page) => <MainLayout>{page}</MainLayout>

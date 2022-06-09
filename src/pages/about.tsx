@@ -3,7 +3,7 @@ import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
 import { Box, Heading, Image, Text, HStack } from '@chakra-ui/react'
 
-import Layout from '@/layout'
+import { MainLayout } from '@/components/Layout'
 
 const AboutPage: NextPageWithLayout = () => {
   return (
@@ -48,4 +48,4 @@ const AboutPage: NextPageWithLayout = () => {
 
 export default AboutPage
 
-AboutPage.getLayout = (page) => <Layout>{page}</Layout>
+AboutPage.getLayout = (page) => <MainLayout>{page}</MainLayout>

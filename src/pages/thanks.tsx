@@ -4,7 +4,7 @@ import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
 import { Box, Text, Heading, Button } from '@chakra-ui/react'
 
-import Layout from '@/layout'
+import { MainLayout } from '@/components/Layout'
 
 const Thanks: NextPageWithLayout = () => {
   return (
@@ -39,4 +39,4 @@ const Thanks: NextPageWithLayout = () => {
 
 export default Thanks
 
-Thanks.getLayout = (page) => <Layout>{page}</Layout>
+Thanks.getLayout = (page) => <MainLayout>{page}</MainLayout>

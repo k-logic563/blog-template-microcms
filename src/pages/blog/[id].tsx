@@ -4,25 +4,42 @@ import {
   NextPageWithLayout,
   GetStaticPropsContext,
 } from 'next'
+import { NextSeo } from 'next-seo'
 import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
+import parse, { DOMNode, domToReact } from 'html-react-parser'
+import Disqus from 'disqus-react'
+import { Link as Scroll } from 'react-scroll'
+import { Heading, Text, Box, Image, Link } from '@chakra-ui/react'
 
-import Layout from '@/layout'
-import Main from '@/components/pages/blog'
+import { BlogCard } from '@/components/Element/Card'
+import { MainLayout } from '@/components/Layout'
 
 import { microClient } from '@/lib/aspida'
 import { codeHighlight } from '@/utils/code-highlight'
 import { blogCard } from '@/utils/blog-card'
 import { generateToc } from '@/utils/toc'
+import { useBreakpoint } from '@/hooks/useBreakpoint'
+import { useClient } from '@/hooks/useClient'
+import { formatDate } from '@/utils/format'
+
+import * as styles from '@/styles'
 
 import 'highlight.js/styles/atom-one-dark.css'
 
-export type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
-
+type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = ParsedUrlQuery & {
   id: string
 }
+type ReplaceDOMNode = DOMNode & {
+  name?: string
+  attribs?: {
+    href?: string
+  }
+  children?: DOMNode[]
+}
 
+const disqusShortName = process.env.NEXT_PUBLIC_DISQUS_SHORT_NAME
 const isDraft = (item: any): item is { draftKey: string } =>
   !!(item?.draftKey && typeof item.draftKey === 'string')
 
@@ -60,11 +77,93 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   }
 }
 
-const BlogId: NextPageWithLayout<BlogDetailProps> = (props) => {
+const BlogId: NextPageWithLayout<BlogDetailProps> = ({
+  data,
+  cardData,
+  toc,
+}) => {
+  const isMobile = useBreakpoint()
+  const isClient = useClient()
+
+  const disqusConfig = {
+    url: `https://iwtttter.tech/blog/${data.id}`,
+    identifier: data.id,
+    title: data.title,
+  }
+
+  const replace = (node: ReplaceDOMNode) => {
+    if (node.name === 'a' && node.children) {
+      // 文中テキストリンクならばそのまま出力する
+      const text = (node.children[0] as any).data
+      if (!/^http/.test(text)) {
+        return (
+          <Link color="blue.500" href={node.attribs?.href} target="_blank">
+            {domToReact(node.children)}
+          </Link>
+        )
+      }
+      const indexOfUrl = cardData.findIndex((x) => {
+        return x && x.url.indexOf(`${node.attribs?.href}`) !== -1
+      })
+      return (
+        <BlogCard cardData={cardData[indexOfUrl]}>
+          {domToReact(node.children)}
+        </BlogCard>
+      )
+    }
+  }
+
   return (
-    <Layout toc={props.toc}>
-      <Main {...props} />
-    </Layout>
+    <MainLayout toc={toc}>
+      <NextSeo
+        title={`${data.title}`}
+        description={data.description}
+        openGraph={{
+          title: `${data.title}`,
+          description: data.description,
+          url: `https://iwtttter.tech/blog/${data.id}`,
+        }}
+        twitter={{
+          site: `https://iwtttter.tech/blog/${data.id}`,
+        }}
+      />
+      <Heading as="h1" fontSize={{ base: '24px', lg: '32px' }} mb={4}>
+        {data.title}
+      </Heading>
+      <Text mb={8}>
+        投稿日&ensp;{formatDate(data.publishedAt ?? data.createdAt)}
+      </Text>
+      <Box mb={6}>
+        <Image src={data.eyecatch.url} alt="" />
+      </Box>
+      {isClient && isMobile && toc?.length !== 0 && (
+        <Box px={4} py={6} mb={10} bg="gray.100" rounded="5px">
+          <Text
+            fontSize={{ base: '16px', lg: '20px' }}
+            fontWeight="bold"
+            mb={3}
+          >
+            目次
+          </Text>
+          <ul css={styles.blog.tocList}>
+            {toc.map((x) => (
+              <li className={x.name} key={x.id}>
+                <Scroll to={x.id} smooth offset={-100}>
+                  {x.text}
+                </Scroll>
+              </li>
+            ))}
+          </ul>
+        </Box>
+      )}
+      <Box mb={12} css={styles.blog.contents}>
+        <div>{isClient && parse(data.content, { replace })}</div>
+      </Box>
+      <Disqus.DiscussionEmbed
+        shortname={disqusShortName}
+        config={disqusConfig}
+      />
+    </MainLayout>
   )
 }
 

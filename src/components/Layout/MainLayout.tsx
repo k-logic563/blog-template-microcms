@@ -7,10 +7,10 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 
-import Header from '@/components/organisms/Header'
-import Footer from '@/components/organisms/Footer'
-import SearchModal from '@/layout/widget/SearchModal'
-import { Sidebar } from '@/layout/widget/Sidebar'
+import Header from './Header'
+import Footer from './Footer'
+import SearchModal from './widget/SearchModal'
+import { Sidebar } from './widget/Sidebar'
 
 import { theme } from '@/config/chakraTheme'
 import { CategoryContent, TagContent } from '@/api/types'
@@ -26,7 +26,7 @@ type Props = {
   }[]
 }
 
-const Layout = ({ children, toc }: Props) => {
+export const MainLayout = ({ children, toc }: Props) => {
   const { filteredArticles, handleSearch, handleModalEnd, keyword } =
     useSearch()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -84,5 +84,3 @@ const Layout = ({ children, toc }: Props) => {
     </ChakraProvider>
   )
 }
-
-export default Layout
