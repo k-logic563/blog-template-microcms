@@ -8,11 +8,13 @@ import { formatDate } from '@/utils/format'
 import { Content } from '@/api/types'
 import * as styles from '@/styles'
 
-type Props = {
-  contents: (Content & MicroCMSContentId & MicroCMSDate)[]
+type Props<T> = {
+  contents: T
 }
 
-export const List: React.FC<Props> = ({ contents }) => {
+type ContentsProps = (Content & MicroCMSContentId & MicroCMSDate)[]
+
+export const List = <T extends ContentsProps>({ contents }: Props<T>) => {
   return (
     <VStack spacing={6}>
       {contents.map((item) => (

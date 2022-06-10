@@ -105,7 +105,9 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
         {data.contents.length !== 0 ? (
           <>
             <Box mb={10}>
-              <List contents={data.contents} />
+              <List<CategoryPageProps['data']['contents']>
+                contents={data.contents}
+              />
             </Box>
             <Box textAlign="center">
               <Pagination

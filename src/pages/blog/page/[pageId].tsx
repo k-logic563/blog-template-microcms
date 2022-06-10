@@ -72,7 +72,7 @@ const BlogPageId: NextPageWithLayout<BlogPageProps> = ({ data, pageId }) => {
         <Heading mb={4} as="h2" fontSize={['base', 'lg', '2xl']}>
           記事一覧
         </Heading>
-        <List contents={data.contents} />
+        <List<BlogPageProps['data']['contents']> contents={data.contents} />
       </Box>
       <Box textAlign="center">
         <Pagination

@@ -34,7 +34,7 @@ const HomePage: NextPageWithLayout<HomeProps> = ({ response }) => {
       </Heading>
       {contents.length !== 0 ? (
         <>
-          <List contents={contents} />
+          <List<HomeProps['response']['contents']> contents={contents} />
           <Box textAlign="center" mt={8}>
             <Link href="/blog/page/1" color="white">
               <Button colorScheme="teal" size="md" rounded="5px">

@@ -8,7 +8,6 @@ import { NextSeo } from 'next-seo'
 import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
 import parse, { DOMNode, domToReact } from 'html-react-parser'
-import Disqus from 'disqus-react'
 import { Link as Scroll } from 'react-scroll'
 import { Heading, Text, Box, Image, Link } from '@chakra-ui/react'
 
@@ -39,7 +38,6 @@ type ReplaceDOMNode = DOMNode & {
   children?: DOMNode[]
 }
 
-const disqusShortName = process.env.NEXT_PUBLIC_DISQUS_SHORT_NAME
 const isDraft = (item: any): item is { draftKey: string } =>
   !!(item?.draftKey && typeof item.draftKey === 'string')
 
@@ -84,12 +82,6 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({
 }) => {
   const isMobile = useBreakpoint()
   const isClient = useClient()
-
-  const disqusConfig = {
-    url: `https://iwtttter.tech/blog/${data.id}`,
-    identifier: data.id,
-    title: data.title,
-  }
 
   const replace = (node: ReplaceDOMNode) => {
     if (node.name === 'a' && node.children) {
@@ -159,10 +151,6 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({
       <Box mb={12} css={styles.blog.contents}>
         <div>{isClient && parse(data.content, { replace })}</div>
       </Box>
-      <Disqus.DiscussionEmbed
-        shortname={disqusShortName}
-        config={disqusConfig}
-      />
     </MainLayout>
   )
 }
