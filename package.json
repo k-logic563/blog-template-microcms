@@ -15,8 +15,6 @@
   },
   "lint-staged": {
     "*.{tsx, ts}": [
-      "bash -c 'npm run tsc'",
-      "npm run test",
       "npm run lint"
     ]
   },
