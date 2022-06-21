@@ -19,7 +19,7 @@ export const Category: React.FC<Props> = ({ categories }) => {
     >
       {categories.map((x) => (
         <Link key={x.id} href={`/blog/category/${x.id}/1`} passHref>
-          <Text as="a" w="100%" py={1.5} css={styles.sidebar.link}>
+          <Text as="a" w="100%" py={2} css={styles.sidebar.link}>
             {x.name}
           </Text>
         </Link>

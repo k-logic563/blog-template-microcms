@@ -29,7 +29,7 @@ export const Sns = () => {
       {data.map((x, i) => (
         <Text
           as="a"
-          py={1.5}
+          py={2}
           w="100%"
           key={i}
           href={x.href}

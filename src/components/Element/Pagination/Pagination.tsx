@@ -9,7 +9,7 @@ import { range } from '@/utils/range'
 type Props = {
   totalCount: number
   path: string
-  pageId?: number
+  pageId: number
 }
 
 export const Pagination: React.FC<Props> = ({ totalCount, path, pageId }) => {
