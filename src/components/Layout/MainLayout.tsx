@@ -14,8 +14,8 @@ import { Sidebar } from './widget/Sidebar'
 
 import { theme } from '@/config/chakraTheme'
 import { CategoryContent, TagContent } from '@/api/types'
-import { microClient } from '@/lib/aspida'
 import { useSearch } from '@/hooks/useSearch'
+import { apiRouteHttp } from '@/lib/axios'
 
 type Props = {
   children: React.ReactNode
@@ -26,23 +26,26 @@ type Props = {
   }[]
 }
 
+type Category = CategoryContent['contents']
+type Tag = TagContent['contents']
+
 export const MainLayout = ({ children, toc }: Props) => {
   const { filteredArticles, handleSearch, handleModalEnd, keyword } =
     useSearch()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [categories, setCategories] = useState<CategoryContent['contents']>([])
-  const [tags, setTags] = useState<TagContent['contents']>([])
+  const [categories, setCategories] = useState<Category>([])
+  const [tags, setTags] = useState<Tag>([])
 
   useEffect(() => {
     ;(async () => {
-      // set tag and category
-      const categoryPromise = microClient.categories.$get()
-      const tagPromise = microClient.tags.$get()
-
       try {
+        const categoryPromise = apiRouteHttp.get<{ contents: Category }>(
+          '/api/category'
+        )
+        const tagPromise = apiRouteHttp.get<{ contents: Tag }>('/api/tag')
         const responses = await Promise.all([categoryPromise, tagPromise])
-        setCategories(responses[0].contents)
-        setTags(responses[1].contents)
+        setCategories(responses[0].data.contents)
+        setTags(responses[1].data.contents)
       } catch (e) {
         console.error(e)
       }

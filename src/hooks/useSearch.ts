@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
+import { MicroCMSListResponse } from 'microcms-js-sdk'
 
-import { BlogContent } from '@/api/types'
-import { microClient } from '@/lib/aspida'
+import { BlogContent, Content } from '@/api/types'
+import { apiRouteHttp } from '@/lib/axios'
+
+type Props = MicroCMSListResponse<Content>
 
 export const useSearch = () => {
   const [keyword, setKeyword] = useState('')
@@ -34,8 +37,8 @@ export const useSearch = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        const { contents } = await microClient.blogs.$get()
-        setArticles(contents)
+        const { data } = await apiRouteHttp.get<Props>('/api/blog/list')
+        setArticles(data.contents)
       } catch (e) {
         console.error(e)
       }
