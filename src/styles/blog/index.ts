@@ -130,6 +130,13 @@ export const contents = css`
     width: 100% !important;
   }
 
+  img:not(.blog-card-image) {
+    padding: 10px;
+    box-shadow: 0 0 5px rgb(0 0 0 / 25%);
+    width: calc(100% - 6px);
+    margin: 1rem auto;
+  }
+
   p {
     margin-bottom: 1em;
     line-height: 1.8;

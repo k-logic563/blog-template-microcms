@@ -26,7 +26,12 @@ export const BlogCard: React.FC<Props> = ({ cardData, children }) => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <Image css={styles.blog.blogCardImage} src={cardData.image} alt="" />
+          <Image
+            className="blog-card-image"
+            css={styles.blog.blogCardImage}
+            src={cardData.image}
+            alt=""
+          />
           <Text as="span" css={styles.blog.blogCardInner} display="block">
             <Text as="span">
               <Text as="span" css={styles.blog.blogCardTitle} noOfLines={2}>
