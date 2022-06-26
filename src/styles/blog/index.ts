@@ -134,7 +134,7 @@ export const contents = css`
     padding: 10px;
     box-shadow: 0 0 5px rgb(0 0 0 / 25%);
     width: calc(100% - 6px);
-    margin: 1rem auto;
+    margin: 0 auto;
   }
 
   p {
