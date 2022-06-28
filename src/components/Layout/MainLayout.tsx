@@ -33,23 +33,31 @@ export const MainLayout = ({ children, toc }: Props) => {
   const { filteredArticles, handleSearch, handleModalEnd, keyword } =
     useSearch()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [categories, setCategories] = useState<Category>([])
-  const [tags, setTags] = useState<Tag>([])
+  const [categories, setCategories] = useState<Category | []>()
+  const [tags, setTags] = useState<Tag | []>()
+
+  const fetchData = async () => {
+    try {
+      const categoryPromise = apiRouteHttp.get<{ contents: Category }>(
+        '/api/category'
+      )
+      const tagPromise = apiRouteHttp.get<{ contents: Tag }>('/api/tag')
+      const responses = await Promise.allSettled([categoryPromise, tagPromise])
+      const resCategory = responses[0]
+      const resTag = responses[1]
+      setCategories(
+        resCategory.status === 'fulfilled'
+          ? resCategory.value.data.contents
+          : []
+      )
+      setTags(resTag.status === 'fulfilled' ? resTag.value.data.contents : [])
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   useEffect(() => {
-    ;(async () => {
-      try {
-        const categoryPromise = apiRouteHttp.get<{ contents: Category }>(
-          '/api/category'
-        )
-        const tagPromise = apiRouteHttp.get<{ contents: Tag }>('/api/tag')
-        const responses = await Promise.all([categoryPromise, tagPromise])
-        setCategories(responses[0].data.contents)
-        setTags(responses[1].data.contents)
-      } catch (e) {
-        console.error(e)
-      }
-    })()
+    fetchData()
   }, [])
 
   return (
@@ -71,7 +79,9 @@ export const MainLayout = ({ children, toc }: Props) => {
         >
           <GridItem overflow="auto">{children}</GridItem>
           <GridItem position="sticky" top="6rem">
-            <Sidebar toc={toc} categories={categories} tags={tags} />
+            {categories && tags && (
+              <Sidebar toc={toc} categories={categories} tags={tags} />
+            )}
           </GridItem>
         </Grid>
       </Container>
