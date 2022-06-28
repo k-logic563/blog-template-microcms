@@ -5,6 +5,7 @@ import {
   Grid,
   GridItem,
   useDisclosure,
+  Text,
 } from '@chakra-ui/react'
 
 import Header from './Header'
@@ -79,9 +80,7 @@ export const MainLayout = ({ children, toc }: Props) => {
         >
           <GridItem overflow="auto">{children}</GridItem>
           <GridItem position="sticky" top="6rem">
-            {categories && tags && (
-              <Sidebar toc={toc} categories={categories} tags={tags} />
-            )}
+            <Sidebar toc={toc} categories={categories} tags={tags} />
           </GridItem>
         </Grid>
       </Container>

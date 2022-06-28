@@ -13,8 +13,8 @@ import { useClient } from '@/hooks/useClient'
 
 type Props = {
   toc?: Toc[]
-  categories: CategoryContent['contents'] | []
-  tags: TagContent['contents'] | []
+  categories: CategoryContent['contents'] | [] | undefined
+  tags: TagContent['contents'] | [] | undefined
 }
 
 export const Sidebar: React.FC<Props> = ({ toc, categories, tags }) => {
@@ -54,10 +54,14 @@ export const Sidebar: React.FC<Props> = ({ toc, categories, tags }) => {
         >
           カテゴリー
         </Text>
-        {categories.length !== 0 ? (
-          <Category categories={categories} />
+        {categories ? (
+          categories.length !== 0 ? (
+            <Category categories={categories} />
+          ) : (
+            <p>カテゴリーがありません</p>
+          )
         ) : (
-          <p>カテゴリーがありません</p>
+          <Text>Now Loading...</Text>
         )}
       </Box>
       <Box>
@@ -71,7 +75,15 @@ export const Sidebar: React.FC<Props> = ({ toc, categories, tags }) => {
         >
           タグ
         </Text>
-        {tags.length !== 0 ? <Tag tags={tags} /> : <p>タグがありません</p>}
+        {tags ? (
+          tags.length !== 0 ? (
+            <Tag tags={tags} />
+          ) : (
+            <p>タグがありません</p>
+          )
+        ) : (
+          <Text>Now Loading...</Text>
+        )}
       </Box>
       {!toc && (
         <Box>
