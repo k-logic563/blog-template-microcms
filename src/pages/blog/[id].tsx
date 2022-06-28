@@ -123,7 +123,9 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({
         {data.title}
       </Heading>
       <Box mb={8}>
-        <Text mb={1}>投稿日&ensp;{formatDate(data.publishedAt)}</Text>
+        {data.publishedAt && (
+          <Text mb={1}>投稿日&ensp;{formatDate(data.publishedAt)}</Text>
+        )}
         {data.updatedAt && (
           <Text>更新日&ensp;{formatDate(data.updatedAt)}</Text>
         )}

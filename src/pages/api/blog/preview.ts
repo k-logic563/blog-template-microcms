@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { microClient } from '@/lib/aspida'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log(req.query)
   if (!req.query.id) {
     return res.status(404).end()
   }
