@@ -1,47 +1,11 @@
 import React from 'react'
 import type { NextPageWithLayout } from 'next'
-import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Box, Text, Heading } from '@chakra-ui/react'
+import { Text, Heading } from '@chakra-ui/react'
 
 import { MainLayout } from '@/components/Layout'
-import { FormInputGroup, FormTextAreaGroup } from '@/components/Form'
-
-import { pageClient } from '@/lib/aspida'
-import { schema } from '@/constants/schema'
-import { wait } from '@/utils/wait'
-
-type Props = {
-  name: string
-  email: string
-  contents: string
-}
 
 const ContactPage: NextPageWithLayout = () => {
-  const { push } = useRouter()
-  const [error, setError] = React.useState('')
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm<Props>({
-    resolver: zodResolver(schema),
-  })
-
-  const onSubmit = async (values: Props) => {
-    try {
-      await pageClient.contact.$post({ body: values })
-      await wait(1000)
-      await push('/thanks')
-    } catch {
-      setError(
-        '申し訳ありません。エラーにより送信できませんでした。<br>今しばらくお待ちください。'
-      )
-    }
-  }
-
   return (
     <>
       <NextSeo
@@ -56,59 +20,8 @@ const ContactPage: NextPageWithLayout = () => {
         お問い合わせ
       </Heading>
       <Text mb={10}>
-        以下のフォームよりご記入の上、
-        <Text as="span" display="inline-block">
-          送信してください。
-        </Text>
+        フォーム設置まで少々お待ちください。
       </Text>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Box display="grid" rowGap={4} px={1} mb={12}>
-          <Box>
-            <FormInputGroup
-              label="お名前"
-              fieldName="name"
-              registerProps={register('name')}
-              errorMsg={errors.name?.message}
-            />
-          </Box>
-          <Box>
-            <FormInputGroup
-              label="メールアドレス"
-              fieldName="email"
-              registerProps={register('email')}
-              errorMsg={errors.email?.message}
-            />
-          </Box>
-          <Box>
-            <FormTextAreaGroup
-              rows={8}
-              registerProps={register('contents')}
-              fieldName="contents"
-              label="お問い合わせ内容"
-              errorMsg={errors.contents?.message}
-            />
-          </Box>
-        </Box>
-        <Button
-          py={6}
-          px={8}
-          w="100%"
-          rounded="5px"
-          colorScheme="teal"
-          isLoading={isSubmitting}
-          type="submit"
-        >
-          送信する
-        </Button>
-        {error && (
-          <Text
-            mt={4}
-            color="red.600"
-            fontSize="14px"
-            dangerouslySetInnerHTML={{ __html: error }}
-          />
-        )}
-      </form>
     </>
   )
 }
