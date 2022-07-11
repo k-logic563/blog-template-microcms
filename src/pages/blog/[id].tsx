@@ -7,16 +7,13 @@ import {
 import { NextSeo } from 'next-seo'
 import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
-import parse, { DOMNode, domToReact } from 'html-react-parser'
 import { Link as Scroll } from 'react-scroll'
-import { Heading, Text, Box, Image, Link } from '@chakra-ui/react'
+import { Heading, Text, Box, Image } from '@chakra-ui/react'
 
-import { BlogCard } from '@/components/Element/Card'
 import { MainLayout } from '@/components/Layout'
 
 import { microClient } from '@/lib/aspida'
 import { codeHighlight } from '@/utils/code-highlight'
-import { blogCard } from '@/utils/blog-card'
 import { generateToc } from '@/utils/toc'
 import { useBreakpoint } from '@/hooks/useBreakpoint'
 import { useClient } from '@/hooks/useClient'
@@ -29,13 +26,6 @@ import 'highlight.js/styles/atom-one-dark.css'
 type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = ParsedUrlQuery & {
   id: string
-}
-type ReplaceDOMNode = DOMNode & {
-  name?: string
-  attribs?: {
-    href?: string
-  }
-  children?: DOMNode[]
 }
 
 const isDraft = (item: any): item is { draftKey: string } =>
@@ -65,45 +55,21 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   // ブログカード、目次、記事データを集約
   const props = {
     data: { ...res, content: $.html() },
-    cardData: await blogCard($),
     toc: generateToc($),
   }
 
   return {
     props,
-    revalidate: 10,
+    revalidate: 60,
   }
 }
 
 const BlogId: NextPageWithLayout<BlogDetailProps> = ({
   data,
-  cardData,
   toc,
 }) => {
   const isMobile = useBreakpoint()
   const isClient = useClient()
-
-  const replace = (node: ReplaceDOMNode) => {
-    if (node.name === 'a' && node.children) {
-      // 文中テキストリンクならばそのまま出力する
-      const text = (node.children[0] as any).data
-      if (!/^http/.test(text)) {
-        return (
-          <Link color="blue.500" href={node.attribs?.href} target="_blank">
-            {domToReact(node.children)}
-          </Link>
-        )
-      }
-      const indexOfUrl = cardData.findIndex((x) => {
-        return x && x.url.indexOf(`${node.attribs?.href}`) !== -1
-      })
-      return (
-        <BlogCard cardData={cardData[indexOfUrl]}>
-          {domToReact(node.children)}
-        </BlogCard>
-      )
-    }
-  }
 
   return (
     <MainLayout toc={toc}>
@@ -154,7 +120,7 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({
         </Box>
       )}
       <Box mb={12} css={styles.blog.contents}>
-        <div>{isClient && parse(data.content, { replace })}</div>
+        { isClient && <div dangerouslySetInnerHTML={{ __html: data.content }} /> }
       </Box>
     </MainLayout>
   )

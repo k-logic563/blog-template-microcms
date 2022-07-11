@@ -73,52 +73,6 @@ export const pagination = css`
   }
 `
 
-export const blogCard = css`
-  display: grid;
-  grid-template-columns: 0.4fr 1fr;
-  border: 1px solid ${theme.colors.gray['400']};
-  border-radius: 5px;
-  overflow: hidden;
-  background-color: ${theme.colors.gray['50']};
-
-  &:hover {
-    text-decoration: none;
-    opacity: 0.6;
-  }
-`
-
-export const blogCardInner = css`
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
-
-export const blogCardTitle = css`
-  font-size: clamp(14px, 2vw, 16px);
-  font-weight: bold;
-  margin-bottom: 0.2em;
-  line-height: 1.4;
-`
-
-export const blogCardDesc = css`
-  font-size: clamp(12px, 2vw, 13px);
-  color: ${theme.colors.gray['500']};
-`
-
-export const blogCardImage = css`
-  object-fit: cover;
-  width: 100%;
-  height: clamp(110px, 20vw, 130px);
-  border-right: 1px solid ${theme.colors.gray['400']};
-`
-
-export const blogCardSiteName = css`
-  font-size: 11px;
-  color: ${theme.colors.gray['500']};
-  line-height: 1.4;
-`
-
 export const contents = css`
   overflow-x: auto;
 
@@ -130,7 +84,7 @@ export const contents = css`
     width: 100% !important;
   }
 
-  img:not(.blog-card-image) {
+  img {
     padding: 10px;
     box-shadow: 0 0 5px rgb(0 0 0 / 25%);
     width: calc(100% - 6px);
@@ -196,5 +150,13 @@ export const contents = css`
     text-align: right;
     color: #888888;
     font-size: 0.9em;
+  }
+
+  a {
+    color: ${theme.colors.blue['500']};
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `
