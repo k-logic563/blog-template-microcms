@@ -64,10 +64,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   }
 }
 
-const BlogId: NextPageWithLayout<BlogDetailProps> = ({
-  data,
-  toc,
-}) => {
+const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
   const isMobile = useBreakpoint()
   const isClient = useClient()
 
@@ -120,7 +117,7 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({
         </Box>
       )}
       <Box mb={12} css={styles.blog.contents}>
-        { isClient && <div dangerouslySetInnerHTML={{ __html: data.content }} /> }
+        {isClient && <div dangerouslySetInnerHTML={{ __html: data.content }} />}
       </Box>
     </MainLayout>
   )

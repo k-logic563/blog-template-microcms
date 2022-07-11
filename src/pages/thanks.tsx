@@ -1,10 +1,26 @@
 import React from 'react'
+import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
 import { Box, Text, Heading, Button } from '@chakra-ui/react'
 
 import { MainLayout } from '@/components/Layout'
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const isRefererContact = ctx.req.headers.referer?.endsWith('/contact')
+  if (!isRefererContact) {
+    return {
+      props: {},
+      redirect: {
+        destination: '/',
+      },
+    }
+  }
+  return {
+    props: {},
+  }
+}
 
 const Thanks: NextPageWithLayout = () => {
   return (

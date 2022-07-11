@@ -11,3 +11,6 @@ const config = {
 }
 
 export const microClient = api(aspida(axios, config))
+export const pageClient = api(
+  aspida(axios, { baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/api` })
+)

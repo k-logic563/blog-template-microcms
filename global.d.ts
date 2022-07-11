@@ -5,5 +5,7 @@ declare namespace NodeJS {
     readonly MICROCMS_BASE_URL: string
     readonly NEXT_PUBLIC_BASE_URL: string
     readonly NEXT_PUBLIC_GA_MEASUREMENT_ID: string
+    readonly SENDMAIL_API_KEY: string
+    readonly TEMPLATE_ID: string
   }
 }
