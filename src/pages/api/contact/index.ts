@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 const mailApiKey = process.env.SENDMAIL_API_KEY
 const templateId = process.env.TEMPLATE_ID
+const fromEmail = process.env.FROM_EMAIL
 
 type Payload = sgMail.MailDataRequired
 
@@ -27,7 +28,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         },
       ],
       from: {
-        email: 'k.log.ic563@gmail.com',
+        email: fromEmail,
       },
       templateId: templateId,
     }
