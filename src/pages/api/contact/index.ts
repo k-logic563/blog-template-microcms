@@ -35,14 +35,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
       await sgMail.send(payload)
-      res.statusCode = 200
-      res.send({ message: 'done' })
+      res.status(200).json(payload)
     } catch (error) {
-      res.statusCode = 500
-      res.send(error)
+      res.status(500).json(error)
     }
-  } else {
-    res.statusCode = 400
-    res.send({ error: new Error('invalid parameters') })
   }
+
+  res.status(400).json({ error: 'invalid parameters' })
 }
