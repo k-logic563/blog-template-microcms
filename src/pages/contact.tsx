@@ -19,9 +19,7 @@ const ContactPage: NextPageWithLayout = () => {
       <Heading as="h1" fontSize={{ base: '24px', md: '28px' }} mb={4}>
         お問い合わせ
       </Heading>
-      <Text>
-        フォーム設置までお待ちください。
-      </Text>
+      <Text>フォーム設置までお待ちください。</Text>
     </>
   )
 }

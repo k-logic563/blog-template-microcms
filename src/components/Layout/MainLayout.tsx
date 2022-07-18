@@ -5,7 +5,6 @@ import {
   Grid,
   GridItem,
   useDisclosure,
-  Text,
 } from '@chakra-ui/react'
 
 import Header from './Header'

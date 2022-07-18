@@ -35,6 +35,7 @@ export const List = <T extends ContentsProps>({ contents }: Props<T>) => {
                   py={1}
                   px={2}
                   fontSize={{ base: '12px' }}
+                  color="blackAlpha.800"
                   bg="whiteAlpha.800"
                   borderBottomRightRadius="5px"
                 >

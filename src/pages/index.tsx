@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import type { InferGetStaticPropsType, NextPageWithLayout } from 'next'
-import { Box, Heading, Button, Text } from '@chakra-ui/react'
+import { Box, Heading, Button, Text, LightMode } from '@chakra-ui/react'
 
 import { List } from '@/components/List'
 import { microClient } from '@/lib/aspida'

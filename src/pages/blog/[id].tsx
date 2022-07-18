@@ -15,7 +15,6 @@ import { MainLayout } from '@/components/Layout'
 import { microClient } from '@/lib/aspida'
 import { codeHighlight } from '@/utils/code-highlight'
 import { generateToc } from '@/utils/toc'
-import { useBreakpoint } from '@/hooks/useBreakpoint'
 import { useClient } from '@/hooks/useClient'
 import { formatDate } from '@/utils/format'
 
@@ -52,7 +51,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   // コードハイライト
   codeHighlight($)
 
-  // ブログカード、目次、記事データを集約
+  // 目次、記事データを集約
   const props = {
     data: { ...res, content: $.html() },
     toc: generateToc($),
@@ -65,11 +64,10 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
 }
 
 const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
-  const isMobile = useBreakpoint()
   const isClient = useClient()
 
   return (
-    <MainLayout toc={toc}>
+    <>
       <NextSeo
         title={`${data.title}`}
         description={data.description}
@@ -96,10 +94,11 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
       <Box mb={6}>
         <Image src={data.eyecatch.url} alt="" />
       </Box>
-      {isClient && isMobile && toc?.length !== 0 && (
+      {isClient && toc?.length !== 0 && (
         <Box px={4} py={6} mb={10} bg="gray.100" rounded="5px">
           <Text
             fontSize={{ base: '16px', lg: '20px' }}
+            color="blackAlpha.800"
             fontWeight="bold"
             mb={3}
           >
@@ -119,10 +118,10 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
       <Box mb={12} css={styles.blog.contents}>
         {isClient && <div dangerouslySetInnerHTML={{ __html: data.content }} />}
       </Box>
-    </MainLayout>
+    </>
   )
 }
 
 export default BlogId
 
-BlogId.getLayout = (page) => page
+BlogId.getLayout = (page) => <MainLayout>{page}</MainLayout>
