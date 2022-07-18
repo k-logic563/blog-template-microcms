@@ -12,6 +12,7 @@ export const link = css`
   padding: 0.8em 0.6em;
   background-color: ${theme.colors.gray['200']};
   border-radius: 5px;
+  color: ${theme.colors.black};
 
   &::before {
     content: '#';

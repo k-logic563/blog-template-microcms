@@ -98,7 +98,7 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
         <Box px={4} py={6} mb={10} bg="gray.100" rounded="5px">
           <Text
             fontSize={{ base: '16px', lg: '20px' }}
-            color="blackAlpha.800"
+            color="black"
             fontWeight="bold"
             mb={3}
           >

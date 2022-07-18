@@ -16,13 +16,21 @@ export const Logo = () => {
           fontSize={['lg', 'xl', '4xl']}
           fontWeight="bold"
         >
-          <Image w="140px" src="/assets/images/logo.png" alt="iwtttter" />
+          <Image
+            w={{ base: '120px', md: '140px' }}
+            src="/assets/images/logo.png"
+            alt="iwtttter"
+          />
         </Text>
       ) : (
         <Text fontSize={['lg', 'xl', '4xl']} fontWeight="bold" color="white">
           <Link href="/" passHref>
             <a>
-              <Image w="140px" src="/assets/images/logo.png" alt="iwtttter" />
+              <Image
+                w={{ base: '120px', md: '140px' }}
+                src="/assets/images/logo.png"
+                alt="iwtttter"
+              />
             </a>
           </Link>
         </Text>
