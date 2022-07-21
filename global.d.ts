@@ -10,3 +10,9 @@ declare namespace NodeJS {
     readonly TEMPLATE_ID: string
   }
 }
+
+interface Window {
+  gtag: any
+}
+
+declare const window: Window
