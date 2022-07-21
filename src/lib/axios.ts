@@ -4,6 +4,6 @@ const config = {
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 }
 
-const apiRouteHttp = axios.create(config)
+const client = axios.create(config)
 
-export { apiRouteHttp }
+export { client }

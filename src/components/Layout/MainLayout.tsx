@@ -15,7 +15,7 @@ import { Sidebar } from './widget/Sidebar'
 import { theme } from '@/config/chakraTheme'
 import { CategoryContent, TagContent } from '@/api/types'
 import { useSearch } from '@/hooks/useSearch'
-import { apiRouteHttp } from '@/lib/axios'
+import { client } from '@/lib/axios'
 
 type Props = {
   children: React.ReactNode
@@ -38,10 +38,10 @@ export const MainLayout = ({ children, toc }: Props) => {
 
   const fetchData = async () => {
     try {
-      const categoryPromise = apiRouteHttp.get<{ contents: Category }>(
+      const categoryPromise = client.get<{ contents: Category }>(
         '/api/category'
       )
-      const tagPromise = apiRouteHttp.get<{ contents: Tag }>('/api/tag')
+      const tagPromise = client.get<{ contents: Tag }>('/api/tag')
       const responses = await Promise.allSettled([categoryPromise, tagPromise])
       const resCategory = responses[0]
       const resTag = responses[1]

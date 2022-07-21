@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { MicroCMSListResponse } from 'microcms-js-sdk'
 
 import { BlogContent, Content } from '@/api/types'
-import { apiRouteHttp } from '@/lib/axios'
+import { client } from '@/lib/axios'
 
 type Props = MicroCMSListResponse<Content>
 
@@ -37,7 +37,7 @@ export const useSearch = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        const { data } = await apiRouteHttp.get<Props>('/api/blog/list')
+        const { data } = await client.get<Props>('/blog/list')
         setArticles(data.contents)
       } catch (e) {
         console.error(e)
