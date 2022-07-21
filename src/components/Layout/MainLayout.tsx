@@ -38,10 +38,8 @@ export const MainLayout = ({ children, toc }: Props) => {
 
   const fetchData = async () => {
     try {
-      const categoryPromise = client.get<{ contents: Category }>(
-        '/api/category'
-      )
-      const tagPromise = client.get<{ contents: Tag }>('/api/tag')
+      const categoryPromise = client.get<{ contents: Category }>('category')
+      const tagPromise = client.get<{ contents: Tag }>('tag')
       const responses = await Promise.allSettled([categoryPromise, tagPromise])
       const resCategory = responses[0]
       const resTag = responses[1]
