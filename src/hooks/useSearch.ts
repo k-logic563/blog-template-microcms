@@ -37,7 +37,7 @@ export const useSearch = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        const { data } = await client.get<Props>('blog/list')
+        const { data } = await client.get<Props>('/blog/list')
         setArticles(data.contents)
       } catch (e) {
         console.error(e)
