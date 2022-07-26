@@ -153,6 +153,7 @@ export const contents = css`
   }
 
   a {
+    display: inline-block;
     color: ${theme.colors.blue['500']};
 
     &:hover {
