@@ -24,7 +24,6 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@hookform/resolvers": "^2.8.10",
-    "@sendgrid/mail": "^7.7.0",
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.10",
     "date-fns": "^2.28.0",
