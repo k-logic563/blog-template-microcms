@@ -28,6 +28,7 @@ module.exports = {
     'no-useless-escape': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     'react/prop-types': 'off',
-    'react/no-children-prop': 'off'
+    'react/no-children-prop': 'off',
+    'react/react-in-jsx-scope': 'off'
   },
 }

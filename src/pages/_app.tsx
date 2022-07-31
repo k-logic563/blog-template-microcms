@@ -1,4 +1,3 @@
-import React from 'react'
 import type { AppPropsWithLayout } from 'next/app'
 import { DefaultSeo } from 'next-seo'
 

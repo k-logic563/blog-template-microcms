@@ -1,4 +1,3 @@
-import React from 'react'
 import type { NextPageWithLayout } from 'next'
 import Link from 'next/link'
 import { Button, Heading, Text } from '@chakra-ui/react'

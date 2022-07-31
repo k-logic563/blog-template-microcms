@@ -1,4 +1,3 @@
-import React from 'react'
 import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
 import { Box, Heading, Image, Text, HStack } from '@chakra-ui/react'
