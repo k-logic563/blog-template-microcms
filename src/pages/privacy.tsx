@@ -35,34 +35,12 @@ const PrivacyPage: NextPageWithLayout = () => {
       </Box>
       <Box mb={8}>
         <Heading as="h2" fontSize={{ base: '18px', md: '22px' }} mb={4}>
-          Cookieの使用について
-        </Heading>
-        <Text>
-          当ブログでは、アクセス解析のためにCookieを使用しています。
-          <br />
-          Cookieによりブラウザを識別していますが、特定の個人の識別はできない状態で匿名性が保たれています。
-          <br />
-          Cookieの使用を望まない場合、ブラウザからCookieを無効に設定できます。
-        </Text>
-      </Box>
-      <Box mb={8}>
-        <Heading as="h2" fontSize={{ base: '18px', md: '22px' }} mb={4}>
           アクセス解析ツールについて
         </Heading>
         <Text>
-          当ブログでは、Googleアナリティクスによりアクセス情報を解析しています。
+          当ブログでは、Umamiによりアクセス情報を解析しています。
           <br />
-          アクセス情報の解析にはCookieを使用しています。また、アクセス情報の収集はCookieを無効にすることで拒否できます。
-          <br />
-          Google社のデータ収集・処理の仕組みについては、
-          <Link
-            color="blue.600"
-            href="https://policies.google.com/technologies/partner-sites?hl=ja"
-            target="_blank"
-          >
-            こちら
-          </Link>
-          をご覧ください。
+          アクセス情報の解析にはCookieを使用しておりません。<Link color="blue.500" href="https://www.ppc.go.jp/enforcement/infoprovision/laws/GDPR/" target="_blank">GDPR</Link>に準拠しています。
         </Text>
       </Box>
       <Box mb={8}>
@@ -96,7 +74,7 @@ const PrivacyPage: NextPageWithLayout = () => {
         </Text>
       </Box>
       <Text>
-        制定日:2022年5月20日
+        制定日:2022年8月3日
         <br />
         iwtttter-blog
       </Text>
