@@ -98,7 +98,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
         }}
       />
       <Box>
-        <Heading mb={4} as="h2" fontSize={['base', 'lg', '2xl']}>
+        <Heading mb={6} as="h2" fontSize={['base', 'lg', '2xl']}>
           カテゴリー&ensp;【{catName}】
         </Heading>
         {data.contents.length !== 0 ? (

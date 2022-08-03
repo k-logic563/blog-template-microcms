@@ -25,7 +25,7 @@ const HomePage: NextPageWithLayout<HomeProps> = ({ response }) => {
   return (
     <Box>
       <Heading
-        mb={4}
+        mb={6}
         as="h2"
         fontSize={{ base: '18px', md: '22px', lg: '26px' }}
       >

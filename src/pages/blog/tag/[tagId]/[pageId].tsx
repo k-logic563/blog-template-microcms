@@ -98,7 +98,7 @@ const CategoryPage: NextPageWithLayout<TagPageProps> = ({
         }}
       />
       <Box>
-        <Heading mb={4} as="h2" fontSize={['base', 'lg', '2xl']}>
+        <Heading mb={6} as="h2" fontSize={['base', 'lg', '2xl']}>
           タグ&ensp;【{tagName}】
         </Heading>
         {data.contents.length !== 0 ? (

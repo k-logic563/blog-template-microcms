@@ -40,7 +40,15 @@ const PrivacyPage: NextPageWithLayout = () => {
         <Text>
           当ブログでは、Umamiによりアクセス情報を解析しています。
           <br />
-          アクセス情報の解析にはCookieを使用しておりません。<Link color="blue.500" href="https://www.ppc.go.jp/enforcement/infoprovision/laws/GDPR/" target="_blank">GDPR</Link>に準拠しています。
+          アクセス情報の解析にはCookieを使用しておりません。
+          <Link
+            color="blue.500"
+            href="https://www.ppc.go.jp/enforcement/infoprovision/laws/GDPR/"
+            target="_blank"
+          >
+            GDPR
+          </Link>
+          に準拠しています。
         </Text>
       </Box>
       <Box mb={8}>

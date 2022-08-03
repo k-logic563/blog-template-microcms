@@ -5,6 +5,7 @@ import {
   Grid,
   GridItem,
   useDisclosure,
+  Box,
 } from '@chakra-ui/react'
 
 import Header from './Header'
@@ -16,6 +17,8 @@ import { theme } from '@/config/chakraTheme'
 import { CategoryContent, TagContent } from '@/api/types'
 import { useSearch } from '@/hooks/useSearch'
 import { client } from '@/lib/axios'
+
+import * as styles from '@/styles'
 
 type Props = {
   children: React.ReactNode

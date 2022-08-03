@@ -5,7 +5,7 @@ import pkg from '~/package.json'
 
 const Footer: React.FC = () => {
   return (
-    <Center padding={2} bg="teal.500">
+    <Center padding={3} bg="teal.500">
       <Text color="white">
         &copy;{new Date().getFullYear()}&ensp;{pkg.name}
       </Text>
