@@ -10,6 +10,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Highlight
 } from '@chakra-ui/react'
 import { AiOutlineSearch } from 'react-icons/ai'
 
@@ -64,7 +65,9 @@ const SearchModal: React.FC<Props> = ({
                 <li key={x.id}>
                   <Link href={`/blog/${x.id}`} passHref>
                     <a css={styles.search.link} onClick={onClose}>
-                      {x.title}
+                      <Highlight query={keyword} styles={{ bg: 'yellow.100' }}>
+                        {x.title}
+                      </Highlight>
                     </a>
                   </Link>
                 </li>
