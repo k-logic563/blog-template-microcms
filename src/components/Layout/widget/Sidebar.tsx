@@ -26,7 +26,7 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
         >
           カテゴリー
         </Text>
-        {categories.length !== 0 && <Category categories={categories} />}
+        {categories.length !== 0 ? <Category categories={categories} /> : <p>loading</p>}
       </Box>
       <Box>
         <Text
@@ -39,7 +39,7 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
         >
           タグ
         </Text>
-        {tags.length !== 0 && <Tag tags={tags} />}
+        {tags.length !== 0 ? <Tag tags={tags} /> : <p>loading</p>}
       </Box>
       <Box>
         <Text
