@@ -1,16 +1,15 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { Box, Text, SimpleGrid } from '@chakra-ui/react'
 
 import { Category } from './Category'
 import { Tag } from './Tag'
 import { Sns } from './Sns'
 
-import { Toc, CategoryContent, TagContent } from '@/api/types'
+import { CategoryProps, TagProps } from '@/components/Layout/MainLayout'
 
 type Props = {
-  toc?: Toc[]
-  categories: CategoryContent['contents'] | [] | undefined
-  tags: TagContent['contents'] | [] | undefined
+  categories: CategoryProps
+  tags: TagProps
 }
 
 export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
@@ -27,15 +26,7 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
         >
           カテゴリー
         </Text>
-        {categories ? (
-          categories.length !== 0 ? (
-            <Category categories={categories} />
-          ) : (
-            <p>カテゴリーがありません</p>
-          )
-        ) : (
-          <Text>Now Loading...</Text>
-        )}
+        {categories.length !== 0 && <Category categories={categories} />}
       </Box>
       <Box>
         <Text
@@ -48,15 +39,7 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
         >
           タグ
         </Text>
-        {tags ? (
-          tags.length !== 0 ? (
-            <Tag tags={tags} />
-          ) : (
-            <p>タグがありません</p>
-          )
-        ) : (
-          <Text>Now Loading...</Text>
-        )}
+        {tags.length !== 0 && <Tag tags={tags} />}
       </Box>
       <Box>
         <Text
@@ -75,4 +58,4 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
   )
 }
 
-export default memo(Sidebar)
+export default Sidebar

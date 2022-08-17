@@ -2,11 +2,11 @@ import React from 'react'
 import { StackDivider, VStack, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 
-import { CategoryContent } from '@/api/types'
+import { CategoryProps } from '@/components/Layout/MainLayout'
 import * as styles from '@/styles'
 
 type Props = {
-  categories: CategoryContent['contents']
+  categories: CategoryProps
 }
 
 export const Category: React.FC<Props> = ({ categories }) => {

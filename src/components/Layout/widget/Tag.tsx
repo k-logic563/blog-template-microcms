@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { Flex, Icon } from '@chakra-ui/react'
 import { AiOutlineTag } from 'react-icons/ai'
 
-import { TagContent } from '@/api/types'
+import { TagProps } from '@/components/Layout/MainLayout'
 import * as styles from '@/styles'
 
 type Props = {
-  tags: TagContent['contents']
+  tags: TagProps
 }
 
 export const Tag: React.FC<Props> = ({ tags }) => {

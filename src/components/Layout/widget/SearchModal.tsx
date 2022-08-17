@@ -10,7 +10,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Highlight
+  Highlight,
 } from '@chakra-ui/react'
 import { AiOutlineSearch } from 'react-icons/ai'
 

@@ -14,42 +14,39 @@ import SearchModal from './widget/SearchModal'
 import { Sidebar } from './widget/Sidebar'
 
 import { theme } from '@/config/chakraTheme'
-import { CategoryContent, TagContent } from '@/api/types'
 import { useSearch } from '@/hooks/useSearch'
 import { client } from '@/lib/axios'
+import { CategoryContent, TagContent } from '@/api/types'
 
 type Props = {
   children: React.ReactNode
-  toc?: {
-    text: string
-    id: string
-    name: string
-  }[]
 }
 
-type Category = CategoryContent['contents']
-type Tag = TagContent['contents']
+export type CategoryProps = CategoryContent['contents']
+export type TagProps = TagContent['contents']
 
-export const MainLayout = ({ children, toc }: Props) => {
+export const MainLayout: React.FC<Props> = ({ children }) => {
   const { filteredArticles, handleSearch, handleModalEnd, keyword } =
     useSearch()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [categories, setCategories] = useState<Category | []>()
-  const [tags, setTags] = useState<Tag | []>()
+  const [categories, setCategories] = useState<CategoryProps>([])
+  const [tags, setTags] = useState<TagProps>([])
 
   const fetchData = async () => {
     try {
-      const categoryPromise = client.get<{ contents: Category }>('/category')
-      const tagPromise = client.get<{ contents: Tag }>('/tag')
+      const categoryPromise = client.get<{ contents: CategoryProps }>(
+        '/category'
+      )
+      const tagPromise = client.get<{ contents: TagProps }>('/tag')
       const responses = await Promise.allSettled([categoryPromise, tagPromise])
       const resCategory = responses[0]
       const resTag = responses[1]
-      setCategories(
-        resCategory.status === 'fulfilled'
-          ? resCategory.value.data.contents
-          : []
-      )
-      setTags(resTag.status === 'fulfilled' ? resTag.value.data.contents : [])
+      if (resCategory.status === 'fulfilled') {
+        setCategories(resCategory.value.data.contents)
+      }
+      if (resTag.status === 'fulfilled') {
+        setTags(resTag.value.data.contents)
+      }
     } catch (e) {
       console.error(e)
     }
@@ -61,7 +58,13 @@ export const MainLayout = ({ children, toc }: Props) => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Box style={{ display: 'grid', gridTemplateRows: '1fr auto', minHeight: '100vh' }}>
+      <Box
+        style={{
+          display: 'grid',
+          gridTemplateRows: '1fr auto',
+          minHeight: '100vh',
+        }}
+      >
         <Header onOpen={onOpen} />
         <Container
           maxW="container.lg"
@@ -79,7 +82,7 @@ export const MainLayout = ({ children, toc }: Props) => {
           >
             <GridItem overflow="auto">{children}</GridItem>
             <GridItem position="sticky" top="6rem">
-              <Sidebar toc={toc} categories={categories} tags={tags} />
+              <Sidebar categories={categories} tags={tags} />
             </GridItem>
           </Grid>
         </Container>
