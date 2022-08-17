@@ -18,8 +18,6 @@ import { CategoryContent, TagContent } from '@/api/types'
 import { useSearch } from '@/hooks/useSearch'
 import { client } from '@/lib/axios'
 
-import * as styles from '@/styles'
-
 type Props = {
   children: React.ReactNode
   toc?: {
@@ -63,28 +61,30 @@ export const MainLayout = ({ children, toc }: Props) => {
 
   return (
     <ChakraProvider theme={theme}>
-      <Header onOpen={onOpen} />
-      <Container
-        maxW="container.lg"
-        py={12}
-        mt={{
-          base: '52px',
-          md: '72px',
-        }}
-      >
-        <Grid
-          templateColumns={{ md: '1fr 0.4fr' }}
-          columnGap={8}
-          rowGap={10}
-          alignItems="start"
+      <Box style={{ display: 'grid', gridTemplateRows: '1fr auto', minHeight: '100vh' }}>
+        <Header onOpen={onOpen} />
+        <Container
+          maxW="container.lg"
+          py={12}
+          mt={{
+            base: '52px',
+            md: '72px',
+          }}
         >
-          <GridItem overflow="auto">{children}</GridItem>
-          <GridItem position="sticky" top="6rem">
-            <Sidebar toc={toc} categories={categories} tags={tags} />
-          </GridItem>
-        </Grid>
-      </Container>
-      <Footer />
+          <Grid
+            templateColumns={{ md: '1fr 0.4fr' }}
+            columnGap={8}
+            rowGap={10}
+            alignItems="start"
+          >
+            <GridItem overflow="auto">{children}</GridItem>
+            <GridItem position="sticky" top="6rem">
+              <Sidebar toc={toc} categories={categories} tags={tags} />
+            </GridItem>
+          </Grid>
+        </Container>
+        <Footer />
+      </Box>
       <SearchModal
         keyword={keyword}
         isOpen={isOpen}

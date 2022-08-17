@@ -16,9 +16,8 @@
   },
   "lint-staged": {
     "*.{tsx, ts}": [
-      "bash -c 'yarn tsc'",
-      "yarn lint",
-      "yarn test"
+      "bash -c 'npm run tsc'",
+      "npm run lint"
     ]
   },
   "dependencies": {
