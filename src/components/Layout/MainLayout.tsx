@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {
   ChakraProvider,
   Container,
@@ -15,46 +15,15 @@ import { Sidebar } from './widget/Sidebar'
 
 import { theme } from '@/config/chakraTheme'
 import { useSearch } from '@/hooks/useSearch'
-import { client } from '@/lib/axios'
-import { CategoryContent, TagContent } from '@/api/types'
 
 type Props = {
   children: React.ReactNode
 }
 
-export type CategoryProps = CategoryContent['contents']
-export type TagProps = TagContent['contents']
-
 export const MainLayout: React.FC<Props> = ({ children }) => {
   const { filteredArticles, handleSearch, handleModalEnd, keyword } =
     useSearch()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [categories, setCategories] = useState<CategoryProps>([])
-  const [tags, setTags] = useState<TagProps>([])
-
-  const fetchData = async () => {
-    try {
-      const categoryPromise = client.get<{ contents: CategoryProps }>(
-        '/category'
-      )
-      const tagPromise = client.get<{ contents: TagProps }>('/tag')
-      const responses = await Promise.allSettled([categoryPromise, tagPromise])
-      const resCategory = responses[0]
-      const resTag = responses[1]
-      if (resCategory.status === 'fulfilled') {
-        setCategories(resCategory.value.data.contents)
-      }
-      if (resTag.status === 'fulfilled') {
-        setTags(resTag.value.data.contents)
-      }
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
 
   return (
     <ChakraProvider theme={theme}>
@@ -82,7 +51,7 @@ export const MainLayout: React.FC<Props> = ({ children }) => {
           >
             <GridItem overflow="auto">{children}</GridItem>
             <GridItem position="sticky" top="6rem">
-              <Sidebar categories={categories} tags={tags} />
+              <Sidebar />
             </GridItem>
           </Grid>
         </Container>

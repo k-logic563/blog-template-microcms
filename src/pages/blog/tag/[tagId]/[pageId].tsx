@@ -11,8 +11,9 @@ import { List } from '@/components/List'
 import { Pagination } from '@/components/Element/Pagination'
 
 import { range } from '@/utils/range'
-import { microClient } from '@/lib/aspida'
+import { microClient } from '@/lib/axios'
 import { perPage } from '@/constants/pagination'
+import { TagContent } from '@/types/type'
 
 export type TagPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -22,15 +23,15 @@ type Params = {
 }
 
 const getAllTagPagePaths = async () => {
-  const tags = await microClient.tags.$get()
+  const { data } = await microClient.get<TagContent>('tags')
   const paths = await Promise.all(
-    tags.contents.map((x) => {
-      return microClient.blogs
-        .$get({
-          query: { filters: `tag[contains]${x.id}` },
+    data.contents.map((x) => {
+      return microClient
+        .get('blogs', {
+          params: { filters: `tag[contains]${x.id}` },
         })
-        .then((y) => {
-          return range(1, Math.ceil(y.totalCount / perPage)).map(
+        .then(({ data }) => {
+          return range(1, Math.ceil(data.totalCount / perPage)).map(
             (repo) => `/blog/tag/${x.id}/${repo}`
           )
         })
@@ -59,15 +60,15 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     throw new Error('tagID not found.')
   }
 
-  const data = await microClient.blogs.$get({
-    query: {
+  const { data } = await microClient.get('blogs', {
+    params: {
       filters: `tag[contains]${params?.tagId}`,
       offset: (Number(params?.pageId) - 1) * perPage,
       limit: perPage,
     },
   })
-  const tags = await microClient.tags.$get()
-  const tagName = tags.contents.find((x) => x.id === params?.tagId)?.name ?? ''
+  const { data: tag } = await microClient.get<TagContent>('tags')
+  const tagName = tag.contents.find((x) => x.id === params?.tagId)?.name ?? ''
 
   return {
     props: {

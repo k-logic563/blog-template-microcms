@@ -5,7 +5,7 @@ import { Box, Image, Stack, VStack, Text, Icon, Flex } from '@chakra-ui/react'
 import { AiOutlineFieldTime, AiOutlineTag } from 'react-icons/ai'
 
 import { formatDate } from '@/utils/format'
-import { Content } from '@/api/types'
+import { Content } from '@/types/type'
 import * as styles from '@/styles'
 
 type Props<T> = {

@@ -11,12 +11,13 @@ import { Heading, Text, Box, Image } from '@chakra-ui/react'
 
 import { MainLayout } from '@/components/Layout'
 
-import { microClient } from '@/lib/aspida'
+import { microClient } from '@/lib/axios'
 import { codeHighlight } from '@/utils/code-highlight'
 import { generateToc } from '@/utils/toc'
 import { useClient } from '@/hooks/useClient'
 import { formatDate } from '@/utils/format'
 
+import { BlogContent } from '@/types/type'
 import * as styles from '@/styles'
 
 import 'highlight.js/styles/atom-one-dark.css'
@@ -30,7 +31,7 @@ const isDraft = (item: any): item is { draftKey: string } =>
   !!(item?.draftKey && typeof item.draftKey === 'string')
 
 export const getStaticPaths = async () => {
-  const data = await microClient.blogs.$get()
+  const { data } = await microClient.get<BlogContent>('blogs')
   const paths = data.contents.map((x) => `/blog/${x.id}`)
 
   return {
@@ -42,17 +43,19 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params, previewData } = ctx
   const draftKey = isDraft(previewData) ? previewData.draftKey : ''
-  const res = await microClient.blogs
-    ._id(`${params?.id}`)
-    .$get({ query: { draftKey } })
-  const $ = cheerio.load(res.content, null, false)
+  const { data } = await microClient.get(`/blogs/${params?.id}`, {
+    params: {
+      draftKey,
+    },
+  })
+  const $ = cheerio.load(data.content, null, false)
 
   // コードハイライト
   codeHighlight($)
 
   // 目次、記事データを集約
   const props = {
-    data: { ...res, content: $.html() },
+    data: { ...data, content: $.html() },
     toc: generateToc($),
   }
 

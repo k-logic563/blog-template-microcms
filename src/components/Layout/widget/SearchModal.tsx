@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { AiOutlineSearch } from 'react-icons/ai'
 
-import { BlogContent } from '@/api/types'
+import { BlogContent } from '@/types/type'
 import * as styles from '@/styles'
 
 type Props = {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { MicroCMSListResponse } from 'microcms-js-sdk'
 
-import { BlogContent, Content } from '@/api/types'
+import { BlogContent, Content } from '@/types/type'
 import { client } from '@/lib/axios'
 
 type Props = MicroCMSListResponse<Content>

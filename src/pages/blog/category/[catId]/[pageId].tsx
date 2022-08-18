@@ -11,8 +11,10 @@ import { Pagination } from '@/components/Element/Pagination'
 import { MainLayout } from '@/components/Layout'
 
 import { range } from '@/utils/range'
-import { microClient } from '@/lib/aspida'
+import { microClient } from '@/lib/axios'
 import { perPage } from '@/constants/pagination'
+
+import { BlogContent, CategoryContent } from '@/types/type'
 
 type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = {
@@ -21,15 +23,15 @@ type Params = {
 }
 
 const getAllCategoryPagePaths = async () => {
-  const cats = await microClient.categories.$get()
+  const { data } = await microClient.get<CategoryContent>('categories')
   const paths = await Promise.all(
-    cats.contents.map((x) => {
-      return microClient.blogs
-        .$get({
-          query: { filters: `category[equals]${x.id}` },
+    data.contents.map((x) => {
+      return microClient
+        .get<BlogContent>('blogs', {
+          params: { filters: `category[equals]${x.id}` },
         })
-        .then((y) => {
-          return range(1, Math.ceil(y.totalCount / perPage)).map(
+        .then(({ data }) => {
+          return range(1, Math.ceil(data.totalCount / perPage)).map(
             (repo) => `/blog/category/${x.id}/${repo}`
           )
         })
@@ -58,20 +60,22 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     throw new Error('catID not found.')
   }
 
-  const data = await microClient.blogs.$get({
-    query: {
+  const { data: blogs } = await microClient.get('blogs', {
+    params: {
       filters: `category[equals]${params?.catId}`,
       offset: (Number(params?.pageId) - 1) * perPage,
       limit: perPage,
     },
   })
-  const categories = await microClient.categories.$get()
+  const { data: category } = await microClient.get<CategoryContent>(
+    'categories'
+  )
   const catName =
-    categories.contents.find((x) => x.id === params?.catId)?.name ?? ''
+    category.contents.find((x) => x.id === params?.catId)?.name ?? ''
 
   return {
     props: {
-      data,
+      data: blogs,
       catName,
       catId: params?.catId,
       pageId: params?.pageId,

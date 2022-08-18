@@ -1,14 +1,16 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiResponse } from 'next'
 
-import { microClient } from '@/lib/aspida'
+import { microClient } from '@/lib/axios'
 import { formatSitemapDate } from '@/utils/format'
+
+import { BlogContent } from '@/types/type'
 
 async function generateSitemapXml() {
   let xml = `<?xml version="1.0" encoding="UTF-8"?>`
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`
 
-  const { contents } = await microClient.blogs.$get()
-  contents.forEach((post) => {
+  const { data } = await microClient.get<BlogContent>('blogs')
+  data.contents.forEach((post) => {
     xml += `
       <url>
         <loc>https://iwtttter.tech/blog/${post.id}</loc>
@@ -22,7 +24,7 @@ async function generateSitemapXml() {
   return xml
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (_: unknown, res: NextApiResponse) => {
   const xml = await generateSitemapXml()
 
   res.statusCode = 200

@@ -3,18 +3,21 @@ import type { InferGetStaticPropsType, NextPageWithLayout } from 'next'
 import { Box, Heading, Button, Text } from '@chakra-ui/react'
 
 import { List } from '@/components/List'
-import { microClient } from '@/lib/aspida'
+import { microClient } from '@/lib/axios'
 import { MainLayout } from '@/components/Layout'
+
+import { BlogContent } from '@/types/type'
 
 export type HomeProps = InferGetStaticPropsType<typeof getStaticProps>
 
 export const getStaticProps = async () => {
-  const response = await microClient.blogs.$get({
-    query: { limit: 6, offset: 0 },
+  const { data } = await microClient.get<BlogContent>('blogs', {
+    params: { limit: 6, offset: 0 },
   })
+
   return {
     props: {
-      response,
+      response: data,
     },
     revalidate: 10,
   }

@@ -5,14 +5,7 @@ import { Category } from './Category'
 import { Tag } from './Tag'
 import { Sns } from './Sns'
 
-import { CategoryProps, TagProps } from '@/components/Layout/MainLayout'
-
-type Props = {
-  categories: CategoryProps
-  tags: TagProps
-}
-
-export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
+export const Sidebar = () => {
   return (
     <SimpleGrid gap={6}>
       <Box>
@@ -26,7 +19,7 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
         >
           カテゴリー
         </Text>
-        {categories.length !== 0 ? <Category categories={categories} /> : <p>loading</p>}
+        <Category />
       </Box>
       <Box>
         <Text
@@ -39,7 +32,7 @@ export const Sidebar: React.FC<Props> = ({ categories, tags }) => {
         >
           タグ
         </Text>
-        {tags.length !== 0 ? <Tag tags={tags} /> : <p>loading</p>}
+        <Tag />
       </Box>
       <Box>
         <Text
