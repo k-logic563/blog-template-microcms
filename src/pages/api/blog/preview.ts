@@ -8,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const { data } = await microClient.get(`/${req.query.id}`, {
+    const { data } = await microClient.get(`blogs/${req.query.id}`, {
       params: {
         draftKey: `${req.query.draftKey}`,
       },
