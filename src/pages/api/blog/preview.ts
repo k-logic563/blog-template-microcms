@@ -15,10 +15,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
 
     res.setPreviewData({
-      id: data.content.id,
+      id: data.id,
       draftKey: req.query.draftKey,
     })
-    res.writeHead(307, { Location: `/blog/${data.content.id}` })
+    res.writeHead(307, { Location: `/blog/${data.id}` })
     res.end('Preview mode enabled')
   } catch {
     return res.status(401).json({ message: 'invalid id' })
