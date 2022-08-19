@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
 import { Box, Image, Stack, VStack, Text, Icon, Flex } from '@chakra-ui/react'

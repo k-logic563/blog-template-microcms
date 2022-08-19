@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Text, SimpleGrid } from '@chakra-ui/react'
 
 import { Category } from './Category'

@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { microClient } from '@/lib/axios'
+import { Content } from '@/types/type'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (!req.query.id) {
@@ -8,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const { data } = await microClient.get(`blogs/${req.query.id}`, {
+    const { data } = await microClient.get<Content>(`blogs/${req.query.id}`, {
       params: {
         draftKey: `${req.query.draftKey}`,
       },

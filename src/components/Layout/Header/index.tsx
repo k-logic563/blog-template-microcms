@@ -8,7 +8,7 @@ type Props = {
   onOpen: () => void
 }
 
-const Index: React.FC<Props> = ({ onOpen }) => {
+const Header: React.FC<Props> = ({ onOpen }) => {
   return (
     <Box
       bg="teal.500"
@@ -33,4 +33,4 @@ const Index: React.FC<Props> = ({ onOpen }) => {
   )
 }
 
-export default memo(Index)
+export default memo(Header)
