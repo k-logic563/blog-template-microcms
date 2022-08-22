@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 import { MicroCMSListResponse } from 'microcms-js-sdk'
 
 import { BlogContent, Content } from '@/types/type'
-import { client } from '@/lib/axios'
 
 type Props = MicroCMSListResponse<Content>
 
@@ -37,7 +37,7 @@ export const useSearch = () => {
   useEffect(() => {
     ;(async () => {
       try {
-        const { data } = await client.get<Props>('/blog/list')
+        const { data } = await axios.get<Props>('/api/blog/list')
         setArticles(data.contents)
       } catch (e) {
         console.error(e)

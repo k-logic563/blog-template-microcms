@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import axios from 'axios'
 import { Flex, Icon } from '@chakra-ui/react'
 import { AiOutlineTag } from 'react-icons/ai'
 
-import { client } from '@/lib/axios'
 import { TagContent } from '@/types/type'
 import * as styles from '@/styles'
 
@@ -14,7 +14,7 @@ export const Tag = () => {
 
   const fetchData = async () => {
     try {
-      const { data } = await client.get<{ contents: TagProps }>('/tag')
+      const { data } = await axios.get<{ contents: TagProps }>('/api/tag')
 
       setData(data.contents)
     } catch (e) {

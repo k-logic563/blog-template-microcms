@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 import { StackDivider, VStack, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 
-import { client } from '@/lib/axios'
 import { CategoryContent } from '@/types/type'
 import * as styles from '@/styles'
 
@@ -13,8 +13,8 @@ export const Category = () => {
 
   const fetchData = async () => {
     try {
-      const { data } = await client.get<{ contents: CategoryProps }>(
-        '/category'
+      const { data } = await axios.get<{ contents: CategoryProps }>(
+        '/api/category'
       )
 
       setData(data.contents)

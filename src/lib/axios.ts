@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-const config = {
-  baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/api`,
-}
-
 const microConfig = {
   baseURL: `${process.env.MICROCMS_BASE_URL}`,
   headers: {
@@ -12,6 +8,5 @@ const microConfig = {
 }
 
 const microClient = axios.create(microConfig)
-const client = axios.create(config)
 
-export { client, microClient }
+export { microClient }
