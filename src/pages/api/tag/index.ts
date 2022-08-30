@@ -9,5 +9,6 @@ export default async (_: unknown, res: NextApiResponse) => {
       limit: 20,
     },
   })
+
   return res.status(200).json({ contents: data.contents })
 }

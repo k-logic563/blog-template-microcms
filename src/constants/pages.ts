@@ -1,14 +1,14 @@
 export const menuItems = [
   {
-    name: 'このサイトについて',
+    name: 'About',
     link: '/about',
   },
   {
-    name: 'お問い合わせ',
-    link: '/contact',
+    name: 'Blog',
+    link: '/blog/page/1',
   },
   {
-    name: 'プライバシーポリシー',
-    link: '/privacy',
+    name: 'Contact',
+    link: '/contact',
   },
 ]

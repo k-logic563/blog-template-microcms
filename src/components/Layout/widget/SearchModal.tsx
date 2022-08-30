@@ -52,7 +52,7 @@ const SearchModal: React.FC<Props> = ({
             <Input
               variant="flushed"
               type="text"
-              placeholder="Search the Articles"
+              placeholder="例）キーワードを入力"
               value={keyword}
               onChange={(e) => handleSearch(e.target.value)}
             />

@@ -1,33 +1,15 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { StackDivider, VStack, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 
-import { CategoryContent } from '@/types/type'
+import { TagContent } from '@/types/type'
+
+import { useFetcher } from '@/hooks/useFetcher'
 import * as styles from '@/styles'
 
-type CategoryProps = CategoryContent['contents']
-
 export const Category = () => {
-  const [data, setData] = useState<CategoryProps>()
+  const { data, error } = useFetcher<TagContent>('category')
 
-  const fetchData = async () => {
-    try {
-      const { data } = await axios.get<{ contents: CategoryProps }>(
-        '/api/category'
-      )
-
-      setData(data.contents)
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  if (!data) return <p>loading...</p>
+  if (error) throw new Error(error)
 
   return (
     <VStack
@@ -36,7 +18,7 @@ export const Category = () => {
       align="start"
       divider={<StackDivider borderColor="gray.200" />}
     >
-      {data.map((x) => (
+      {data?.contents.map((x) => (
         <Link key={x.id} href={`/blog/category/${x.id}/1`} passHref>
           <Text as="a" w="100%" py={2} css={styles.sidebar.link}>
             {x.name}

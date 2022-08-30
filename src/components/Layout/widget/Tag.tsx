@@ -1,36 +1,20 @@
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import axios from 'axios'
 import { Flex, Icon } from '@chakra-ui/react'
 import { AiOutlineTag } from 'react-icons/ai'
 
+import { useFetcher } from '@/hooks/useFetcher'
 import { TagContent } from '@/types/type'
+
 import * as styles from '@/styles'
 
-type TagProps = TagContent['contents']
-
 export const Tag = () => {
-  const [data, setData] = useState<TagProps>()
+  const { data, error } = useFetcher<TagContent>('tag')
 
-  const fetchData = async () => {
-    try {
-      const { data } = await axios.get<{ contents: TagProps }>('/api/tag')
-
-      setData(data.contents)
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  if (!data) return <p>loading...</p>
+  if (error) throw new Error(error)
 
   return (
     <Flex gap={2} align="center" flexWrap="wrap" px={2}>
-      {data.map((x) => (
+      {data?.contents.map((x) => (
         <Link key={x.id} href={`/blog/tag/${x.id}/1`} passHref>
           <a css={styles.sidebar.link}>
             <Icon verticalAlign="middle" mr={1} as={AiOutlineTag} />
