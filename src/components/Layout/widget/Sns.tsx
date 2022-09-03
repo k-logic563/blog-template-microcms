@@ -1,4 +1,3 @@
-import React from 'react'
 import { StackDivider, VStack, Text, Icon } from '@chakra-ui/react'
 import { GoMarkGithub } from 'react-icons/go'
 import { FaTwitter } from 'react-icons/fa'
