@@ -7,7 +7,7 @@ type Props = {
 }
 
 const ErrorMessage = () => {
-  return <Text>whoops,looks like something went wrong</Text>
+  return <Text>fail to fetch data</Text>
 }
 
 export const ErrorWrapper: React.FC<Props> = ({ children }) => {
