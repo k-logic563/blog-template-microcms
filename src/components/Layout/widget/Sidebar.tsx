@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { Box, Text, SimpleGrid } from '@chakra-ui/react'
+import { Box, Text, SimpleGrid, Spinner } from '@chakra-ui/react'
 
 import { ErrorWrapper } from '@/components/Element/Error/ErrorWrapper'
 import { Category } from './Category'
@@ -21,7 +21,13 @@ export const Sidebar = () => {
           カテゴリー
         </Text>
         <ErrorWrapper>
-          <Suspense fallback={<Text>Now Loading</Text>}>
+          <Suspense
+            fallback={
+              <Text align="center">
+                <Spinner color="teal.500" />
+              </Text>
+            }
+          >
             <Category />
           </Suspense>
         </ErrorWrapper>
@@ -38,7 +44,13 @@ export const Sidebar = () => {
           タグ
         </Text>
         <ErrorWrapper>
-          <Suspense fallback={<Text>Now Loading</Text>}>
+          <Suspense
+            fallback={
+              <Text align="center">
+                <Spinner color="teal.500" />
+              </Text>
+            }
+          >
             <Tag />
           </Suspense>
         </ErrorWrapper>
