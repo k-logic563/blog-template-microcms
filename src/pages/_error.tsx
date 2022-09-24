@@ -1,5 +1,6 @@
 import type { NextPageWithLayout, NextPageContext } from 'next'
 import Link from 'next/link'
+import { NextSeo } from 'next-seo'
 
 import { MainLayout } from '@/components/Layout'
 
@@ -11,6 +12,7 @@ interface Props {
 const ErrorPage: NextPageWithLayout<Props> = ({ title, description }) => {
   return (
     <>
+      <NextSeo title={title} noindex />
       <h1 className="mb-[0.6em] tracking-[0.01em] text-center text-[24px] md:text-[32px] font-bold font-roboto">
         {title}
       </h1>
