@@ -1,4 +1,3 @@
-import { Image, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -7,33 +6,16 @@ export const Logo = () => {
   const isTopPage = pathname === '/'
 
   return (
-    <>
+    <div className="md:text-[20px] font-roboto">
       {isTopPage ? (
-        <Text
-          as="h1"
-          color="white"
-          fontSize={['lg', 'xl', '4xl']}
-          fontWeight="bold"
-        >
-          <Image
-            w={{ base: '120px', md: '140px' }}
-            src="/assets/images/logo.png"
-            alt="iwtttter"
-          />
-        </Text>
+        <h1>iwtttter.tech</h1>
       ) : (
-        <Text fontSize={['lg', 'xl', '4xl']} fontWeight="bold" color="white">
+        <p>
           <Link href="/" passHref>
-            <a>
-              <Image
-                w={{ base: '120px', md: '140px' }}
-                src="/assets/images/logo.png"
-                alt="iwtttter"
-              />
-            </a>
+            <a>iwtttter.tech</a>
           </Link>
-        </Text>
+        </p>
       )}
-    </>
+    </div>
   )
 }

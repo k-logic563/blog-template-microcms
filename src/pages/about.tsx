@@ -1,6 +1,6 @@
 import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
-import { Box, Heading, Image, Text, HStack } from '@chakra-ui/react'
+import { Image } from '@chakra-ui/react'
 
 import { MainLayout } from '@/components/Layout'
 
@@ -15,20 +15,20 @@ const AboutPage: NextPageWithLayout = () => {
           url: 'https://iwtttter.tech/about',
         }}
       />
-      <Box>
-        <Heading as="h1" fontSize={{ base: '24px', md: '28px' }} mb={4}>
+      <div>
+        <h1 className="font-bold text-[24px] md:text-[28px] mb-6">
           このサイトについて
-        </Heading>
-        <Box lineHeight={1.8}>
-          <Text mb={4}>
+        </h1>
+        <div className="leading-[1.8]">
+          <p className="mb-4">
             このサイトは日頃の業務から個人開発まで、気づきや勉強になったことをまとめるテックブログサイトになります。
             <br />
             「あれ？前も同じ問題に出会った気がするなぁ。」をなるべく減らすために、自分がつまづいた部分も積極的に記事にまとめていきます。
-          </Text>
-          <Text mb={8}>
+          </p>
+          <p className="mb-8">
             なるべく思った時に更新するようにしていますが、怠け癖があるため、更新頻度にばらつきがあります。人間だもの。
-          </Text>
-          <HStack columnGap={2}>
+          </p>
+          <div className="flex items-center gap-x-4">
             <Image
               w="80px"
               h="80px"
@@ -37,10 +37,10 @@ const AboutPage: NextPageWithLayout = () => {
               src="/assets/images/iwt.jpg"
               alt="iwt"
             />
-            <Text>いわを</Text>
-          </HStack>
-        </Box>
-      </Box>
+            <p>いわを</p>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

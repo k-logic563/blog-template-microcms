@@ -14,14 +14,15 @@ export type Content = {
     id: string
     name: string
   }
-  tag: {
-    id: string
-    name: string
-  }[]
 }
 
 export type Category = {
   name: string
+  thumbnail: {
+    url: string
+    width: number
+    height: number
+  }
 }
 
 export type Tag = {
