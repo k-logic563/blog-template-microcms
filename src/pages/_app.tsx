@@ -3,6 +3,8 @@ import { DefaultSeo } from 'next-seo'
 
 import { seoConfig } from '@/config/next-seo.config'
 
+import 'typeface-roboto'
+
 import '@/styles/global.css'
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {

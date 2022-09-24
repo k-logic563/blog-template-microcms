@@ -2,11 +2,11 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
-    "./src/**/*.{ts,tsx}",
+    './src/**/*.{ts,tsx}',
   ],
   theme: {
     fontFamily: {
-      'sans': ['Noto Sans JP', 'sans-serif'],
+      'sans': ['Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN','Hiragino Sans', 'Meiryo', 'sans-serif'],
       'roboto': ['Roboto', 'sans-serif']
     },
     screens: {
