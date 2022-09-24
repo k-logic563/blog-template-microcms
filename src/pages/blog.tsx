@@ -10,7 +10,7 @@ import { MainLayout } from '@/components/Layout'
 
 import { microClient } from '@/lib/axios'
 import { BlogContent } from '@/types/type'
-import { sleep } from '@/utils/sleep'
+import { sleep } from '@/utils'
 
 type BlogPageProps = InferGetStaticPropsType<typeof getStaticProps>
 

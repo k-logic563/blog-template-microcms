@@ -12,10 +12,8 @@ import Image from 'next/image'
 import { BlogLayout } from '@/components/Layout'
 
 import { microClient } from '@/lib/axios'
-import { codeHighlight } from '@/utils/code-highlight'
-import { generateToc } from '@/utils/toc'
+import { codeHighlight, generateToc, formatDate } from '@/utils'
 import { useClient } from '@/hooks/useClient'
-import { formatDate } from '@/utils/format'
 import { BlogContent } from '@/types/type'
 
 import 'highlight.js/styles/atom-one-dark.css'

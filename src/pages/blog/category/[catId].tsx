@@ -13,7 +13,7 @@ import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
 
 import { microClient } from '@/lib/axios'
-import { sleep } from '@/utils/sleep'
+import { sleep } from '@/utils'
 import { BlogContent, CategoryContent } from '@/types/type'
 
 type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
