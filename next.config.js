@@ -4,6 +4,9 @@ const nextConfig = {
   experimental: {
     optimizeFonts: true,
   },
+  images: {
+    domains: ['images.microcms-assets.io'],
+  },
 }
 // eslint-disable-next-line no-undef
 module.exports = nextConfig

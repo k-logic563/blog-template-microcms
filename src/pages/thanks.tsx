@@ -2,7 +2,6 @@ import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
-import { Box, Text, Heading, Button } from '@chakra-ui/react'
 
 import { MainLayout } from '@/components/Layout'
 
@@ -33,21 +32,23 @@ const Thanks: NextPageWithLayout = () => {
         }}
         noindex
       />
-      <Box>
-        <Heading as="h1" fontSize={{ base: '24px', md: '28px' }} mb={4}>
+      <div>
+        <h1 className="text-center font-bold text-[24px] md:text-[28px] mb-6">
           お問い合わせ完了しました
-        </Heading>
-        <Text lineHeight={1.8} mb={6}>
+        </h1>
+        <p className="text-center leading-loose mb-6">
           お問い合わせいただき、誠にありがとうございます。
           <br />
           お返事まで少々お待ちくださいませ。
-        </Text>
-        <Link href="/" color="white">
-          <Button colorScheme="teal" size="md" rounded="5px">
-            トップページへ戻る
-          </Button>
-        </Link>
-      </Box>
+        </p>
+        <div className="text-center">
+          <Link href="/">
+            <a className="transition-all duration-150 bg-teal-500 text-white rounded inline-block font-bold py-[.5em] px-[1em] hover:bg-teal-600">
+              トップページに戻る
+            </a>
+          </Link>
+        </div>
+      </div>
     </>
   )
 }

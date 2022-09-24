@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
-import { Image } from '@chakra-ui/react'
+import Image from 'next/image'
 
 import { formatDate } from '@/utils/format'
 import { Content } from '@/types/type'
@@ -18,7 +18,12 @@ export const List = <T extends ContentsProps>({ contents }: Props<T>) => {
         <Link key={`${item.id}_${index}`} href={`/blog/${item.id}`} passHref>
           <a className="transition-all duration-300 bg-white rounded-lg overflow-hidden hover:shadow-[0_0_30px_rgba(49,49,49,0.3)]">
             <figure>
-              <Image src={item.eyecatch.url} alt="" />
+              <Image
+                src={item.eyecatch.url}
+                alt=""
+                width={item.eyecatch.width}
+                height={item.eyecatch.height}
+              />
             </figure>
             <div className="p-4">
               <div>

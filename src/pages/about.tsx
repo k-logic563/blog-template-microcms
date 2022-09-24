@@ -1,6 +1,6 @@
 import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
-import { Image } from '@chakra-ui/react'
+import Image from 'next/image'
 
 import { MainLayout } from '@/components/Layout'
 
@@ -30,12 +30,12 @@ const AboutPage: NextPageWithLayout = () => {
           </p>
           <div className="flex items-center gap-x-4">
             <Image
-              w="80px"
-              h="80px"
-              rounded="full"
+              width={65}
+              height={65}
               objectFit="cover"
+              className="rounded-full"
               src="/assets/images/iwt.jpg"
-              alt="iwt"
+              alt="いわを"
             />
             <p>いわを</p>
           </div>

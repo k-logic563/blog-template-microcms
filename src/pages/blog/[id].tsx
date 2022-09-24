@@ -7,7 +7,7 @@ import { NextSeo } from 'next-seo'
 import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
 import { Link as Scroll } from 'react-scroll'
-import { Image } from '@chakra-ui/react'
+import Image from 'next/image'
 
 import { BlogLayout } from '@/components/Layout'
 
@@ -86,7 +86,13 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
       <p className="mb-8 text-gray-600 font-roboto">
         {formatDate(data.publishedAt)}
       </p>
-      <Image className="rounded-t-lg" src={data.eyecatch.url} alt="" />
+      <Image
+        className="rounded-t-lg"
+        src={data.eyecatch.url}
+        alt=""
+        width={data.eyecatch.width}
+        height={data.eyecatch.height}
+      />
       <div className="bg-white rounded-b-lg px-6 md:px-10 py-12">
         {isClient && toc?.length !== 0 && (
           <div className="bg-gray-100 px-4 py-6 mb-10 rounded">
