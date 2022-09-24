@@ -7,18 +7,14 @@ import { NextSeo } from 'next-seo'
 import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
 import { Link as Scroll } from 'react-scroll'
-import { Heading, Text, Box, Image } from '@chakra-ui/react'
+import Image from 'next/image'
 
-import { MainLayout } from '@/components/Layout'
+import { BlogLayout } from '@/components/Layout'
 
 import { microClient } from '@/lib/axios'
-import { codeHighlight } from '@/utils/code-highlight'
-import { generateToc } from '@/utils/toc'
+import { codeHighlight, generateToc, formatDate } from '@/utils'
 import { useClient } from '@/hooks/useClient'
-import { formatDate } from '@/utils/format'
-
 import { BlogContent } from '@/types/type'
-import * as styles from '@/styles'
 
 import 'highlight.js/styles/atom-one-dark.css'
 
@@ -82,48 +78,44 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
           site: `https://iwtttter.tech/blog/${data.id}`,
         }}
       />
-      <Heading as="h1" fontSize={{ base: '24px', lg: '32px' }} mb={4}>
+      <h1 className="text-[24px] lg:text-[32px] mb-2 font-bold">
         {data.title}
-      </Heading>
-      <Box mb={8}>
-        {data.publishedAt && (
-          <Text mb={1}>投稿日&ensp;{formatDate(data.publishedAt)}</Text>
+      </h1>
+      <p className="mb-8 text-gray-600 font-roboto">
+        {formatDate(data.publishedAt)}
+      </p>
+      <Image
+        className="rounded-t-lg"
+        src={data.eyecatch.url}
+        alt=""
+        width={data.eyecatch.width}
+        height={data.eyecatch.height}
+      />
+      <div className="bg-white rounded-b-lg px-6 md:px-10 py-12">
+        {isClient && toc?.length !== 0 && (
+          <div className="bg-gray-100 px-4 py-6 mb-10 rounded">
+            <p className="lg:text-[20px] text-black font-medium mb-3">目次</p>
+            <ul className="toc-list">
+              {toc.map((x) => (
+                <li className={x.name} key={x.id}>
+                  <Scroll to={x.id} smooth offset={-100}>
+                    {x.text}
+                  </Scroll>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
-        {data.updatedAt && (
-          <Text>更新日&ensp;{formatDate(data.updatedAt)}</Text>
-        )}
-      </Box>
-      <Box mb={6}>
-        <Image src={data.eyecatch.url} alt="" />
-      </Box>
-      {isClient && toc?.length !== 0 && (
-        <Box px={4} py={6} mb={10} bg="gray.100" rounded="5px">
-          <Text
-            fontSize={{ base: '16px', lg: '20px' }}
-            color="black"
-            fontWeight="bold"
-            mb={3}
-          >
-            目次
-          </Text>
-          <ul css={styles.blog.tocList}>
-            {toc.map((x) => (
-              <li className={x.name} key={x.id}>
-                <Scroll to={x.id} smooth offset={-100}>
-                  {x.text}
-                </Scroll>
-              </li>
-            ))}
-          </ul>
-        </Box>
-      )}
-      <Box mb={12} css={styles.blog.contents}>
-        {isClient && <div dangerouslySetInnerHTML={{ __html: data.content }} />}
-      </Box>
+        <div className="blog-content">
+          {isClient && (
+            <div dangerouslySetInnerHTML={{ __html: data.content }} />
+          )}
+        </div>
+      </div>
     </>
   )
 }
 
 export default BlogId
 
-BlogId.getLayout = (page) => <MainLayout>{page}</MainLayout>
+BlogId.getLayout = (page) => <BlogLayout>{page}</BlogLayout>

@@ -1,6 +1,5 @@
 import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
-import { Text, Heading } from '@chakra-ui/react'
 
 import { MainLayout } from '@/components/Layout'
 
@@ -15,14 +14,14 @@ const ContactPage: NextPageWithLayout = () => {
           url: 'https://iwtttter.tech/contact',
         }}
       />
-      <Heading as="h1" fontSize={{ base: '24px', md: '28px' }} mb={4}>
+      <h1 className="font-bold text-[24px] md:text-[28px] mb-6">
         お問い合わせ
-      </Heading>
-      <Text>
+      </h1>
+      <p className="leading-loose">
         現在、フォーム停止しております。
         <br />
         御用の方はSNS TwitterDMよりご連絡していただけると幸いです。
-      </Text>
+      </p>
     </>
   )
 }

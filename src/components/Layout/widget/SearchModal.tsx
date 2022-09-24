@@ -15,7 +15,6 @@ import {
 import { AiOutlineSearch } from 'react-icons/ai'
 
 import { BlogContent } from '@/types/type'
-import * as styles from '@/styles'
 
 type Props = {
   keyword: string
@@ -37,15 +36,15 @@ const SearchModal: React.FC<Props> = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} onCloseComplete={handleModalEnd}>
       <ModalOverlay />
-      <ModalContent maxW={{ base: '90%', sm: '560px' }} maxH="80vh" p={6}>
-        <ModalHeader p={0}>
+      <ModalContent className="!max-w-[90%] sm:!max-w-[560px] !max-h-[80vh] !p-6">
+        <ModalHeader className="!p-0">
           <InputGroup>
             <InputLeftElement
               pointerEvents="none"
               children={
                 <Icon
+                  className="!text-[20px] !md:text-[24px]"
                   as={AiOutlineSearch}
-                  fontSize={{ base: '20px', md: '24px' }}
                 />
               }
             />
@@ -59,12 +58,15 @@ const SearchModal: React.FC<Props> = ({
           </InputGroup>
         </ModalHeader>
         {filteredArticles.length !== 0 && (
-          <ModalBody p={0} mt={8} maxH="80vh" overflow="scroll">
-            <ul css={styles.search.list}>
+          <ModalBody className="!p-0 !mt-4 !max-h-[80vh] !overflow-scroll">
+            <ul className="grid gap-[10px] list-none">
               {filteredArticles.map((x) => (
                 <li key={x.id}>
                   <Link href={`/blog/${x.id}`} passHref>
-                    <a css={styles.search.link} onClick={onClose}>
+                    <a
+                      className='block py-[0.8em] px-[0.6em] bg-gray-100 rounded before:content-["#"] before:inline-block before:mr-[0.3em] hover:opacity-60'
+                      onClick={onClose}
+                    >
                       <Highlight query={keyword} styles={{ bg: 'yellow.100' }}>
                         {x.title}
                       </Highlight>

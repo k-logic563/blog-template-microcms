@@ -26,21 +26,10 @@ test('should render and display correctly', () => {
         revisedAt: '2022-05-10T22:25:21.713Z',
         name: 'フロントエンド',
       },
-      tag: [
-        {
-          id: 'e0mtvkykyz',
-          createdAt: '2022-05-21T23:25:28.471Z',
-          updatedAt: '2022-05-21T23:25:28.471Z',
-          publishedAt: '2022-05-21T23:25:28.471Z',
-          revisedAt: '2022-05-21T23:25:28.471Z',
-          name: 'javascript',
-        },
-      ],
     },
   ]
   render(<List contents={mockData} />)
   screen.getByText('テストタイトル')
-  screen.getByText('javascript')
   screen.getByText('フロントエンド')
-  screen.getByText('2022/06/01')
+  screen.getByText('2022.06.01')
 })

@@ -12,7 +12,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const MainLayout: React.FC<Props> = ({ children }) => {
+export const BlogLayout: React.FC<Props> = ({ children }) => {
   const { filteredArticles, handleSearch, handleModalEnd, keyword } =
     useSearch()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -21,7 +21,9 @@ export const MainLayout: React.FC<Props> = ({ children }) => {
     <ChakraProvider theme={theme}>
       <div className="grid grid-rows-[1fr_auto] min-h-screen">
         <Header onOpen={onOpen} />
-        <div className="container py-12 mt-[52px] md:mt-[72px]">{children}</div>
+        <div className="max-w-screen-md mx-auto px-[16px] md:px-0 py-12 mt-[52px] md:mt-[72px]">
+          {children}
+        </div>
         <Footer />
       </div>
       <SearchModal
