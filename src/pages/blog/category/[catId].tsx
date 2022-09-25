@@ -75,7 +75,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
   }, [data, items])
 
   const fetchData = async () => {
-    await sleep(1000)
+    await sleep(500)
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
         filters: `category[equals]${catId}`,
