@@ -19,13 +19,11 @@ export const BlogLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <ChakraProvider theme={theme}>
-      <div className="grid grid-rows-[1fr_auto] min-h-screen">
-        <Header onOpen={onOpen} />
-        <div className="max-w-screen-md mx-auto px-[16px] md:px-0 py-12 mt-[52px] md:mt-[72px]">
-          {children}
-        </div>
-        <Footer />
+      <Header onOpen={onOpen} />
+      <div className="sm:max-w-screen-md mx-auto sm:px-[16px] md:px-0 py-12 mt-[52px] md:mt-[72px]">
+        {children}
       </div>
+      <Footer />
       <SearchModal
         keyword={keyword}
         isOpen={isOpen}
