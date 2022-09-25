@@ -49,16 +49,16 @@ const HomePage: NextPageWithLayout<HomeProps> = ({ blogs, categories }) => {
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {categories.contents.map((x) => (
-            <a
-              href={`/blog/category/${x.id}`}
-              key={x.id}
-              className="h-[140px] sm:h-[200px] rounded-lg grid place-items-center relative after:content-[''] after:inset-0 after:bg-black after:bg-opacity-40 after:absolute hover:after:bg-opacity-60 after:transition-all after:duration-150 overflow-hidden"
-              style={{ backgroundImage: `url(${x.thumbnail.url})` }}
-            >
-              <p className="font-bold text-[20px] text-white absolute z-10">
-                {x.name}
-              </p>
-            </a>
+            <Link href={`/blog/category/${x.id}`} key={x.id} passHref>
+              <a
+                className="h-[140px] sm:h-[200px] rounded-lg grid place-items-center relative after:content-[''] after:inset-0 after:bg-black after:bg-opacity-40 after:absolute hover:after:bg-opacity-60 after:transition-all after:duration-150 overflow-hidden"
+                style={{ backgroundImage: `url(${x.thumbnail.url})` }}
+              >
+                <p className="font-bold text-[20px] text-white absolute z-10">
+                  {x.name}
+                </p>
+              </a>
+            </Link>
           ))}
         </div>
       </section>
