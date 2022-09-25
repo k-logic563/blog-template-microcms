@@ -7,7 +7,6 @@ import { NextSeo } from 'next-seo'
 import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
 import { Link as Scroll } from 'react-scroll'
-import Image from 'next/image'
 
 import { BlogLayout } from '@/components/Layout'
 
@@ -78,20 +77,22 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
           site: `https://iwtttter.tech/blog/${data.id}`,
         }}
       />
-      <h1 className="text-[24px] lg:text-[32px] mb-2 font-bold">
-        {data.title}
-      </h1>
-      <p className="mb-8 text-gray-600 font-roboto">
-        {formatDate(data.publishedAt)}
-      </p>
-      <Image
-        className="rounded-t-lg"
+      <div className="px-[16px] sm:px-0">
+        <h1 className="text-[24px] lg:text-[32px] mb-2 font-bold leading-normal">
+          {data.title}
+        </h1>
+        <p className="mb-8 text-gray-600 font-roboto">
+          {formatDate(data.publishedAt)}
+        </p>
+      </div>
+      <img
+        className="sm:rounded-t-lg"
         src={data.eyecatch.url}
         alt=""
         width={data.eyecatch.width}
         height={data.eyecatch.height}
       />
-      <div className="bg-white rounded-b-lg px-6 md:px-10 py-12">
+      <div className="bg-white sm:rounded-b-lg px-[16px] md:px-10 py-12">
         {isClient && toc?.length !== 0 && (
           <div className="bg-gray-100 px-4 py-6 mb-10 rounded">
             <p className="lg:text-[20px] text-black font-medium mb-3">目次</p>

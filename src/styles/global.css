@@ -4,9 +4,9 @@
 
 @layer base {
   body {
-    @apply !bg-gray-100 !font-sans;
+    @apply !bg-gray-100 !font-sans tracking-[0.01em];
 
-    font-feature-settings: 'pkna' !important;
+    font-feature-settings: 'palt' !important;
   }
 }
 
@@ -35,7 +35,7 @@
   }
 
   .blog-content p {
-    @apply mb-[1em] leading-loose;
+    @apply mb-[1em] leading-[1.8] text-[14px] md:text-[16px];
   }
 
   .blog-content ul,
