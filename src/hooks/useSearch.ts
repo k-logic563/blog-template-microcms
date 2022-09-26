@@ -34,15 +34,17 @@ export const useSearch = () => {
     setFilteredArticles([])
   }
 
+  const fetchData = async () => {
+    try {
+      const { data } = await axios.get<Props>('/api/blog/list?limit=100')
+      setArticles(data.contents)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   useEffect(() => {
-    ;(async () => {
-      try {
-        const { data } = await axios.get<Props>('/api/blog/list')
-        setArticles(data.contents)
-      } catch (e) {
-        console.error(e)
-      }
-    })()
+    fetchData()
   }, [])
 
   return {
