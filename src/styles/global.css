@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -46,22 +46,30 @@
     line-height: 1.8;
   }
 
-  .blog-content h2 {
-    @apply bg-teal-600 text-white;
+  .blog-content ol {
+    @apply list-decimal;
+  }
 
-    padding: 0.3em 1em;
-    font-weight: bold;
-    font-size: clamp(18px, 5vw, 24px);
-    margin: 2em 0 1em;
+  .blog-content ul {
+    @apply list-disc;
+  }
+
+  .blog-content h2 {
+    @apply pb-[0.4em] font-black mt-[2em] mb-[1em] border-b-2 border-gray-200;
+
+    font-size: clamp(22px, 5vw, 32px);
   }
 
   .blog-content h3 {
-    @apply border-b border-teal-500;
+    @apply font-black mt-[1.6em] mb-[0.5em];
 
     font-size: clamp(18px, 4vw, 22px);
-    font-weight: bold;
-    margin: 1.2em 0 0.8em;
-    padding: 0.2em 0.5em;
+  }
+
+  .blog-content h4 {
+    @apply font-black mt-[1.2em] mb-[0.2em];
+
+    font-size: clamp(18px, 4vw, 22px);
   }
 
   .blog-content blockquote {
@@ -98,7 +106,7 @@
   }
 
   .blog-content a {
-    @apply text-teal-500 inline-block break-all;
+    @apply text-teal-500 inline-block break-all leading-snug;
   }
 
   .blog-content a:hover {
@@ -106,8 +114,6 @@
   }
 
   .toc-list {
-    @apply text-gray-800;
-
     list-style-position: inside;
     list-style-type: none;
     font-size: clamp(14px, 1vw, 16px);
@@ -126,19 +132,18 @@
   }
 
   .toc-list li:before {
-    @apply text-gray-400;
-
-    content: '-';
-    padding-top: 0.2em;
-    display: inline-block;
-    margin-right: 0.5em;
+    @apply text-gray-400 pt-[0.2em] content-['-'] inline-block mr-[0.5em];
   }
 
-  .toc-list h3 {
-    @apply ml-[1em];
+  .toc-list .h2 {
+    @apply font-bold;
   }
 
-  .toc-list h4 {
+  .toc-list .h3 {
+    @apply ml-[1em] font-medium;
+  }
+
+  .toc-list .h4 {
     @apply ml-[2em];
   }
 }
