@@ -13,7 +13,6 @@ import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
 
 import { microClient } from '@/lib/axios'
-import { sleep } from '@/utils'
 import { BlogContent, CategoryContent } from '@/types/type'
 
 type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
@@ -75,7 +74,6 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
   }, [data, items])
 
   const fetchData = async () => {
-    await sleep(500)
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
         filters: `category[equals]${catId}`,

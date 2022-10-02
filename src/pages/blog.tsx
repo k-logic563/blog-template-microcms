@@ -10,7 +10,6 @@ import { MainLayout } from '@/components/Layout'
 
 import { microClient } from '@/lib/axios'
 import { BlogContent } from '@/types/type'
-import { sleep } from '@/utils'
 
 type BlogPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -40,7 +39,6 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
   }, [data, items])
 
   const fetchData = async () => {
-    await sleep(500)
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
         offset: pageNumber * limit,
