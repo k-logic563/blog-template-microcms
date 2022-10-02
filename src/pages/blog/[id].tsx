@@ -95,7 +95,7 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
       <div className="bg-white sm:rounded-b-lg px-[16px] md:px-10 py-12">
         {isClient && toc?.length !== 0 && (
           <div className="bg-gray-100 px-4 py-6 mb-10 rounded">
-            <p className="lg:text-[20px] text-black font-medium mb-3">目次</p>
+            <p className="text-[20px] lg:text-[24px] font-bold mb-3">目次</p>
             <ul className="toc-list">
               {toc.map((x) => (
                 <li className={x.name} key={x.id}>
