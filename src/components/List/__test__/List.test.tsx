@@ -1,35 +1,33 @@
 import { render, screen } from '@testing-library/react'
+import { faker } from '@faker-js/faker'
 
+import { formatDate } from '@/utils'
 import { List } from '../List'
 
 test('should render and display correctly', () => {
-  const mockData = [
+  const payload = [
     {
-      id: '42o5yuhdagk',
-      createdAt: '2022-06-01T12:18:55.030Z',
-      updatedAt: '2022-06-04T00:05:16.863Z',
-      publishedAt: '2022-06-01T12:32:05.978Z',
-      revisedAt: '2022-06-04T00:05:16.863Z',
-      title: 'テストタイトル',
-      description: 'テストディスクリプション',
-      content: 'テストコンテンツ',
+      id: faker.datatype.uuid(),
+      createdAt: faker.datatype.datetime().toDateString(),
+      updatedAt: faker.datatype.datetime().toDateString(),
+      publishedAt: faker.datatype.datetime().toDateString(),
+      revisedAt: faker.datatype.datetime().toDateString(),
+      title: faker.lorem.word(),
+      description: faker.lorem.sentence(),
+      content: faker.lorem.sentences(),
       eyecatch: {
-        url: 'https://localhost/dammy.jpg',
-        height: 675,
-        width: 1200,
+        url: faker.image.imageUrl(),
+        height: faker.datatype.number({ min: 100, max: 500 }),
+        width: faker.datatype.number({ min: 100, max: 500 }),
       },
       category: {
-        id: '7xkvgc6r8-rp',
-        createdAt: '2022-05-10T22:25:21.713Z',
-        updatedAt: '2022-05-10T22:25:21.713Z',
-        publishedAt: '2022-05-10T22:25:21.713Z',
-        revisedAt: '2022-05-10T22:25:21.713Z',
-        name: 'フロントエンド',
+        id: faker.datatype.uuid(),
+        name: faker.music.genre(),
       },
     },
   ]
-  render(<List contents={mockData} />)
-  screen.getByText('テストタイトル')
-  screen.getByText('フロントエンド')
-  screen.getByText('2022.06.01')
+  render(<List contents={payload} />)
+  screen.getByText(payload[0]['title'])
+  screen.getByText(payload[0]['category']['name'])
+  screen.getByText(formatDate(payload[0]['publishedAt']))
 })
