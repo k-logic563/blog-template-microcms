@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": [
       "dom",
       "dom.iterable",
@@ -17,23 +17,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "jsxImportSource": "@emotion/react",
     "incremental": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
+    "types": [
+      "jest",
+      "node"
+    ],
     "paths": {
       "@/*": [
         "src/*"
-      ],
-      "~/*": [
-        "./*"
       ]
-    },
-    "types": [
-      "@emotion/react/types/css-prop",
-      "jest",
-      "node",
-      "@testing-library/jest-dom"
-    ]
+    }
   },
   "include": [
     "next-env.d.ts",
