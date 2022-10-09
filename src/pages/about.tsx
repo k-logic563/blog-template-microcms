@@ -2,6 +2,7 @@ import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
 import Image from 'next/image'
 
+import { Heading1 } from '@/components/Heading/Heading1'
 import { MainLayout } from '@/components/Layout'
 
 const AboutPage: NextPageWithLayout = () => {
@@ -16,9 +17,9 @@ const AboutPage: NextPageWithLayout = () => {
         }}
       />
       <div>
-        <h1 className="font-bold text-[24px] md:text-[28px] mb-6">
-          このサイトについて
-        </h1>
+        <div className="mb-10">
+          <Heading1 title="このサイトについて" subTitle="About" />
+        </div>
         <div className="leading-[1.8]">
           <p className="mb-4">
             このサイトは日頃の業務から個人開発まで、気づきや勉強になったことをまとめるテックブログサイトになります。
