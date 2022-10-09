@@ -2,8 +2,6 @@ import { memo } from 'react'
 import { Icon } from '@chakra-ui/react'
 import { BsTwitter, BsGithub } from 'react-icons/bs'
 
-import pkg from '~/package.json'
-
 const Footer = () => {
   return (
     <>
@@ -27,9 +25,7 @@ const Footer = () => {
           </a>
         </div>
         <p className="text-center">
-          <small>
-            &copy;{new Date().getFullYear()}&ensp;{pkg.name}
-          </small>
+          <small>&copy;{new Date().getFullYear()}&ensp;iwtttter.tech</small>
         </p>
       </div>
     </>
