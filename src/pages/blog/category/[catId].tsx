@@ -9,6 +9,7 @@ import { NextSeo } from 'next-seo'
 import { Spinner } from '@chakra-ui/react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
+import { Heading1 } from '@/components/Heading/Heading1'
 import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
 
@@ -97,9 +98,9 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
         }}
       />
       <div className="mb-10">
-        <h1 className="font-bold text-[24px] md:text-[28px] mb-6">
-          カテゴリー【{catName}】
-        </h1>
+        <div className="mb-10">
+          <Heading1 title={catName} subTitle="Category" />
+        </div>
         <InfiniteScroll
           dataLength={items.length}
           next={fetchData}
