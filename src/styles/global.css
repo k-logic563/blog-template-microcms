@@ -18,7 +18,7 @@
   }
 
   .blog-content {
-    overflow-x: auto;
+    @apply overflow-x-auto;
   }
 
   .blog-content code:not(.hljs) {
@@ -106,7 +106,7 @@
   }
 
   .blog-content a {
-    @apply text-teal-500 inline-block break-all leading-snug;
+    @apply text-blue-500 inline-block break-all leading-snug;
   }
 
   .blog-content a:hover {
