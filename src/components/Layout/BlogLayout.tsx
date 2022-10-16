@@ -3,6 +3,7 @@ import { ChakraProvider, useDisclosure } from '@chakra-ui/react'
 
 import Header from './Header'
 import Footer from './Footer'
+import { Nav } from './Nav'
 import SearchModal from './widget/SearchModal'
 
 import { theme } from '@/config/chakraTheme'
@@ -20,7 +21,8 @@ export const BlogLayout: React.FC<Props> = ({ children }) => {
   return (
     <ChakraProvider theme={theme}>
       <Header onOpen={onOpen} />
-      <div className="sm:max-w-screen-md mx-auto sm:px-[16px] md:px-0 py-12 mt-[52px] md:mt-[72px]">
+      <Nav />
+      <div className="sm:max-w-screen-md mx-auto sm:px-[16px] md:px-0 py-12">
         {children}
       </div>
       <Footer />

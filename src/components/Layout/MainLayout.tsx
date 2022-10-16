@@ -3,6 +3,7 @@ import { ChakraProvider, useDisclosure } from '@chakra-ui/react'
 
 import Header from './Header'
 import Footer from './Footer'
+import { Nav } from './Nav'
 import SearchModal from './widget/SearchModal'
 
 import { theme } from '@/config/chakraTheme'
@@ -19,9 +20,10 @@ export const MainLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <ChakraProvider theme={theme}>
-      <div className="grid grid-rows-[1fr_auto] min-h-screen">
+      <div className="grid grid-rows-[auto_auto_1fr_auto] min-h-screen">
         <Header onOpen={onOpen} />
-        <div className="container py-12 mt-[52px] md:mt-[72px]">{children}</div>
+        <Nav />
+        <div className="container py-12">{children}</div>
         <Footer />
       </div>
       <SearchModal

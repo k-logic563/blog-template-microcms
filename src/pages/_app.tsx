@@ -1,5 +1,6 @@
 import type { AppPropsWithLayout } from 'next/app'
 import { DefaultSeo } from 'next-seo'
+import NextNProgress from 'nextjs-progressbar'
 
 import { seoConfig } from '@/config/next-seo.config'
 
@@ -11,6 +12,12 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return getLayout(
     <>
       <DefaultSeo {...seoConfig} />
+      <NextNProgress
+        color="#14b8a6"
+        options={{
+          showSpinner: false,
+        }}
+      />
       <Component {...pageProps} />
     </>
   )
