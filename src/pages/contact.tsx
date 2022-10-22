@@ -27,13 +27,13 @@ interface IFormInputs {
 const schema = z.object({
   name: z
     .string()
-    .transform((val) => val.trim())
-    .refine((val) => val, '必須項目です'),
-  email: z.string().email('メールアドレス形式が違います'),
+    .min(1, '必須項目です'),
+  email: z
+    .string()
+    .email('メールアドレス形式が違います'),
   message: z
     .string()
-    .transform((val) => val.trim())
-    .refine((val) => val, '必須項目です'),
+    .min(1, '必須項目です'),
 })
 
 const ContactPage: NextPageWithLayout = () => {
