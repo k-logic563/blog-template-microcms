@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply !bg-gray-100 !font-sans tracking-[0.01em];
+    @apply !bg-gray-100 !font-sans;
 
     font-feature-settings: 'palt' !important;
   }
