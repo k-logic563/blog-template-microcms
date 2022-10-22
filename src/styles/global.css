@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply !bg-gray-100 !font-sans;
+    @apply !bg-gray-100 !font-sans tracking-[0.01em];
 
     font-feature-settings: 'palt' !important;
   }
@@ -37,13 +37,12 @@
   }
 
   .blog-content p {
-    @apply mb-[1em] leading-[1.8];
+    @apply mb-[1em] leading-loose;
   }
 
   .blog-content ul,
   .blog-content ol {
-    list-style-position: inside;
-    line-height: 1.8;
+    @apply leading-[1.8] list-inside;
   }
 
   .blog-content ol {
