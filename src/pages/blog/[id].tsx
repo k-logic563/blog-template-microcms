@@ -81,9 +81,11 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
         <h1 className="text-[24px] lg:text-[32px] mb-2 font-bold leading-normal">
           {data.title}
         </h1>
-        <p className="mb-8 text-gray-600 font-roboto">
-          {formatDate(data.publishedAt)}
-        </p>
+        {data.publishedAt && (
+          <p className="mb-8 text-gray-600 font-roboto">
+            {formatDate(data.publishedAt)}
+          </p>
+        )}
       </div>
       <img
         className="sm:rounded-t-lg"

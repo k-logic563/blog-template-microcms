@@ -71,7 +71,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
   const [items, setItems] = useState<BlogContent['contents']>(data.contents)
 
   const isFetchAll = useMemo(() => {
-    return data.totalCount > items.length || data.totalCount !== items.length
+    return data.totalCount > items.length
   }, [data, items])
 
   const fetchData = async () => {
@@ -79,6 +79,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
       params: {
         filters: `category[equals]${catId}`,
         offset: pageNumber * limit,
+        limit: pageNumber * limit + limit
       },
     })
 
