@@ -36,13 +36,14 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
   const [items, setItems] = useState<BlogContent['contents']>(data.contents)
 
   const isFetchAll = useMemo(() => {
-    return data.totalCount > items.length || data.totalCount !== items.length
+    return data.totalCount > items.length
   }, [data, items])
 
   const fetchData = async () => {
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
         offset: pageNumber * limit,
+        limit: pageNumber * limit + limit
       },
     })
 
@@ -62,22 +63,20 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
         }}
       />
       <div className="mb-10">
-        <div className="mb-10">
-          <Heading1 title="記事一覧" subTitle="Blog" />
-        </div>
-        <InfiniteScroll
-          dataLength={items.length}
-          next={fetchData}
-          loader={
-            <div className="mt-16 text-center">
-              <Spinner color="teal.500" />
-            </div>
-          }
-          hasMore={isFetchAll}
-        >
-          <List<BlogPageProps['data']['contents']> contents={items} />
-        </InfiniteScroll>
+        <Heading1 title="記事一覧" subTitle="Blog" />
       </div>
+      <InfiniteScroll
+        dataLength={items.length}
+        next={fetchData}
+        loader={
+          <div className="mt-16 text-center">
+            <Spinner color="teal.500" />
+          </div>
+        }
+        hasMore={isFetchAll}
+      >
+        <List<BlogPageProps['data']['contents']> contents={items} />
+      </InfiniteScroll>
     </>
   )
 }
