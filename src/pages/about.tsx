@@ -1,6 +1,5 @@
 import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
-import Image from "next/legacy/image";
 
 import { Heading1 } from '@/components/Heading/Heading1'
 import { MainLayout } from '@/components/Layout'
@@ -30,11 +29,8 @@ const AboutPage: NextPageWithLayout = () => {
             なるべく思った時に更新するようにしていますが、怠け癖があるため、更新頻度にばらつきがあります。人間だもの。
           </p>
           <div className="flex items-center gap-x-4">
-            <Image
-              width={65}
-              height={65}
-              objectFit="cover"
-              className="rounded-full"
+            <img
+              className="rounded-full w-[65px] h-[65px] object-cover"
               src="/assets/images/iwt.jpg"
               alt="いわを"
             />
