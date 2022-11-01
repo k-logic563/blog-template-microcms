@@ -4,7 +4,6 @@ const nextConfig = {
   images: {
     domains: ['images.microcms-assets.io'],
   },
-  swcMinify: true,
 }
 // eslint-disable-next-line no-undef
 module.exports = nextConfig

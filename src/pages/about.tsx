@@ -1,6 +1,6 @@
 import type { NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
-import Image from "next/legacy/image";
+import Image from 'next/image'
 
 import { Heading1 } from '@/components/Heading/Heading1'
 import { MainLayout } from '@/components/Layout'
