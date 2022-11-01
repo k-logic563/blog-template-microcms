@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
+import Image from "next/legacy/image";
 
 import { formatDate } from '@/utils'
 import { Content } from '@/types/type'
@@ -20,7 +21,7 @@ export const List = <T extends ContentsProps>({ contents }: Props<T>) => {
           className="transition-all duration-300 bg-white rounded-lg overflow-hidden hover:shadow-[0_0_30px_rgba(49,49,49,0.3)]"
         >
           <figure>
-            <img
+            <Image
               src={item.eyecatch.url}
               alt=""
               width={item.eyecatch.width}
