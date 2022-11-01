@@ -25,15 +25,9 @@ interface IFormInputs {
 }
 
 const schema = z.object({
-  name: z
-    .string()
-    .min(1, '必須項目です'),
-  email: z
-    .string()
-    .email('メールアドレス形式が違います'),
-  message: z
-    .string()
-    .min(1, '必須項目です'),
+  name: z.string().min(1, '必須項目です'),
+  email: z.string().email('メールアドレス形式が違います'),
+  message: z.string().min(1, '必須項目です'),
 })
 
 const ContactPage: NextPageWithLayout = () => {

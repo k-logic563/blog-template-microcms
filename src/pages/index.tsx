@@ -33,10 +33,11 @@ const HomePage: NextPageWithLayout<HomeProps> = ({ blogs, categories }) => {
         <div>
           <List<HomeProps['blogs']['contents']> contents={blogs.contents} />
           <div className="text-center mt-8">
-            <Link href="/blog">
-              <a className="transition-all duration-150 bg-teal-500 text-white rounded inline-block font-bold py-[.5em] px-[1em] hover:bg-teal-600">
-                一覧を見る
-              </a>
+            <Link
+              href="/blog"
+              className="transition-all duration-150 bg-teal-500 text-white rounded inline-block font-bold py-[.5em] px-[1em] hover:bg-teal-600"
+            >
+              一覧を見る
             </Link>
           </div>
         </div>
@@ -49,15 +50,15 @@ const HomePage: NextPageWithLayout<HomeProps> = ({ blogs, categories }) => {
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {categories.contents.map((x) => (
-            <Link href={`/blog/category/${x.id}`} key={x.id} passHref>
-              <a
-                className="h-[140px] sm:h-[200px] rounded-lg grid place-items-center relative after:content-[''] after:inset-0 after:bg-black after:bg-opacity-40 after:absolute hover:after:bg-opacity-60 after:transition-all after:duration-150 overflow-hidden"
-                style={{ backgroundImage: `url(${x.thumbnail.url})` }}
-              >
-                <p className="font-bold text-[20px] text-white absolute z-10">
-                  {x.name}
-                </p>
-              </a>
+            <Link
+              href={`/blog/category/${x.id}`}
+              key={x.id}
+              className="h-[140px] sm:h-[200px] rounded-lg grid place-items-center relative after:content-[''] after:inset-0 after:bg-black after:bg-opacity-40 after:absolute hover:after:bg-opacity-60 after:transition-all after:duration-150 overflow-hidden"
+              style={{ backgroundImage: `url(${x.thumbnail.url})` }}
+            >
+              <p className="font-bold text-[20px] text-white absolute z-10">
+                {x.name}
+              </p>
             </Link>
           ))}
         </div>
