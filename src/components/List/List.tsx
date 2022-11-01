@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 
 import { formatDate } from '@/utils'
 import { Content } from '@/types/type'
