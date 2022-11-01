@@ -79,7 +79,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
       params: {
         filters: `category[equals]${catId}`,
         offset: pageNumber * limit,
-        limit: pageNumber * limit + limit,
+        limit: pageNumber * limit + limit
       },
     })
 
