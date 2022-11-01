@@ -62,15 +62,14 @@ const SearchModal: React.FC<Props> = ({
             <ul className="grid gap-[10px] list-none">
               {filteredArticles.map((x) => (
                 <li key={x.id}>
-                  <Link href={`/blog/${x.id}`} passHref>
-                    <a
-                      className='block py-[0.8em] px-[0.6em] bg-gray-100 rounded before:content-["#"] before:inline-block before:mr-[0.3em] hover:opacity-60'
-                      onClick={onClose}
-                    >
-                      <Highlight query={keyword} styles={{ bg: 'yellow.100' }}>
-                        {x.title}
-                      </Highlight>
-                    </a>
+                  <Link
+                    href={`/blog/${x.id}`}
+                    className='block py-[0.8em] px-[0.6em] bg-gray-100 rounded before:content-["#"] before:inline-block before:mr-[0.3em] hover:opacity-60'
+                    onClick={onClose}
+                  >
+                    <Highlight query={keyword} styles={{ bg: 'yellow.100' }}>
+                      {x.title}
+                    </Highlight>
                   </Link>
                 </li>
               ))}
