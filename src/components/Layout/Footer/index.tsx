@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import Link from 'next/link'
 import { Icon } from '@chakra-ui/react'
 import { BsTwitter, BsGithub } from 'react-icons/bs'
 
@@ -25,7 +26,7 @@ const Footer = () => {
           </a>
         </div>
         <p className="text-center">
-          <small>&copy;{new Date().getFullYear()}&ensp;iwtttter.tech</small>
+          &copy;{new Date().getFullYear()} iwtttter.tech<br /><Link href="privacy" passHref><a className="text-xs text-gray-600 hover:underline">プライバシーポリシー</a></Link>
         </p>
       </div>
     </>
