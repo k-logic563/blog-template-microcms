@@ -14,6 +14,7 @@ export type Content = {
     id: string
     name: string
   }
+  good_count?: number
 }
 
 export type Category = {
