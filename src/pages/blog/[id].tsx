@@ -64,7 +64,6 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
     setIsLoading(true)
 
     const good_count = isActive ? goodCount - 1 : goodCount + 1
-
     try {
       await axios.post(`/api/blog/${data?.id}`, {
         good_count,
