@@ -43,7 +43,7 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
         offset: pageNumber * limit,
-        limit: pageNumber * limit + limit,
+        limit,
       },
     })
 
