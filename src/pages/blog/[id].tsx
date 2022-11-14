@@ -60,7 +60,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
 
   return {
     props,
-    revalidate: 60,
+    revalidate: 10,
   }
 }
 
