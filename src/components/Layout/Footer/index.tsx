@@ -26,7 +26,13 @@ const Footer = () => {
           </a>
         </div>
         <p className="text-center">
-          &copy;{new Date().getFullYear()} iwtttter.tech<br /><Link href="/privacy" passHref><a className="text-xs text-gray-600 hover:underline">プライバシーポリシー</a></Link>
+          &copy;{new Date().getFullYear()} iwtttter.tech
+          <br />
+          <Link href="/privacy" passHref>
+            <a className="text-xs text-gray-600 hover:underline">
+              プライバシーポリシー
+            </a>
+          </Link>
         </p>
       </div>
     </>

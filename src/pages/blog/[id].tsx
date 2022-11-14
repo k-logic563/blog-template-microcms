@@ -1,8 +1,11 @@
+import { useState } from 'react'
+import axios from 'axios'
 import {
   InferGetStaticPropsType,
   NextPageWithLayout,
   GetStaticPropsContext,
 } from 'next'
+import { Button } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
@@ -38,6 +41,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params, previewData } = ctx
   const draftKey = isDraft(previewData) ? previewData.draftKey : ''
+  // 詳細データを取得
   const { data } = await microClient.get(`/blogs/${params?.id}`, {
     params: {
       draftKey,
@@ -62,6 +66,27 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
 
 const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
   const isClient = useClient()
+  const [isActive, setIsActive] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [goodCount, setGoodCount] = useState(data?.good_count ?? 0)
+
+  const clickGoodButton = async () => {
+    setIsLoading(true)
+
+    const good_count = isActive ? goodCount - 1 : goodCount + 1
+
+    try {
+      await axios.post(`/api/blog/${data?.id}`, {
+        good_count,
+      })
+      setGoodCount(good_count)
+      setIsActive(!isActive)
+    } catch (e) {
+      console.error(e)
+    }
+
+    setIsLoading(false)
+  }
 
   return (
     <>
@@ -77,15 +102,27 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
           site: `https://iwtttter.tech/blog/${data.id}`,
         }}
       />
-      <div className="px-[16px] sm:px-0">
+      <div className="px-[16px] sm:px-0 text-center">
         <h1 className="text-[24px] lg:text-[32px] mb-2 font-bold leading-normal">
           {data.title}
         </h1>
         {data.publishedAt && (
-          <p className="mb-8 text-gray-600 font-roboto">
+          <p className="mb-4 text-gray-600 font-roboto text-sm tracking-wider">
             {formatDate(data.publishedAt)}
           </p>
         )}
+        <div className="mb-8">
+          <Button
+            isLoading={isLoading}
+            colorScheme="red"
+            variant={isActive ? 'solid' : 'outline'}
+            size="sm"
+            onClick={clickGoodButton}
+          >
+            <span className="mr-1">{goodCount}</span>
+            {isActive ? 'Thank You!' : 'Good!'}
+          </Button>
+        </div>
       </div>
       <img
         className="sm:rounded-t-lg"
