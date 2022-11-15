@@ -66,6 +66,7 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
         <Heading1 title="記事一覧" subTitle="Blog" />
       </div>
       <InfiniteScroll
+        className="-m-8"
         dataLength={items.length}
         next={fetchData}
         loader={
@@ -75,7 +76,9 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
         }
         hasMore={isFetchAll}
       >
-        <List<BlogPageProps['data']['contents']> contents={items} />
+        <div className="p-8">
+          <List<BlogPageProps['data']['contents']> contents={items} />
+        </div>
       </InfiniteScroll>
     </>
   )

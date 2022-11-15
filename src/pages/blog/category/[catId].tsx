@@ -79,7 +79,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
       params: {
         filters: `category[equals]${catId}`,
         offset: pageNumber * limit,
-        limit: pageNumber * limit + limit,
+        limit,
       },
     })
 
@@ -103,6 +103,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
           <Heading1 title={catName} subTitle="Category" />
         </div>
         <InfiniteScroll
+          className="-m-8"
           dataLength={items.length}
           next={fetchData}
           loader={
@@ -112,7 +113,9 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
           }
           hasMore={isFetchAll}
         >
-          <List<CategoryPageProps['data']['contents']> contents={items} />
+          <div className="p-8">
+            <List<CategoryPageProps['data']['contents']> contents={items} />
+          </div>
         </InfiniteScroll>
       </div>
     </>
