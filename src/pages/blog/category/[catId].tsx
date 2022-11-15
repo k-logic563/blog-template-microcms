@@ -6,8 +6,7 @@ import {
 } from 'next'
 import axios from 'axios'
 import { NextSeo } from 'next-seo'
-import { Spinner } from '@chakra-ui/react'
-import InfiniteScroll from 'react-infinite-scroll-component'
+import { Button } from '@chakra-ui/react'
 
 import { Heading1 } from '@/components/Heading/Heading1'
 import { List } from '@/components/List'
@@ -67,6 +66,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
   catName,
   catId,
 }) => {
+  const [isLoading, setIsLoading] = useState(false)
   const [pageNumber, setPageNumber] = useState(1)
   const [items, setItems] = useState<BlogContent['contents']>(data.contents)
 
@@ -74,7 +74,13 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
     return data.totalCount > items.length
   }, [data, items])
 
+  const contentCount = useMemo(() => {
+    return data.totalCount - items.length
+  }, [data, items])
+
   const fetchData = async () => {
+    setIsLoading(true)
+
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
         filters: `category[equals]${catId}`,
@@ -85,6 +91,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
 
     setItems([...items, ...data.contents])
     setPageNumber(pageNumber + 1)
+    setIsLoading(false)
   }
 
   return (
@@ -102,21 +109,21 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
         <div className="mb-10">
           <Heading1 title={catName} subTitle="Category" />
         </div>
-        <InfiniteScroll
-          className="-m-8"
-          dataLength={items.length}
-          next={fetchData}
-          loader={
-            <div className="mt-16 text-center">
-              <Spinner color="teal.500" />
-            </div>
-          }
-          hasMore={isFetchAll}
-        >
-          <div className="p-8">
-            <List<CategoryPageProps['data']['contents']> contents={items} />
+        <div className="mb-12">
+          <List<CategoryPageProps['data']['contents']> contents={items} />
+        </div>
+        {isFetchAll && (
+          <div className="text-center">
+            <Button
+              colorScheme="teal"
+              size="md"
+              onClick={fetchData}
+              isLoading={isLoading}
+            >
+              残り{contentCount}記事
+            </Button>
           </div>
-        </InfiniteScroll>
+        )}
       </div>
     </>
   )
