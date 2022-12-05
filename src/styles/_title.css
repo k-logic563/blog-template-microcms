@@ -1,0 +1,5 @@
+@layer components {
+  .section-title {
+    @apply w-fit mx-auto relative text-[20px] md:text-[24px] font-bold mb-[2.5em] after:content-[''] after:h-[4px] after:left-0 after:bottom-0 after:bg-teal-500 after:rounded-full after:w-full after:absolute px-[1em] pb-[0.6em];
+  }
+}

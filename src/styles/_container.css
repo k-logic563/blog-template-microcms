@@ -1,0 +1,5 @@
+@layer components {
+  .container {
+    @apply w-full px-[16px] mx-auto lg:px-0 lg:max-w-[1024px];
+  }
+}
