@@ -13,6 +13,9 @@ export const getStaticProps = async () => {
   const { data: blogs } = await microClient.get<BlogContent>('blogs', {
     params: { limit: 6, offset: 0 },
   })
+  const { data: favBlogs } = await microClient.get<BlogContent>('blogs', {
+    params: { limit: 6, orders: '-good_count' },
+  })
   const { data: categories } = await microClient.get<CategoryContent>(
     'categories'
   )
@@ -20,17 +23,23 @@ export const getStaticProps = async () => {
   return {
     props: {
       blogs,
+      favBlogs,
       categories,
     },
     revalidate: 10,
   }
 }
 
-const HomePage: NextPageWithLayout<HomeProps> = ({ blogs, categories }) => {
+const HomePage: NextPageWithLayout<HomeProps> = ({
+  blogs,
+  favBlogs,
+  categories,
+}) => {
   return (
     <div className="grid gap-y-20">
       {categories.contents.length !== 0 ? (
-        <div>
+        <section>
+          <h2 className="section-title">新着記事</h2>
           <List<HomeProps['blogs']['contents']> contents={blogs.contents} />
           <div className="text-center mt-8">
             <Link href="/blog">
@@ -39,14 +48,20 @@ const HomePage: NextPageWithLayout<HomeProps> = ({ blogs, categories }) => {
               </a>
             </Link>
           </div>
-        </div>
+        </section>
+      ) : (
+        <p>記事がありません。</p>
+      )}
+      {favBlogs.contents.length !== 0 ? (
+        <section>
+          <h2 className="section-title">人気の記事</h2>
+          <List<HomeProps['blogs']['contents']> contents={favBlogs.contents} />
+        </section>
       ) : (
         <p>記事がありません。</p>
       )}
       <section>
-        <h2 className="w-fit mx-auto relative text-[20px] md:text-[24px] font-bold mb-[2.5em] after:content-[''] after:h-[4px] after:left-0 after:bottom-0 after:bg-teal-500 after:rounded-full after:w-full after:absolute px-[1em] pb-[0.6em]">
-          カテゴリー
-        </h2>
+        <h2 className="section-title">カテゴリー</h2>
         <div className="grid md:grid-cols-2 gap-8">
           {categories.contents.map((x) => (
             <Link href={`/blog/category/${x.id}`} key={x.id} passHref>
