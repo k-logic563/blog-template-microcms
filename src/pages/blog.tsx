@@ -4,7 +4,7 @@ import { InferGetStaticPropsType, NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
 import { Button } from '@chakra-ui/react'
 
-import { Heading1 } from '@/components/Heading/Heading1'
+import { Title } from '@/components/Heading/Title'
 import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
 
@@ -70,7 +70,7 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
         }}
       />
       <div className="mb-10">
-        <Heading1 title="記事一覧" subTitle="Blog" />
+        <Title title="記事一覧" subTitle="Blog" />
       </div>
       <div className="mb-12">
         <List<BlogPageProps['data']['contents']> contents={items} />
