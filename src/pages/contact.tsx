@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 
-import { Heading1 } from '@/components/Heading/Heading1'
+import { Title } from '@/components/Heading/Title'
 import { MainLayout } from '@/components/Layout'
 
 interface IFormInputs {
@@ -62,7 +62,7 @@ const ContactPage: NextPageWithLayout = () => {
         }}
       />
       <div className="mb-10">
-        <Heading1 title="お問い合わせ" subTitle="Contact" />
+        <Title title="お問い合わせ" subTitle="Contact" />
       </div>
       {mode === 'done' ? (
         <Text lineHeight={1.8}>

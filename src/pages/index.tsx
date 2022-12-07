@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type { InferGetStaticPropsType, NextPageWithLayout } from 'next'
 
 import { List } from '@/components/List'
+import { PopularList } from '@/feature/home/PopularList'
 import { microClient } from '@/lib/axios'
 import { MainLayout } from '@/components/Layout'
 
@@ -13,8 +14,8 @@ export const getStaticProps = async () => {
   const { data: blogs } = await microClient.get<BlogContent>('blogs', {
     params: { limit: 6, offset: 0 },
   })
-  const { data: favBlogs } = await microClient.get<BlogContent>('blogs', {
-    params: { limit: 6, orders: '-good_count' },
+  const { data: popularBlogs } = await microClient.get<BlogContent>('blogs', {
+    params: { limit: 5, orders: '-good_count' },
   })
   const { data: categories } = await microClient.get<CategoryContent>(
     'categories'
@@ -23,7 +24,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       blogs,
-      favBlogs,
+      popularBlogs,
       categories,
     },
     revalidate: 10,
@@ -32,7 +33,7 @@ export const getStaticProps = async () => {
 
 const HomePage: NextPageWithLayout<HomeProps> = ({
   blogs,
-  favBlogs,
+  popularBlogs,
   categories,
 }) => {
   return (
@@ -52,10 +53,12 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
       ) : (
         <p>記事がありません。</p>
       )}
-      {favBlogs.contents.length !== 0 ? (
+      {popularBlogs.contents.length !== 0 ? (
         <section>
           <h2 className="section-title">人気の記事</h2>
-          <List<HomeProps['blogs']['contents']> contents={favBlogs.contents} />
+          <PopularList<HomeProps['blogs']['contents']>
+            contents={popularBlogs.contents}
+          />
         </section>
       ) : (
         <p>記事がありません。</p>

@@ -8,7 +8,7 @@ import axios from 'axios'
 import { NextSeo } from 'next-seo'
 import { Button } from '@chakra-ui/react'
 
-import { Heading1 } from '@/components/Heading/Heading1'
+import { Title } from '@/components/Heading/Title'
 import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
 
@@ -107,7 +107,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
       />
       <div className="mb-10">
         <div className="mb-10">
-          <Heading1 title={catName} subTitle="Category" />
+          <Title title={catName} subTitle="Category" />
         </div>
         <div className="mb-12">
           <List<CategoryPageProps['data']['contents']> contents={items} />
