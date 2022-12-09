@@ -20,7 +20,7 @@ export const MainLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <ChakraProvider theme={theme}>
-      <div className="grid grid-rows-[auto_auto_1fr_auto] min-h-screen">
+      <div className="grid min-h-screen grid-rows-[auto_auto_1fr_auto]">
         <Header onOpen={onOpen} />
         <Nav />
         <div className="container py-12">{children}</div>

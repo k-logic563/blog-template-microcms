@@ -93,7 +93,7 @@ const ContactPage: NextPageWithLayout = () => {
               {errors.message?.message}
             </FormHelperText>
           </FormControl>
-          <div className="text-center mt-12">
+          <div className="mt-12 text-center">
             <Button
               isLoading={mode === 'pending'}
               colorScheme="teal"

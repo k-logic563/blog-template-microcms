@@ -42,9 +42,9 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
         <section>
           <h2 className="section-title">新着記事</h2>
           <List<HomeProps['blogs']['contents']> contents={blogs.contents} />
-          <div className="text-center mt-8">
+          <div className="mt-8 text-center">
             <Link href="/blog">
-              <a className="transition-all duration-150 bg-teal-500 text-white rounded inline-block font-bold py-[.5em] px-[1em] hover:bg-teal-600">
+              <a className="inline-block rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600">
                 一覧を見る
               </a>
             </Link>
@@ -65,14 +65,14 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
       )}
       <section>
         <h2 className="section-title">カテゴリー</h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid gap-8 md:grid-cols-2">
           {categories.contents.map((x) => (
             <Link href={`/blog/category/${x.id}`} key={x.id} passHref>
               <a
-                className="h-[140px] sm:h-[200px] rounded-lg grid place-items-center relative after:content-[''] after:inset-0 after:bg-black after:bg-opacity-40 after:absolute hover:after:bg-opacity-60 after:transition-all after:duration-150 overflow-hidden"
+                className="relative grid h-[140px] place-items-center overflow-hidden rounded-lg after:absolute after:inset-0 after:bg-black/40 after:transition-all after:duration-150 after:content-[''] hover:after:bg-black/60 sm:h-[200px]"
                 style={{ backgroundImage: `url(${x.thumbnail.url})` }}
               >
-                <p className="font-bold text-[20px] text-white absolute z-10">
+                <p className="absolute z-10 text-[20px] font-bold text-white">
                   {x.name}
                 </p>
               </a>

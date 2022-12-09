@@ -10,11 +10,11 @@ export const Nav: React.FC = () => {
   return (
     <div className="sticky top-0 z-[1000] bg-white">
       <div className="container">
-        <div className="gap-x-[1rem] flex">
+        <div className="flex gap-x-[1rem]">
           {menuItems.map((item, idx) => (
             <Link key={idx} href={item.link} passHref>
               <a
-                className={`relative md:text-[18px] font-roboto font-bold py-[1em] text-gray-500 hover:after:opacity-100 hover:text-black after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-black after:opacity-0 ${
+                className={`relative py-[1em] font-roboto font-bold text-gray-500 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:bg-black after:opacity-0 hover:text-black hover:after:opacity-100 md:text-[18px] ${
                   pathname === item.link ? 'text-black after:opacity-100' : ''
                 }`}
               >

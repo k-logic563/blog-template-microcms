@@ -8,10 +8,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint \"./src/**/*.{ts,tsx}\"",
-    "lint:fix": "yarn lint --fix && prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}'",
-    "api:build": "aspida",
-    "prepare": "husky install"
+    "lint:fix": "eslint \"./src/**/*.{ts,tsx}\" --fix",
+    "format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}'",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{tsx,ts}": [
+      "bash -c 'npm run tsc'",
+      "bash -c 'npm run test'",
+      "npm run lint:fix",
+      "npm run format",
+      "git add -A"
+    ]
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.3",
@@ -53,12 +62,15 @@
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-tailwindcss": "^3.7.1",
     "husky": "^7.0.4",
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0",
+    "lint-staged": "^13.1.0",
     "postcss": "^8.4.16",
     "postcss-import": "^15.0.1",
     "prettier": "^2.6.2",
+    "prettier-plugin-tailwindcss": "^0.2.1",
     "tailwindcss": "^3.1.8",
     "ts-node": "^10.8.1",
     "typescript": "4.6.4",

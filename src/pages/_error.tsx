@@ -13,13 +13,13 @@ const ErrorPage: NextPageWithLayout<Props> = ({ title, description }) => {
   return (
     <>
       <NextSeo title={title} noindex />
-      <h1 className="mb-[0.6em] tracking-[0.01em] text-center text-[24px] md:text-[32px] font-black">
+      <h1 className="mb-[0.6em] text-center text-[24px] font-black tracking-[0.01em] md:text-[32px]">
         {title}
       </h1>
-      <p className="text-center mb-[2.4em]">{description}</p>
+      <p className="mb-[2.4em] text-center">{description}</p>
       <div className="text-center">
         <Link href="/">
-          <a className="transition-all duration-150 bg-teal-500 text-white rounded inline-block font-bold py-[.5em] px-[1em] hover:bg-teal-600">
+          <a className="inline-block rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600">
             トップページに戻る
           </a>
         </Link>

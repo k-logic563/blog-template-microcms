@@ -13,25 +13,25 @@ type ContentsProps = (Content & MicroCMSContentId & MicroCMSDate)[]
 
 export const List = <T extends ContentsProps>({ contents }: Props<T>) => {
   return (
-    <div className="grid gap-[20px] md:gap-x-[24px] md:gap-y-[32px] xs:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-[20px] xs:grid-cols-2 md:gap-x-[24px] md:gap-y-[32px] lg:grid-cols-3">
       {contents.map((item, index) => (
         <Link key={`${item.id}_${index}`} href={`/blog/${item.id}`} passHref>
-          <a className="flex flex-col transition-all duration-300 bg-white rounded-lg overflow-hidden hover:shadow-[0_0_30px_rgba(49,49,49,0.3)]">
+          <a className="flex flex-col overflow-hidden rounded-lg bg-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(49,49,49,0.3)]">
             <figure>
               <Image
-                className="w-full h-[160px] md:h-[180px] object-cover"
+                className="h-[160px] w-full object-cover md:h-[180px]"
                 src={item.eyecatch.url}
                 alt=""
               />
             </figure>
-            <div className="p-4 flex flex-col h-full">
+            <div className="flex h-full flex-col p-4">
               <div className="mb-3">
-                <span className="text-[12px] font-bold inline-block bg-teal-500 rounded-full text-white px-[0.8em] py-[0.3em]">
+                <span className="inline-block rounded-full bg-teal-500 px-[0.8em] py-[0.3em] text-[12px] font-bold text-white">
                   {item.category.name}
                 </span>
               </div>
-              <p className="md:text-[18px] font-bold mb-3 grow">{item.title}</p>
-              <p className="mt-auto text-right text-[14px] text-gray-400 font-roboto font-medium">
+              <p className="mb-3 grow font-bold md:text-[18px]">{item.title}</p>
+              <p className="mt-auto text-right font-roboto text-[14px] font-medium text-gray-400">
                 {formatDate(item.publishedAt)}
               </p>
             </div>

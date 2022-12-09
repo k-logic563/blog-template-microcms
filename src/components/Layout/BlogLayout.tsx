@@ -22,7 +22,7 @@ export const BlogLayout: React.FC<Props> = ({ children }) => {
     <ChakraProvider theme={theme}>
       <Header onOpen={onOpen} />
       <Nav />
-      <div className="sm:max-w-screen-md mx-auto sm:px-[16px] md:px-0 py-12">
+      <div className="mx-auto py-12 sm:max-w-screen-md sm:px-[16px] md:px-0">
         {children}
       </div>
       <Footer />
