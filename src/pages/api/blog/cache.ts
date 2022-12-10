@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const id = req.body.contents.news.publishValue.id
-    await res.unstable_revalidate(`blogs/${id}`)
+    await res.unstable_revalidate(`blog/${id}`)
 
     return res.status(200).send(null)
   } catch (e) {
