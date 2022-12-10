@@ -1,8 +1,13 @@
 import { NextApiResponse, NextApiRequest } from 'next'
 
+import { isCollectSignature } from '@/lib/crypto'
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (req.headers['x-revalidate-key'] !== process.env.MICROCMS_CACHE_KEY) {
+    const xSignature = req.headers['x-microcms-signature']
+    if (!xSignature || Array.isArray(xSignature)) throw new Error()
+
+    if (!isCollectSignature(xSignature, req.body)) {
       return res.status(401).send('Invalid token')
     }
 
