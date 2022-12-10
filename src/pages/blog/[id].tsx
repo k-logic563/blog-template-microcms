@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import axios from 'axios'
 import {
-  InferGetServerSidePropsType,
+  InferGetStaticPropsType,
   NextPageWithLayout,
-  GetServerSidePropsContext,
+  GetStaticPropsContext,
 } from 'next'
 import { Button } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
@@ -16,10 +16,11 @@ import { BlogLayout } from '@/components/Layout'
 import { client } from '@/lib/microcms'
 import { codeHighlight, generateToc, formatDate } from '@/utils'
 import { useClient } from '@/hooks/useClient'
+import { BlogContent } from '@/types/type'
 
 import 'highlight.js/styles/atom-one-dark.css'
 
-type BlogDetailProps = InferGetServerSidePropsType<typeof getServerSideProps>
+type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = ParsedUrlQuery & {
   id: string
 }
@@ -27,9 +28,19 @@ type Params = ParsedUrlQuery & {
 const isDraft = (item: any): item is { draftKey: string } =>
   !!(item?.draftKey && typeof item.draftKey === 'string')
 
-export const getServerSideProps = async (
-  ctx: GetServerSidePropsContext<Params>
-) => {
+export const getStaticPaths = async () => {
+  const data = await client.get<BlogContent>({
+    endpoint: 'blogs',
+  })
+  const paths = data.contents.map((x) => `/blog/${x.id}`)
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params, previewData } = ctx
   const draftKey = isDraft(previewData) ? previewData.draftKey : ''
   const data = await client.get({
