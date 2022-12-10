@@ -8,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     //   return res.status(401).send('invalid token')
     // }
 
-    const id = req.body.contents.news.publishValue.id
+    const id = req.body.contents.new.publishValue.id
     await res.unstable_revalidate(`blog/${id}`)
 
     return res.status(200).send(null)
