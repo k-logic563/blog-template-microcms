@@ -32,7 +32,7 @@
     "date-fns": "^2.28.0",
     "framer-motion": "^6.3.3",
     "highlight.js": "^11.5.1",
-    "next": "^12.1.6",
+    "next": "^12.2.0",
     "next-seo": "^5.4.0",
     "nextjs-progressbar": "^0.0.16",
     "ogp-parser": "^0.6.0",

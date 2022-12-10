@@ -9,9 +9,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const id = req.body.contents.new.publishValue.id
-    await res.unstable_revalidate(`/blog/${id}`)
+    await res.revalidate(`/blog/${id}`)
 
-    return res.status(200).send(null)
+    return res.status(200).json({
+      revalidated: true,
+    })
   } catch (e) {
     return res.redirect('/')
   }
