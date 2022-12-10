@@ -1,8 +1,6 @@
 import { NextApiResponse, NextApiRequest } from 'next'
 import crypto from 'crypto'
 
-// import { isCollectSignature } from '@/lib/crypto'
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const expectedSignature = crypto
