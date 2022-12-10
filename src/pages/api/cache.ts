@@ -1,15 +1,17 @@
 import { NextApiResponse, NextApiRequest } from 'next'
 
+import { isCollectSignature } from '@/lib/crypto'
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    // if (
-    //   req.headers['x-microcms-signature'] !== process.env.MICROCMS_CACHE_KEY
-    // ) {
-    //   return res.status(401).send('invalid token')
-    // }
+    if (
+      !isCollectSignature(`${req.headers['x-microcms-signature']}`, req.body)
+    ) {
+      return res.status(401).send('Invalid token')
+    }
 
     const id = req.body.contents.new.publishValue.id
-    await res.unstable_revalidate(`blog/${id}`)
+    await res.unstable_revalidate(`/blog/${id}`)
 
     return res.status(200).send(null)
   } catch (e) {
