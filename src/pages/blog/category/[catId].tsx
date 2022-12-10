@@ -12,7 +12,7 @@ import { Title } from '@/components/Heading/Title'
 import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
 
-import { microClient } from '@/lib/axios'
+import { client } from '@/lib/microcms'
 import { BlogContent, CategoryContent } from '@/types/type'
 
 type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
@@ -23,7 +23,9 @@ type Params = {
 const limit = 9
 
 export const getStaticPaths = async () => {
-  const { data } = await microClient.get<BlogContent>('categories')
+  const data = await client.get<BlogContent>({
+    endpoint: 'categories',
+  })
   const paths = data.contents.map((x) => `/blog/category/${x.id}`)
 
   return {
@@ -39,15 +41,16 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     throw new Error('catId not found.')
   }
 
-  const { data: blogs } = await microClient.get('blogs', {
-    params: {
+  const blogs = await client.get<BlogContent>({
+    endpoint: 'blogs',
+    queries: {
       filters: `category[equals]${params?.catId}`,
       limit,
     },
   })
-  const { data: categories } = await microClient.get<CategoryContent>(
-    'categories'
-  )
+  const categories = await client.get<CategoryContent>({
+    endpoint: 'categories',
+  })
   const catName =
     categories.contents.find((x) => x.id === params?.catId)?.name ?? ''
 

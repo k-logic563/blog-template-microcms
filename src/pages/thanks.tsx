@@ -33,17 +33,17 @@ const Thanks: NextPageWithLayout = () => {
         noindex
       />
       <div>
-        <h1 className="text-center font-bold text-[24px] md:text-[28px] mb-6">
+        <h1 className="mb-6 text-center text-[24px] font-bold md:text-[28px]">
           お問い合わせ完了しました
         </h1>
-        <p className="text-center leading-loose mb-6">
+        <p className="mb-6 text-center leading-loose">
           お問い合わせいただき、誠にありがとうございます。
           <br />
           お返事まで少々お待ちくださいませ。
         </p>
         <div className="text-center">
           <Link href="/">
-            <a className="transition-all duration-150 bg-teal-500 text-white rounded inline-block font-bold py-[.5em] px-[1em] hover:bg-teal-600">
+            <a className="inline-block rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600">
               トップページに戻る
             </a>
           </Link>

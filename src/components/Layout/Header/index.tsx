@@ -12,7 +12,7 @@ const Header: React.FC<Props> = ({ onOpen }) => {
   return (
     <div className="bg-white">
       <div className="container">
-        <div className="flex justify-between items-center pt-6 pb-4">
+        <div className="flex items-center justify-between pt-6 pb-4">
           <Logo />
           <button type="button" className="ml-[20px]" onClick={onOpen}>
             <Icon className="text-[20px] md:text-[24px]" as={AiOutlineSearch} />

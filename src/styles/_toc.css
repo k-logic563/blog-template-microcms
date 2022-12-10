@@ -6,11 +6,11 @@
   }
 
   .toc-list li {
-    @apply border-b border-gray-300 flex;
+    @apply flex border-b border-gray-300;
   }
 
   .toc-list a {
-    @apply block py-[0.3em] flex-[1];
+    @apply block flex-[1] py-[0.3em];
   }
 
   .toc-list a:hover {
@@ -18,7 +18,7 @@
   }
 
   .toc-list li:before {
-    @apply text-gray-400 pt-[0.2em] content-['-'] inline-block mr-[0.5em];
+    @apply mr-[0.5em] inline-block pt-[0.2em] text-gray-400 content-['-'];
   }
 
   .toc-list .h2 {

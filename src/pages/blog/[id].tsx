@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import axios from 'axios'
 import {
-  InferGetServerSidePropsType,
+  InferGetStaticPropsType,
   NextPageWithLayout,
-  GetServerSidePropsContext,
+  GetStaticPropsContext,
 } from 'next'
 import { Button } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
@@ -13,13 +13,14 @@ import { Link as Scroll } from 'react-scroll'
 
 import { BlogLayout } from '@/components/Layout'
 
-import { microClient } from '@/lib/axios'
+import { client } from '@/lib/microcms'
 import { codeHighlight, generateToc, formatDate } from '@/utils'
 import { useClient } from '@/hooks/useClient'
+import { BlogContent } from '@/types/type'
 
 import 'highlight.js/styles/atom-one-dark.css'
 
-type BlogDetailProps = InferGetServerSidePropsType<typeof getServerSideProps>
+type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = ParsedUrlQuery & {
   id: string
 }
@@ -27,14 +28,24 @@ type Params = ParsedUrlQuery & {
 const isDraft = (item: any): item is { draftKey: string } =>
   !!(item?.draftKey && typeof item.draftKey === 'string')
 
-export const getServerSideProps = async (
-  ctx: GetServerSidePropsContext<Params>
-) => {
+export const getStaticPaths = async () => {
+  const data = await client.get<BlogContent>({
+    endpoint: 'blogs',
+  })
+  const paths = data.contents.map((x) => `/blog/${x.id}`)
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params, previewData } = ctx
   const draftKey = isDraft(previewData) ? previewData.draftKey : ''
-  // 詳細データを取得
-  const { data } = await microClient.get(`/blogs/${params?.id}`, {
-    params: {
+  const data = await client.get({
+    endpoint: `blogs/${params?.id}`,
+    queries: {
       draftKey,
     },
   })
@@ -91,12 +102,12 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
           site: `https://iwtttter.tech/blog/${data.id}`,
         }}
       />
-      <div className="px-[16px] sm:px-0 text-center">
-        <h1 className="text-[24px] lg:text-[32px] mb-2 font-bold leading-normal">
+      <div className="px-[16px] text-center sm:px-0">
+        <h1 className="mb-2 text-[24px] font-bold leading-normal lg:text-[32px]">
           {data.title}
         </h1>
         {data.publishedAt && (
-          <p className="mb-4 text-gray-600 font-roboto text-sm tracking-wider">
+          <p className="mb-4 font-roboto text-sm tracking-wider text-gray-600">
             {formatDate(data.publishedAt)}
           </p>
         )}
@@ -120,10 +131,10 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
         width={data.eyecatch.width}
         height={data.eyecatch.height}
       />
-      <div className="bg-white sm:rounded-b-lg px-[16px] md:px-10 py-12">
+      <div className="bg-white px-[16px] py-12 sm:rounded-b-lg md:px-10">
         {isClient && toc?.length !== 0 && (
-          <div className="bg-gray-100 px-4 py-6 mb-10 rounded">
-            <p className="text-[20px] lg:text-[24px] font-bold mb-3">目次</p>
+          <div className="mb-10 rounded bg-gray-100 px-4 py-6">
+            <p className="mb-3 text-[20px] font-bold lg:text-[24px]">目次</p>
             <ul className="toc-list">
               {toc.map((x) => (
                 <li className={x.name} key={x.id}>

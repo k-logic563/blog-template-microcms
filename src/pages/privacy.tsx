@@ -15,7 +15,7 @@ const PrivacyPage: NextPageWithLayout = () => {
         }}
       />
       <div className="mb-12">
-        <h1 className="font-bold text-[24px] md:text-[28px] mb-6">
+        <h1 className="mb-6 text-[24px] font-bold md:text-[28px]">
           プライバシーポリシー
         </h1>
         <p className="leading-loose">
@@ -23,7 +23,7 @@ const PrivacyPage: NextPageWithLayout = () => {
         </p>
       </div>
       <div className="mb-10">
-        <h2 className="text-[18px] md:text-[22px] font-bold mb-[0.8em]">
+        <h2 className="mb-[0.8em] text-[18px] font-bold md:text-[22px]">
           個人情報の利用目的について
         </h2>
         <p className="leading-loose">
@@ -33,7 +33,7 @@ const PrivacyPage: NextPageWithLayout = () => {
         </p>
       </div>
       <div className="mb-10">
-        <h2 className="text-[18px] md:text-[22px] font-bold mb-[0.8em]">
+        <h2 className="mb-[0.8em] text-[18px] font-bold md:text-[22px]">
           アクセス解析ツールについて
         </h2>
         <p className="leading-loose">
@@ -52,7 +52,7 @@ const PrivacyPage: NextPageWithLayout = () => {
         </p>
       </div>
       <div className="mb-10">
-        <h2 className="text-[18px] md:text-[22px] font-bold mb-[0.8em]">
+        <h2 className="mb-[0.8em] text-[18px] font-bold md:text-[22px]">
           免責事項
         </h2>
         <p className="leading-loose">
@@ -64,7 +64,7 @@ const PrivacyPage: NextPageWithLayout = () => {
         </p>
       </div>
       <div className="mb-10">
-        <h2 className="text-[18px] md:text-[22px] font-bold mb-[0.8em]">
+        <h2 className="mb-[0.8em] text-[18px] font-bold md:text-[22px]">
           著作権について
         </h2>
         <p className="leading-loose">
@@ -74,7 +74,7 @@ const PrivacyPage: NextPageWithLayout = () => {
         </p>
       </div>
       <div className="mb-12">
-        <h2 className="text-[18px] md:text-[22px] font-bold mb-[0.8em]">
+        <h2 className="mb-[0.8em] text-[18px] font-bold md:text-[22px]">
           プライバシーポリシーの変更
         </h2>
         <p className="leading-loose">
