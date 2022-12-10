@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { microClient } from '@/lib/axios'
+import { client } from '@/lib/microcms'
 import { Content } from '@/types/type'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -9,8 +9,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const { data } = await microClient.get<Content>(`blogs/${req.query.id}`, {
-      params: {
+    const data = await client.get<Content>({
+      endpoint: `blogs/${req.query.id}`,
+      queries: {
         draftKey: `${req.query.draftKey}`,
       },
     })

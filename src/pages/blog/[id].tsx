@@ -13,7 +13,7 @@ import { Link as Scroll } from 'react-scroll'
 
 import { BlogLayout } from '@/components/Layout'
 
-import { microClient } from '@/lib/axios'
+import { client } from '@/lib/microcms'
 import { codeHighlight, generateToc, formatDate } from '@/utils'
 import { useClient } from '@/hooks/useClient'
 
@@ -32,9 +32,9 @@ export const getServerSideProps = async (
 ) => {
   const { params, previewData } = ctx
   const draftKey = isDraft(previewData) ? previewData.draftKey : ''
-  // 詳細データを取得
-  const { data } = await microClient.get(`/blogs/${params?.id}`, {
-    params: {
+  const data = await client.get({
+    endpoint: `blogs/${params?.id}`,
+    queries: {
       draftKey,
     },
   })

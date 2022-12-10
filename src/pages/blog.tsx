@@ -8,7 +8,7 @@ import { Title } from '@/components/Heading/Title'
 import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
 
-import { microClient } from '@/lib/axios'
+import { client } from '@/lib/microcms'
 import { BlogContent } from '@/types/type'
 
 type BlogPageProps = InferGetStaticPropsType<typeof getStaticProps>
@@ -16,8 +16,9 @@ type BlogPageProps = InferGetStaticPropsType<typeof getStaticProps>
 const limit = 9
 
 export const getStaticProps = async () => {
-  const { data } = await microClient.get<BlogContent>('blogs', {
-    params: {
+  const data = await client.get<BlogContent>({
+    endpoint: 'blogs',
+    queries: {
       limit,
     },
   })

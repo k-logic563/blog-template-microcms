@@ -3,7 +3,7 @@ import type { InferGetStaticPropsType, NextPageWithLayout } from 'next'
 
 import { List } from '@/components/List'
 import { PopularList } from '@/feature/home/PopularList'
-import { microClient } from '@/lib/axios'
+import { client } from '@/lib/microcms'
 import { MainLayout } from '@/components/Layout'
 
 import { BlogContent, CategoryContent } from '@/types/type'
@@ -11,15 +11,23 @@ import { BlogContent, CategoryContent } from '@/types/type'
 export type HomeProps = InferGetStaticPropsType<typeof getStaticProps>
 
 export const getStaticProps = async () => {
-  const { data: blogs } = await microClient.get<BlogContent>('blogs', {
-    params: { limit: 6, offset: 0 },
+  const blogs = await client.get<BlogContent>({
+    endpoint: 'blogs',
+    queries: {
+      limit: 6,
+      offset: 0,
+    },
   })
-  const { data: popularBlogs } = await microClient.get<BlogContent>('blogs', {
-    params: { limit: 5, orders: '-good_count' },
+  const popularBlogs = await client.get<BlogContent>({
+    endpoint: 'blogs',
+    queries: {
+      limit: 5,
+      orders: '-good_count',
+    },
   })
-  const { data: categories } = await microClient.get<CategoryContent>(
-    'categories'
-  )
+  const categories = await client.get<CategoryContent>({
+    endpoint: 'categories',
+  })
 
   return {
     props: {

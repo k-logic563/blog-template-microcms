@@ -1,6 +1,6 @@
 import { NextApiResponse } from 'next'
 
-import { microClient } from '@/lib/axios'
+import { client } from '@/lib/microcms'
 import { formatSitemapDate } from '@/utils/format'
 
 import { BlogContent } from '@/types/type'
@@ -9,7 +9,9 @@ async function generateSitemapXml() {
   let xml = `<?xml version="1.0" encoding="UTF-8"?>`
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`
 
-  const { data } = await microClient.get<BlogContent>('blogs')
+  const data = await client.get<BlogContent>({
+    endpoint: 'blogs',
+  })
   data.contents.forEach((post) => {
     xml += `
       <url>
