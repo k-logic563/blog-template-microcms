@@ -1,14 +1,25 @@
 import { NextApiResponse, NextApiRequest } from 'next'
+import crypto from 'crypto'
 
-import { isCollectSignature } from '@/lib/crypto'
+// import { isCollectSignature } from '@/lib/crypto'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const xSignature = req.headers['x-microcms-signature']
-    if (!xSignature || Array.isArray(xSignature)) throw new Error()
+    const expectedSignature = crypto
+      .createHmac('sha256', process.env.MICROCMS_CACHE_KEY)
+      .update(req.body)
+      .digest('hex')
+    const signature = req.headers['x-microcms-signature']
 
-    if (!isCollectSignature(xSignature, req.body)) {
-      return res.status(401).send('Invalid token')
+    if (!signature || Array.isArray(signature)) throw new Error()
+
+    if (
+      !crypto.timingSafeEqual(
+        Buffer.from(signature),
+        Buffer.from(expectedSignature)
+      )
+    ) {
+      throw new Error()
     }
 
     const id = req.body.contents.new.publishValue.id
