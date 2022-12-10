@@ -2,11 +2,11 @@ import { NextApiResponse, NextApiRequest } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (
-      req.headers['x-microcms-signature'] !== process.env.MICROCMS_CACHE_KEY
-    ) {
-      return res.status(401).send('invalid token')
-    }
+    // if (
+    //   req.headers['x-microcms-signature'] !== process.env.MICROCMS_CACHE_KEY
+    // ) {
+    //   return res.status(401).send('invalid token')
+    // }
 
     const id = req.body.contents.news.publishValue.id
     await res.unstable_revalidate(`blog/${id}`)
