@@ -4,7 +4,7 @@
   }
 
   .blog-content code:not(.hljs) {
-    @apply text-pink-400;
+    @apply !text-inherit p-[0.2em_0.4em] bg-[#21511012] text-[0.85em] rounded-[4px] align-[.08em];;
   }
 
   .blog-content iframe {
