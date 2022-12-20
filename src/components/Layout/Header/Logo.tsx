@@ -8,7 +8,7 @@ export const Logo = () => {
   const isTopPage = pathname === '/'
 
   return (
-    <div className="font-roboto md:text-[20px]">
+    <div className="md:text-[20px]">
       {isTopPage ? (
         <h1>
           <Image src="/assets/images/logo.png" width="140px" />
