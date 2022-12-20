@@ -13,7 +13,7 @@ const ErrorPage: NextPageWithLayout<Props> = ({ title, description }) => {
   return (
     <>
       <NextSeo title={title} noindex />
-      <h1 className="mb-[0.6em] text-center text-[24px] font-black tracking-[0.01em] md:text-[32px]">
+      <h1 className="mb-[0.6em] text-center text-[24px] font-bold md:text-[32px]">
         {title}
       </h1>
       <p className="mb-[2.4em] text-center">{description}</p>

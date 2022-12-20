@@ -36,21 +36,15 @@
   }
 
   .blog-content h2 {
-    @apply mt-[2em] mb-[1em] border-b-2 border-gray-200 pb-[0.4em] font-black;
-
-    font-size: clamp(22px, 5vw, 32px);
+    @apply mt-[2em] mb-[0.8em] pb-[0.2em] border-b border-gray-200 font-bold text-[clamp(22px,4vw,28px)];
   }
 
   .blog-content h3 {
-    @apply mt-[1.6em] mb-[0.5em] font-black;
-
-    font-size: clamp(18px, 4vw, 22px);
+    @apply mt-[1.6em] mb-[0.5em] font-bold text-[clamp(18px,3vw,24px)];
   }
 
   .blog-content h4 {
-    @apply mt-[1.2em] mb-[0.2em] font-black;
-
-    font-size: clamp(18px, 4vw, 22px);
+    @apply mt-[1.2em] mb-[0.2em] font-bold text-[clamp(16px,2vw,22px)];
   }
 
   .blog-content blockquote {

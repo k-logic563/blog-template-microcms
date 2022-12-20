@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700&display=swap');
-
 @import './_reset.css';
 @import './_blog.css';
 @import './_container.css';
-@import './_toc.css';
 @import './_title.css';
 
 @tailwind base;
