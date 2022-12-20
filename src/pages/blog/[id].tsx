@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { Link as Scroll } from 'react-scroll'
 import {
   InferGetStaticPropsType,
   NextPageWithLayout,
@@ -13,7 +14,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { BlogLayout } from '@/components/Layout'
 
 import { client } from '@/lib/microcms'
-import { codeHighlight, formatDate } from '@/utils'
+import { codeHighlight, formatDate, generateToc } from '@/utils'
 import { useClient } from '@/hooks/useClient'
 import { BlogContent } from '@/types/type'
 
@@ -56,6 +57,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   // 目次、記事データを集約
   const props = {
     data: { ...data, content: $.html() },
+    toc: generateToc($),
   }
 
   return {
@@ -64,7 +66,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   }
 }
 
-const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data }) => {
+const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
   const isClient = useClient()
   const [isActive, setIsActive] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -131,6 +133,20 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data }) => {
         height={data.eyecatch.height}
       />
       <div className="bg-white px-[16px] py-12 sm:rounded-b-lg md:px-10">
+        {isClient && toc?.length !== 0 && (
+          <div className="mb-10 rounded bg-gray-100 px-4 py-6">
+            <p className="mb-3 text-[20px] font-bold lg:text-[24px]">目次</p>
+            <ul className="toc-list">
+              {toc.map((x) => (
+                <li className={x.name} key={x.id}>
+                  <Scroll to={x.id} smooth offset={-100}>
+                    {x.text}
+                  </Scroll>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div className="blog-content">
           {isClient && (
             <div dangerouslySetInnerHTML={{ __html: data.content }} />
