@@ -18,8 +18,7 @@
       "bash -c 'npm run tsc'",
       "bash -c 'npm run test'",
       "npm run lint:fix",
-      "npm run format",
-      "git add -A"
+      "npm run format"
     ]
   },
   "dependencies": {
