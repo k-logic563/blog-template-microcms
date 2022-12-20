@@ -4,7 +4,7 @@
   }
 
   .blog-content code:not(.hljs) {
-    @apply !text-inherit p-[0.2em_0.4em] bg-[#21511012] text-[0.85em] rounded-[4px] align-[.08em];;
+    @apply rounded-[4px] bg-[#21511012] p-[0.2em_0.4em] align-[.08em] text-[0.85em] !text-inherit;
   }
 
   .blog-content iframe {
@@ -36,15 +36,21 @@
   }
 
   .blog-content h2 {
-    @apply mt-[2em] mb-[0.8em] border-b border-gray-200 pb-[0.2em] text-[clamp(22px,4vw,28px)] font-bold;
+    @apply mt-[2em] mb-[0.8em] border-b border-gray-200 pb-[0.2em] text-[clamp(24px,4vw,30px)] font-bold;
+
+    font-feature-settings: 'palt';
   }
 
   .blog-content h3 {
-    @apply mt-[1.6em] mb-[0.5em] text-[clamp(18px,3vw,24px)] font-bold;
+    @apply mt-[1.6em] mb-[0.5em] text-[clamp(20px,3vw,26px)] font-bold;
+
+    font-feature-settings: 'palt';
   }
 
   .blog-content h4 {
-    @apply mt-[1.2em] mb-[0.2em] text-[clamp(16px,2vw,22px)] font-bold;
+    @apply mt-[1.2em] mb-[0.2em] text-[clamp(18px,2vw,22px)] font-bold;
+
+    font-feature-settings: 'palt';
   }
 
   .blog-content blockquote {

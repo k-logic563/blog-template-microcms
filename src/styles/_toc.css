@@ -1,0 +1,36 @@
+@layer components {
+  .toc-list {
+    @apply text-sm md:text-base;
+
+    list-style-position: inside;
+    list-style-type: none;
+  }
+
+  .toc-list li {
+    @apply flex border-b border-gray-300;
+  }
+
+  .toc-list a {
+    @apply block flex-[1] py-[0.3em];
+  }
+
+  .toc-list a:hover {
+    @apply cursor-pointer opacity-60;
+  }
+
+  .toc-list li:before {
+    @apply mr-[0.5em] inline-block pt-[0.2em] text-gray-400 content-['-'];
+  }
+
+  .toc-list .h2 {
+    @apply font-bold;
+  }
+
+  .toc-list .h3 {
+    @apply ml-[1em] font-medium;
+  }
+
+  .toc-list .h4 {
+    @apply ml-[2em];
+  }
+}
