@@ -106,7 +106,7 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data }) => {
           {data.title}
         </h1>
         {data.publishedAt && (
-          <p className="font-roboto mb-4 text-sm tracking-wider text-gray-600">
+          <p className="mb-4 text-sm tracking-wider text-gray-600">
             {formatDate(data.publishedAt)}
           </p>
         )}

@@ -14,7 +14,7 @@ export const Nav: React.FC = () => {
           {menuItems.map((item, idx) => (
             <Link key={idx} href={item.link} passHref>
               <a
-                className={`relative py-[1em] font-roboto font-bold text-gray-500 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:bg-black after:opacity-0 hover:text-black hover:after:opacity-100 md:text-[18px] ${
+                className={`relative py-[1em] font-bold text-gray-500 after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full after:bg-black after:opacity-0 hover:text-black hover:after:opacity-100 md:text-[18px] ${
                   pathname === item.link ? 'text-black after:opacity-100' : ''
                 }`}
               >

@@ -31,7 +31,7 @@ export const List = <T extends ContentsProps>({ contents }: Props<T>) => {
                 </span>
               </div>
               <p className="mb-3 grow font-bold md:text-[18px]">{item.title}</p>
-              <p className="mt-auto text-right font-roboto text-[14px] font-medium text-gray-400">
+              <p className="mt-auto text-right text-[14px] font-medium text-gray-400">
                 {formatDate(item.publishedAt)}
               </p>
             </div>
