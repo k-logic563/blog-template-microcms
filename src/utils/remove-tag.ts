@@ -5,7 +5,7 @@ export const removeTags = ($: CheerioAPI) => {
     elm.childNodes.forEach((node) => {
       if ('name' in node) {
         // @ts-ignore
-        if (node.name === 'br') {
+        if (node.name === 'br' && !$(elm).text()) {
           $(elm).remove()
         }
       }
