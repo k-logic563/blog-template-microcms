@@ -14,7 +14,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { BlogLayout } from '@/components/Layout'
 
 import { client } from '@/lib/microcms'
-import { codeHighlight, formatDate, generateToc } from '@/utils'
+import { codeHighlight, formatDate, generateToc, removeTags } from '@/utils'
 import { useClient } from '@/hooks/useClient'
 import { BlogContent } from '@/types/type'
 
@@ -50,6 +50,9 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     },
   })
   const $ = cheerio.load(data.content, null, false)
+
+  // <p><br/></p>は不要なので削除する
+  removeTags($)
 
   // コードハイライト
   codeHighlight($)
