@@ -1,43 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { NextPageWithLayout } from 'next'
 import axios from 'axios'
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  Textarea,
-  FormHelperText,
-  Button,
-  Text,
-} from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
-import { useForm } from 'react-hook-form'
+import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
 
 import { Title } from '@/components/Heading/Title'
 import { MainLayout } from '@/components/Layout'
+import { Form } from '@/feature/contact/Form'
 
-interface IFormInputs {
-  name: string
-  email: string
-  message: string
-}
-
-const schema = z.object({
-  name: z.string().min(1, '必須項目です'),
-  email: z.string().email('メールアドレス形式が違います'),
-  message: z.string().min(1, '必須項目です'),
-})
+import { schema } from '@/constants/form'
+import { Mode, IFormInputs } from '@/types/form'
 
 const ContactPage: NextPageWithLayout = () => {
-  const [mode, setMode] = useState('form')
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInputs>({
+  const [mode, setMode] = useState<Mode>('init')
+  const methods = useForm<IFormInputs>({
     resolver: zodResolver(schema),
+    shouldFocusError: false,
   })
 
   const onSubmit = async (values: IFormInputs) => {
@@ -47,9 +27,23 @@ const ContactPage: NextPageWithLayout = () => {
       setMode('done')
     } catch (e) {
       console.error(e)
-      setMode('form')
+      setMode('init')
     }
   }
+
+  useEffect(() => {
+    const {
+      setFocus,
+      formState: { errors },
+    } = methods
+    errors && errors.name
+      ? setFocus('name')
+      : errors.email
+      ? setFocus('email')
+      : errors.message
+      ? setFocus('message')
+      : null
+  }, [methods.formState.submitCount])
 
   return (
     <>
@@ -71,39 +65,11 @@ const ContactPage: NextPageWithLayout = () => {
           お返事まで少々お待ちください。
         </Text>
       ) : (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl className="mb-6">
-            <FormLabel>お名前</FormLabel>
-            <Input type="text" bgColor="white" {...register('name')} />
-            <FormHelperText color="red.500">
-              {errors.name?.message}
-            </FormHelperText>
-          </FormControl>
-          <FormControl className="mb-6">
-            <FormLabel>メールアドレス</FormLabel>
-            <Input type="text" bgColor="white" {...register('email')} />
-            <FormHelperText color="red.500">
-              {errors.email?.message}
-            </FormHelperText>
-          </FormControl>
-          <FormControl>
-            <FormLabel>お問い合わせ内容</FormLabel>
-            <Textarea bgColor="white" {...register('message')} />
-            <FormHelperText color="red.500">
-              {errors.message?.message}
-            </FormHelperText>
-          </FormControl>
-          <div className="mt-12 text-center">
-            <Button
-              isLoading={mode === 'pending'}
-              colorScheme="teal"
-              size="md"
-              type="submit"
-            >
-              送信する
-            </Button>
-          </div>
-        </form>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <Form mode={mode} />
+          </form>
+        </FormProvider>
       )}
     </>
   )

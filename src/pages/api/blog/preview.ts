@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { client } from '@/lib/microcms'
-import { Content } from '@/types/type'
+import { Content } from '@/types/microcms'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (!req.query.id) {

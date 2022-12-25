@@ -6,7 +6,7 @@ import { PopularList } from '@/feature/home/PopularList'
 import { client } from '@/lib/microcms'
 import { MainLayout } from '@/components/Layout'
 
-import { BlogContent, CategoryContent } from '@/types/type'
+import { BlogContent, CategoryContent } from '@/types/microcms'
 
 export type HomeProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -49,7 +49,7 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
       {categories.contents.length !== 0 ? (
         <section>
           <h2 className="section-title">新着記事</h2>
-          <List<HomeProps['blogs']['contents']> contents={blogs.contents} />
+          <List contents={blogs.contents} />
           <div className="mt-8 text-center">
             <Link href="/blog">
               <a className="inline-block rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600">

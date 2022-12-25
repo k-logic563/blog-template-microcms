@@ -16,7 +16,7 @@ import { BlogLayout } from '@/components/Layout'
 import { client } from '@/lib/microcms'
 import { codeHighlight, formatDate, generateToc, removeTags } from '@/utils'
 import { useClient } from '@/hooks/useClient'
-import { BlogContent } from '@/types/type'
+import { BlogContent } from '@/types/microcms'
 
 import 'highlight.js/styles/atom-one-dark.css'
 

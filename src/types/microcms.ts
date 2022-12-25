@@ -15,6 +15,7 @@ export type Content = {
     name: string
   }
   good_count?: number
+  publishedAt: string
 }
 
 export type Category = {

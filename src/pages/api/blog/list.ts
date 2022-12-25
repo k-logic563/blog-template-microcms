@@ -2,7 +2,7 @@ import { NextApiResponse, NextApiRequest } from 'next'
 
 import { client } from '@/lib/microcms'
 import { encodeUrl } from '@/utils/converter'
-import { BlogContent } from '@/types/type'
+import { BlogContent } from '@/types/microcms'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const query = req.query

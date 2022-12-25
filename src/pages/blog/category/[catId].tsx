@@ -13,7 +13,7 @@ import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
 
 import { client } from '@/lib/microcms'
-import { BlogContent, CategoryContent } from '@/types/type'
+import { BlogContent, CategoryContent } from '@/types/microcms'
 
 type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = {
@@ -113,7 +113,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
           <Title title={catName} subTitle="Category" />
         </div>
         <div className="mb-12">
-          <List<CategoryPageProps['data']['contents']> contents={items} />
+          <List contents={items} />
         </div>
         {isFetchAll && (
           <div className="text-center">

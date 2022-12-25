@@ -3,7 +3,7 @@ import { NextApiResponse } from 'next'
 import { client } from '@/lib/microcms'
 import { formatSitemapDate } from '@/utils/format'
 
-import { BlogContent } from '@/types/type'
+import { BlogContent } from '@/types/microcms'
 
 async function generateSitemapXml() {
   // 全件取得のための関数
