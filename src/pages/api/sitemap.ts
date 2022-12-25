@@ -6,13 +6,35 @@ import { formatSitemapDate } from '@/utils/format'
 import { BlogContent } from '@/types/type'
 
 async function generateSitemapXml() {
+  // 全件取得のための関数
+  const getAllContents = async (
+    limit = 10,
+    offset = 0
+  ): Promise<BlogContent['contents']> => {
+    const data = await client.get({
+      endpoint: 'blogs',
+      queries: {
+        offset,
+        limit,
+      },
+    })
+
+    if (data.offset + data.limit < data.totalCount) {
+      const contents = await getAllContents(
+        data.limit,
+        data.offset + data.limit
+      )
+      return [...data.contents, ...contents]
+    }
+
+    return data.contents
+  }
+
   let xml = `<?xml version="1.0" encoding="UTF-8"?>`
   xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`
 
-  const data = await client.get<BlogContent>({
-    endpoint: 'blogs',
-  })
-  data.contents.forEach((post) => {
+  const allContents = await getAllContents()
+  allContents.forEach((post) => {
     xml += `
       <url>
         <loc>https://iwtttter.tech/blog/${post.id}</loc>
