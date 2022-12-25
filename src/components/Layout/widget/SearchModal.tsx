@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { AiOutlineSearch } from 'react-icons/ai'
 
-import { BlogContent } from '@/types/type'
+import { BlogContent } from '@/types/microcms'
 
 type Props = {
   keyword: string

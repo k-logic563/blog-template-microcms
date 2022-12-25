@@ -3,7 +3,7 @@ import { Image } from '@chakra-ui/react'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
 
 import { formatDate } from '@/utils'
-import { Content } from '@/types/type'
+import { Content } from '@/types/microcms'
 
 type Props<T> = {
   contents: T

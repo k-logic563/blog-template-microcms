@@ -1,7 +1,7 @@
 import { NextApiResponse, NextApiRequest } from 'next'
 
 import { client } from '@/lib/microcms'
-import { BlogContent } from '@/types/type'
+import { BlogContent } from '@/types/microcms'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const blogId = req.query.blogId

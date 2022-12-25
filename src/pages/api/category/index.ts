@@ -1,7 +1,7 @@
 import { NextApiResponse } from 'next'
 
 import { client } from '@/lib/microcms'
-import { CategoryContent } from '@/types/type'
+import { CategoryContent } from '@/types/microcms'
 
 export default async (_: unknown, res: NextApiResponse) => {
   const data = await client.get<CategoryContent>({

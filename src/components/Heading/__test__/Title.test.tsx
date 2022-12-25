@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker'
 
 import { Title } from '../Title'
 
-test('should render and display correctly', () => {
+test('タイトル表示', () => {
   const title = faker.word.adjective()
   const subtitle = faker.word.adjective()
 

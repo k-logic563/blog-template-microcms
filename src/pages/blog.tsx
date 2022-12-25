@@ -9,7 +9,7 @@ import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
 
 import { client } from '@/lib/microcms'
-import { BlogContent } from '@/types/type'
+import { BlogContent } from '@/types/microcms'
 
 type BlogPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -74,7 +74,7 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
         <Title title="記事一覧" subTitle="Blog" />
       </div>
       <div className="mb-12">
-        <List<BlogPageProps['data']['contents']> contents={items} />
+        <List contents={items} />
       </div>
       {isFetchAll && (
         <div className="text-center">
