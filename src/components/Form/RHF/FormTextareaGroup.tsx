@@ -19,7 +19,7 @@ export const FormTextareaGroup = ({ label, fieldName }: Props) => {
       <label className="mb-[0.4em] inline-block font-medium">{label}</label>
       <div>
         <textarea
-          className="textarea textarea-block"
+          className="w-full rounded-lg border p-[0.6em_1em]"
           rows={6}
           data-testid={`test-${fieldName}`}
           {...register(fieldName)}

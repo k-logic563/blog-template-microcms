@@ -25,7 +25,7 @@ export const FormInputGroup = ({ label, fieldName }: Props) => {
       <div>
         <input
           id={fieldName}
-          className="input input-block"
+          className="w-full rounded-lg border p-[0.6em_1em]"
           data-testid={`test-${fieldName}`}
           type="text"
           {...register(fieldName)}

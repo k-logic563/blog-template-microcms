@@ -28,7 +28,6 @@ export const PopularList = <T extends ContentsProps>({
           className="relative w-full transition-all duration-150 hover:opacity-60 sm:w-[calc(50%-1/2*24px)] lg:w-[calc(33.3333%-2/3*32px)]"
           key={`${item.id}_${index}`}
           href={`/blog/${item.id}`}
-          passHref
         >
           <div
             className={`absolute left-0 top-0 grid h-[45px] w-[45px] -translate-y-1/4 -translate-x-1/4 place-items-center rounded-full bg-white text-xl font-bold italic text-white ${rankTextClass[index]}`}

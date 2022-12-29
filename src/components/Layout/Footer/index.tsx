@@ -30,7 +30,6 @@ const Footer = () => {
           <Link
             className="text-xs text-gray-600 hover:underline"
             href="/privacy"
-            passHref
           >
             プライバシーポリシー
           </Link>

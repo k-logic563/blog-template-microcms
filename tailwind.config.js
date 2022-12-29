@@ -16,7 +16,4 @@ module.exports = {
   corePlugins: {
     container: false,
   },
-  plugins: [
-    require('rippleui')
-  ],
 }

@@ -13,7 +13,6 @@ export const Item = ({ item }: Props) => {
     <Link
       className="flex flex-col overflow-hidden rounded-lg bg-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(49,49,49,0.3)]"
       href={`/blog/${item.id}`}
-      passHref
     >
       <figure>
         <img

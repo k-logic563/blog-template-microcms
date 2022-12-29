@@ -17,7 +17,7 @@ export const Logo = () => {
         </h1>
       ) : (
         <p>
-          <Link href="/" passHref>
+          <Link href="/">
             <img
               src="/assets/images/logo.png"
               width="140px"

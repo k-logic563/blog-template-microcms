@@ -81,7 +81,6 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
               className="relative grid h-[140px] place-items-center overflow-hidden rounded-lg after:absolute after:inset-0 after:bg-black/40 after:transition-all after:duration-150 after:content-[''] hover:after:bg-black/60 sm:h-[200px]"
               style={{ backgroundImage: `url(${x.thumbnail.url})` }}
               key={x.id}
-              passHref
             >
               <p className="absolute z-10 text-[20px] font-bold text-white">
                 {x.name}
