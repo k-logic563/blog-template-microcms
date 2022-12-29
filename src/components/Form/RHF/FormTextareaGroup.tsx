@@ -1,11 +1,5 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
-import {
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  Textarea,
-} from '@chakra-ui/react'
 
 import { FieldNames, IFormInputs } from '@/types/form'
 
@@ -21,16 +15,24 @@ export const FormTextareaGroup = ({ label, fieldName }: Props) => {
   } = useFormContext<IFormInputs>()
 
   return (
-    <FormControl id={fieldName}>
-      <FormLabel>{label}</FormLabel>
-      <Textarea
-        data-testid={`test-${fieldName}`}
-        bgColor="white"
-        {...register(fieldName)}
-      />
-      <FormHelperText color="red.500" data-testid={`test-error-${fieldName}`}>
-        {errors[fieldName]?.message}
-      </FormHelperText>
-    </FormControl>
+    <>
+      <label className="mb-[0.4em] inline-block font-medium">{label}</label>
+      <div>
+        <textarea
+          className="textarea textarea-block"
+          rows={6}
+          data-testid={`test-${fieldName}`}
+          {...register(fieldName)}
+        />
+        {errors[fieldName]?.message && (
+          <p
+            className="mt-2 text-sm text-red-600"
+            data-testid={`test-error-${fieldName}`}
+          >
+            {errors[fieldName]?.message}
+          </p>
+        )}
+      </div>
+    </>
   )
 }

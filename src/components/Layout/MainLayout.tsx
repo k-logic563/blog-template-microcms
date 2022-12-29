@@ -26,14 +26,14 @@ export const MainLayout: React.FC<Props> = ({ children }) => {
         <div className="container py-12">{children}</div>
         <Footer />
       </div>
-      <SearchModal
+      {/* <SearchModal
         keyword={keyword}
         isOpen={isOpen}
         onClose={onClose}
         handleSearch={handleSearch}
         handleModalEnd={handleModalEnd}
         filteredArticles={filteredArticles}
-      />
+      /> */}
     </ChakraProvider>
   )
 }

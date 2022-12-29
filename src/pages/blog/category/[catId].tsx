@@ -6,11 +6,11 @@ import {
 } from 'next'
 import axios from 'axios'
 import { NextSeo } from 'next-seo'
-import { Button } from '@chakra-ui/react'
 
 import { Title } from '@/components/Heading/Title'
 import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
+import { CustomButton } from '@/components/Element/Button'
 
 import { client } from '@/lib/microcms'
 import { BlogContent, CategoryContent } from '@/types/microcms'
@@ -117,14 +117,11 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
         </div>
         {isFetchAll && (
           <div className="text-center">
-            <Button
-              colorScheme="teal"
-              size="md"
+            <CustomButton
+              text={`残り${contentCount}記事`}
               onClick={fetchData}
-              isLoading={isLoading}
-            >
-              残り{contentCount}記事
-            </Button>
+              disabled={isLoading}
+            />
           </div>
         )}
       </div>

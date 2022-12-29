@@ -18,10 +18,11 @@ const ErrorPage: NextPageWithLayout<Props> = ({ title, description }) => {
       </h1>
       <p className="mb-[2.4em] text-center">{description}</p>
       <div className="text-center">
-        <Link href="/">
-          <a className="inline-block rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600">
-            トップページに戻る
-          </a>
+        <Link
+          className="inline-block rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600"
+          href="/"
+        >
+          トップページに戻る
         </Link>
       </div>
     </>

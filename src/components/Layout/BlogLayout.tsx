@@ -26,14 +26,14 @@ export const BlogLayout: React.FC<Props> = ({ children }) => {
         {children}
       </div>
       <Footer />
-      <SearchModal
+      {/* <SearchModal
         keyword={keyword}
         isOpen={isOpen}
         onClose={onClose}
         handleSearch={handleSearch}
         handleModalEnd={handleModalEnd}
         filteredArticles={filteredArticles}
-      />
+      /> */}
     </ChakraProvider>
   )
 }

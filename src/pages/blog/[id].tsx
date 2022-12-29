@@ -6,7 +6,6 @@ import {
   NextPageWithLayout,
   GetStaticPropsContext,
 } from 'next'
-import { Button } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
@@ -116,16 +115,16 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
           </p>
         )}
         <div className="mb-8">
-          <Button
-            isLoading={isLoading}
-            colorScheme="red"
-            variant={isActive ? 'solid' : 'outline'}
-            size="sm"
+          <button
+            disabled={isLoading}
+            className={`btn-sm btn ${
+              isActive ? 'btn-error' : 'btn-outline-error'
+            }`}
             onClick={clickGoodButton}
           >
             <span className="mr-1">{goodCount}</span>
             {isActive ? 'Thank You!' : 'Good!'}
-          </Button>
+          </button>
         </div>
       </div>
       <img

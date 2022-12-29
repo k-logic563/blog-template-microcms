@@ -1,6 +1,5 @@
 import { memo } from 'react'
 import Link from 'next/link'
-import { Icon } from '@chakra-ui/react'
 import { BsTwitter, BsGithub } from 'react-icons/bs'
 
 const Footer = () => {
@@ -14,7 +13,7 @@ const Footer = () => {
             rel="noreferrer"
             className="grid h-[42px] w-[42px] place-items-center rounded-full bg-gray-100 text-[20px] transition-all duration-150 hover:bg-gray-200"
           >
-            <Icon as={BsTwitter} />
+            <BsTwitter />
           </a>
           <a
             href="https://github.com/k-logic563"
@@ -22,16 +21,18 @@ const Footer = () => {
             rel="noreferrer"
             className="grid h-[42px] w-[42px] place-items-center rounded-full bg-gray-100 text-[20px] transition-all duration-150 hover:bg-gray-200"
           >
-            <Icon as={BsGithub} />
+            <BsGithub />
           </a>
         </div>
         <p className="text-center">
           &copy;{new Date().getFullYear()} iwtttter.tech
           <br />
-          <Link href="/privacy" passHref>
-            <a className="text-xs text-gray-600 hover:underline">
-              プライバシーポリシー
-            </a>
+          <Link
+            className="text-xs text-gray-600 hover:underline"
+            href="/privacy"
+            passHref
+          >
+            プライバシーポリシー
           </Link>
         </p>
       </div>
