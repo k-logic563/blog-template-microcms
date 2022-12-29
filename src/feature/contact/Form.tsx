@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button } from '@chakra-ui/react'
 
 import { FormInputGroup } from '@/components/Form/RHF/FormInputGroup'
 
 import { Mode } from '@/types/form'
 import { FormTextareaGroup } from '@/components/Form/RHF/FormTextareaGroup'
+import { CustomButton } from '@/components/Element/Button'
 
 type Props = {
   mode: Mode
@@ -21,15 +21,12 @@ export const Form = ({ mode }: Props) => {
       </div>
       <FormTextareaGroup fieldName="message" label="お問い合わせ内容" />
       <div className="mt-12 text-center">
-        <Button
-          data-testid="test-submit-button"
-          isLoading={mode === 'pending'}
-          colorScheme="teal"
-          size="md"
+        <CustomButton
+          testId="test-submit-button"
+          disabled={mode === 'pending'}
           type="submit"
-        >
-          送信する
-        </Button>
+          text="送信する"
+        />
       </div>
     </>
   )

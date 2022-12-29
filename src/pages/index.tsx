@@ -51,10 +51,11 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
           <h2 className="section-title">新着記事</h2>
           <List contents={blogs.contents} />
           <div className="mt-8 text-center">
-            <Link href="/blog">
-              <a className="inline-block rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600">
-                一覧を見る
-              </a>
+            <Link
+              className="inline-block rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600"
+              href="/blog"
+            >
+              一覧を見る
             </Link>
           </div>
         </section>
@@ -75,15 +76,15 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
         <h2 className="section-title">カテゴリー</h2>
         <div className="grid gap-8 md:grid-cols-2">
           {categories.contents.map((x) => (
-            <Link href={`/blog/category/${x.id}`} key={x.id} passHref>
-              <a
-                className="relative grid h-[140px] place-items-center overflow-hidden rounded-lg after:absolute after:inset-0 after:bg-black/40 after:transition-all after:duration-150 after:content-[''] hover:after:bg-black/60 sm:h-[200px]"
-                style={{ backgroundImage: `url(${x.thumbnail.url})` }}
-              >
-                <p className="absolute z-10 text-[20px] font-bold text-white">
-                  {x.name}
-                </p>
-              </a>
+            <Link
+              href={`/blog/category/${x.id}`}
+              className="relative grid h-[140px] place-items-center overflow-hidden rounded-lg after:absolute after:inset-0 after:bg-black/40 after:transition-all after:duration-150 after:content-[''] hover:after:bg-black/60 sm:h-[200px]"
+              style={{ backgroundImage: `url(${x.thumbnail.url})` }}
+              key={x.id}
+            >
+              <p className="absolute z-10 text-[20px] font-bold text-white">
+                {x.name}
+              </p>
             </Link>
           ))}
         </div>

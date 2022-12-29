@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import axios from 'axios'
 import { InferGetStaticPropsType, NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
-import { Button } from '@chakra-ui/react'
+import { CustomButton } from '@/components/Element/Button'
 
 import { Title } from '@/components/Heading/Title'
 import { List } from '@/components/List'
@@ -78,14 +78,11 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
       </div>
       {isFetchAll && (
         <div className="text-center">
-          <Button
-            colorScheme="teal"
-            size="md"
-            onClick={fetchData}
-            isLoading={isLoading}
-          >
-            残り{contentCount}記事
-          </Button>
+          <CustomButton
+            handleClick={fetchData}
+            disabled={isLoading}
+            text={`残り${contentCount}記事`}
+          />
         </div>
       )}
     </>

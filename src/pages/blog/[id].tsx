@@ -6,12 +6,11 @@ import {
   NextPageWithLayout,
   GetStaticPropsContext,
 } from 'next'
-import { Button } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
 
-import { BlogLayout } from '@/components/Layout'
+import { MainLayout } from '@/components/Layout'
 
 import { client } from '@/lib/microcms'
 import { codeHighlight, formatDate, generateToc, removeTags } from '@/utils'
@@ -116,16 +115,16 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
           </p>
         )}
         <div className="mb-8">
-          <Button
-            isLoading={isLoading}
-            colorScheme="red"
-            variant={isActive ? 'solid' : 'outline'}
-            size="sm"
+          <button
+            disabled={isLoading}
+            className={`rounded p-[0.4em_1em] text-sm font-medium tracking-wider disabled:opacity-60 ${
+              isActive ? 'bg-red-600 text-white' : 'bg-red-100 text-red-600'
+            }`}
             onClick={clickGoodButton}
           >
             <span className="mr-1">{goodCount}</span>
             {isActive ? 'Thank You!' : 'Good!'}
-          </Button>
+          </button>
         </div>
       </div>
       <img
@@ -162,4 +161,4 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
 
 export default BlogId
 
-BlogId.getLayout = (page) => <BlogLayout>{page}</BlogLayout>
+BlogId.getLayout = (page) => <MainLayout isNarrow>{page}</MainLayout>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { NextPageWithLayout } from 'next'
 import axios from 'axios'
-import { Text } from '@chakra-ui/react'
 import { NextSeo } from 'next-seo'
 import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -59,11 +58,11 @@ const ContactPage: NextPageWithLayout = () => {
         <Title title="お問い合わせ" subTitle="Contact" />
       </div>
       {mode === 'done' ? (
-        <Text lineHeight={1.8}>
+        <p className="leading-[1.8]">
           お問い合わせ完了しました。
           <br />
           お返事まで少々お待ちください。
-        </Text>
+        </p>
       ) : (
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
