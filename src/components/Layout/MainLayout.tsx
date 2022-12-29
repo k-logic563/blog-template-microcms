@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Header from './Header'
 import Footer from './Footer'
 import { Nav } from './Nav'
 import SearchModal from './widget/SearchModal'
 
-import { useSearch } from '@/hooks/useSearch'
+import { useModalSearch } from '@/hooks/useModalSearch'
 
 type Props = {
   children: React.ReactNode
@@ -13,8 +13,8 @@ type Props = {
 }
 
 export const MainLayout: React.FC<Props> = ({ children, isNarrow = false }) => {
-  const { filteredArticles, handleSearch, keyword } = useSearch()
-  const [opened, setOpened] = useState(false)
+  const { filteredArticles, handleSearch, handleModalEnd, setOpened, opened } =
+    useModalSearch()
 
   return (
     <>
@@ -29,9 +29,8 @@ export const MainLayout: React.FC<Props> = ({ children, isNarrow = false }) => {
         <Footer />
       </div>
       <SearchModal
-        keyword={keyword}
+        handleModalEnd={handleModalEnd}
         opened={opened}
-        setOpened={setOpened}
         handleSearch={handleSearch}
         filteredArticles={filteredArticles}
       />

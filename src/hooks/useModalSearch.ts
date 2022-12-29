@@ -6,8 +6,8 @@ import { BlogContent, Content } from '@/types/microcms'
 
 type Props = MicroCMSListResponse<Content>
 
-export const useSearch = () => {
-  const [keyword, setKeyword] = useState('')
+export const useModalSearch = () => {
+  const [opened, setOpened] = useState(false)
   const [articles, setArticles] = useState<BlogContent['contents']>([])
   const [filteredArticles, setFilteredArticles] = useState<
     BlogContent['contents']
@@ -15,9 +15,8 @@ export const useSearch = () => {
 
   const handleSearch = (keyword: string) => {
     const word = keyword.trim()
-    setKeyword(word)
 
-    if (!word) {
+    if (!word || word.length < 3) {
       setFilteredArticles([])
       return
     }
@@ -30,7 +29,7 @@ export const useSearch = () => {
   }
 
   const handleModalEnd = () => {
-    setKeyword('')
+    setOpened(false)
     setFilteredArticles([])
   }
 
@@ -48,7 +47,8 @@ export const useSearch = () => {
   }, [])
 
   return {
-    keyword,
+    opened,
+    setOpened,
     filteredArticles,
     handleSearch,
     setArticles,
