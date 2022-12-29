@@ -15,7 +15,7 @@ export const CustomButton = ({
 }: Props) => {
   return (
     <button
-      className="rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600"
+      className="rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600 disabled:opacity-60"
       data-testid={testId ?? undefined}
       disabled={disabled}
       type={type}

@@ -119,8 +119,8 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
           <div className="text-center">
             <CustomButton
               text={`残り${contentCount}記事`}
-              onClick={fetchData}
               disabled={isLoading}
+              handleClick={fetchData}
             />
           </div>
         )}
