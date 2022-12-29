@@ -1,31 +1,29 @@
 import React from 'react'
 import Link from 'next/link'
-import { Modal, Highlight, Input } from '@mantine/core'
+import { Modal, Input } from '@mantine/core'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 import { BlogContent } from '@/types/microcms'
 
 type Props = {
-  keyword: string
-  setOpened: React.Dispatch<React.SetStateAction<boolean>>
   opened: boolean
+  handleModalEnd: () => void
   handleSearch: (keyword: string) => void
   filteredArticles: BlogContent['contents']
 }
 
 const SearchModal: React.FC<Props> = ({
-  keyword,
-  setOpened,
+  handleModalEnd,
   opened,
   handleSearch,
   filteredArticles,
 }) => {
   return (
-    <Modal centered opened={opened} onClose={() => setOpened(false)}>
+    <Modal centered opened={opened} onClose={handleModalEnd}>
       <Input
+        data-autofocus
         icon={<AiOutlineSearch />}
         placeholder="ex) javascript"
-        value={keyword}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           handleSearch(e.target.value)
         }
@@ -36,13 +34,11 @@ const SearchModal: React.FC<Props> = ({
             {filteredArticles.map((x) => (
               <li key={x.id}>
                 <Link
-                  className='block rounded bg-gray-100 py-[0.8em] px-[0.6em] before:mr-[0.3em] before:inline-block before:content-["#"] hover:opacity-60'
+                  className="block rounded bg-gray-100 py-[0.8em] px-[0.6em] hover:opacity-60"
                   href={`/blog/${x.id}`}
-                  onClick={() => setOpened(false)}
+                  onClick={handleModalEnd}
                 >
-                  <Highlight highlight={keyword} styles={{ bg: 'yellow.100' }}>
-                    {x.title}
-                  </Highlight>
+                  {x.title}
                 </Link>
               </li>
             ))}
