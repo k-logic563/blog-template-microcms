@@ -1,8 +1,4 @@
 @layer components {
-  .blog-content {
-    @apply overflow-x-auto;
-  }
-
   .blog-content code:not(.hljs) {
     @apply mx-[0.2em] rounded-[4px] bg-[#21511012] p-[0.3em_0.4em] align-[.08em] text-[0.85em] font-bold !text-inherit;
   }

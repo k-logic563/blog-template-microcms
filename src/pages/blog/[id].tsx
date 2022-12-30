@@ -127,13 +127,7 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
           </button>
         </div>
       </div>
-      <img
-        className="sm:rounded-t-lg"
-        src={data.eyecatch.url}
-        alt=""
-        width={data.eyecatch.width}
-        height={data.eyecatch.height}
-      />
+      <img className="sm:rounded-t-lg" src={data.eyecatch.url} alt="" />
       <div className="bg-white px-[16px] py-12 sm:rounded-b-lg md:px-10">
         {isClient && toc?.length !== 0 && (
           <div className="mb-10 rounded bg-gray-100 px-4 py-6">

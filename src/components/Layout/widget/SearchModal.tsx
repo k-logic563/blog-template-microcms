@@ -27,6 +27,7 @@ const SearchModal: React.FC<Props> = ({
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           handleSearch(e.target.value)
         }
+        size="md"
       />
       {filteredArticles.length !== 0 && (
         <div className="!mt-4 !max-h-[50vh] !overflow-scroll !p-0">
