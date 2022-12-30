@@ -21,7 +21,7 @@ export const MainLayout: React.FC<Props> = ({ children, isNarrow = false }) => {
       <div className="grid min-h-screen grid-rows-[auto_auto_1fr_auto]">
         <Header setOpened={setOpened} />
         <Nav />
-        <div className="bg-gray-100 py-12">
+        <div className="overflow-hidden bg-gray-100 py-12">
           <div className={isNarrow ? 'mx-auto max-w-screen-md' : 'container'}>
             {children}
           </div>
