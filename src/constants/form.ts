@@ -1,7 +1,11 @@
 import * as z from 'zod'
 
 export const schema = z.object({
-  name: z.string().min(1, '必須項目です'),
+  name: z.string().refine((val) => val.trim(), {
+    message: '必須項目です',
+  }),
   email: z.string().email('メールアドレス形式が違います'),
-  message: z.string().min(1, '必須項目です'),
+  message: z.string().refine((val) => val.trim(), {
+    message: '必須項目です',
+  }),
 })
