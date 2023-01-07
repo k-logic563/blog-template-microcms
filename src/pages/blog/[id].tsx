@@ -100,6 +100,11 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
           title: `${data.title}`,
           description: data.description,
           url: `https://iwtttter.tech/blog/${data.id}`,
+          images: [
+            {
+              url: data.eyecatch.url,
+            },
+          ],
         }}
         twitter={{
           site: `https://iwtttter.tech/blog/${data.id}`,
