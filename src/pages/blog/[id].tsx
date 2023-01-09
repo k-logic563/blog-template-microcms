@@ -42,6 +42,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params, previewData } = ctx
   const draftKey = isDraft(previewData) ? previewData.draftKey : ''
+
   const data = await client.get({
     endpoint: `blogs/${params?.id}`,
     queries: {
