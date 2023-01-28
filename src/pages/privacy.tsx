@@ -34,25 +34,6 @@ const PrivacyPage: NextPageWithLayout = () => {
       </div>
       <div className="mb-10">
         <h2 className="mb-[0.8em] text-[18px] font-bold md:text-[22px]">
-          アクセス解析ツールについて
-        </h2>
-        <p className="leading-loose">
-          当ブログでは、Umamiによりアクセス情報を解析しています。
-          <br />
-          アクセス情報の解析にはCookieを使用しておりません。
-          <a
-            className="text-blue-500"
-            href="https://www.ppc.go.jp/enforcement/infoprovision/laws/GDPR/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GDPR
-          </a>
-          に準拠しています。
-        </p>
-      </div>
-      <div className="mb-10">
-        <h2 className="mb-[0.8em] text-[18px] font-bold md:text-[22px]">
           免責事項
         </h2>
         <p className="leading-loose">
