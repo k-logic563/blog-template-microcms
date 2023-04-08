@@ -94,23 +94,7 @@ const BlogId: NextPageWithLayout<BlogDetailProps> = ({ data, toc }) => {
 
   return (
     <>
-      <NextSeo
-        title={`${data.title}`}
-        description={data.description}
-        openGraph={{
-          title: `${data.title}`,
-          description: data.description,
-          url: `https://iwtttter.tech/blog/${data.id}`,
-          images: [
-            {
-              url: data.eyecatch.url,
-            },
-          ],
-        }}
-        twitter={{
-          site: `https://iwtttter.tech/blog/${data.id}`,
-        }}
-      />
+      <NextSeo title={`${data.title}`} description={data.description} />
       <div className="px-[16px] text-center sm:px-0">
         <h1 className="mb-2 text-[24px] font-bold leading-normal lg:text-[32px]">
           {data.title}

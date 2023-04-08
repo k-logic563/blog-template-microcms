@@ -46,14 +46,7 @@ const ContactPage: NextPageWithLayout = () => {
 
   return (
     <>
-      <NextSeo
-        title="お問い合わせ"
-        openGraph={{
-          title: 'お問い合わせ',
-          description: 'iwtttter-blogサイトのお問い合わせページです。',
-          url: 'https://iwtttter.tech/contact',
-        }}
-      />
+      <NextSeo title="お問い合わせ" description="お問い合わせ" />
       <div className="mb-10">
         <Title title="お問い合わせ" subTitle="Contact" />
       </div>

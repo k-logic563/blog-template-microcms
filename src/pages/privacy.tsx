@@ -8,18 +8,14 @@ const PrivacyPage: NextPageWithLayout = () => {
     <>
       <NextSeo
         title="プライバシーポリシー"
-        openGraph={{
-          title: 'プライバシーポリシー',
-          description: 'iwtttter-blogサイトのプライバシーポリシーページです。',
-          url: 'https://iwtttter.tech/privacy',
-        }}
+        description="プライバシーポリシー"
       />
       <div className="mb-12">
         <h1 className="mb-6 text-[24px] font-bold md:text-[28px]">
           プライバシーポリシー
         </h1>
         <p className="leading-loose">
-          iwtttter-blog(以下「当ブログ」)のプライバシーポリシー・免責事項を次の通り記載します。
+          blog-template-microcms(以下「当ブログ」)のプライバシーポリシー・免責事項を次の通り記載します。
         </p>
       </div>
       <div className="mb-10">
@@ -65,7 +61,7 @@ const PrivacyPage: NextPageWithLayout = () => {
       <p className="leading-loose">
         制定日:2022年8月3日
         <br />
-        iwtttter-blog
+        blog-template-microcms
       </p>
     </>
   )

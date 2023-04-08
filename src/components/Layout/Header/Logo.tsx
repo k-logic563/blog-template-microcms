@@ -8,21 +8,11 @@ export const Logo = () => {
   return (
     <div className="md:text-[20px]">
       {isTopPage ? (
-        <h1>
-          <img
-            src="/assets/images/logo.png"
-            width="140px"
-            alt="iwtttter.tech"
-          />
-        </h1>
+        <h1 className="font-black">blog-template</h1>
       ) : (
         <p>
-          <Link href="/">
-            <img
-              src="/assets/images/logo.png"
-              width="140px"
-              alt="iwtttter.tech"
-            />
+          <Link href="/" className="font-black">
+            blog-template
           </Link>
         </p>
       )}

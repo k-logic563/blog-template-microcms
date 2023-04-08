@@ -37,7 +37,7 @@ async function generateSitemapXml() {
   allContents.forEach((post) => {
     xml += `
       <url>
-        <loc>https://iwtttter.tech/blog/${post.id}</loc>
+        <loc>https://{your-domain}/blog/${post.id}</loc>
         <lastmod>${formatSitemapDate(post.publishedAt)}</lastmod>
         <changefreq>weekly</changefreq>
       </url>

@@ -61,21 +61,17 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
 
   return (
     <>
-      <NextSeo
-        title="記事一覧ページ"
-        description="記事一覧ページです"
-        openGraph={{
-          title: '記事一覧ページ',
-          description: '記事一覧ページです',
-          url: 'https://iwtttter.tech/blog',
-        }}
-      />
+      <NextSeo title="記事一覧ページ" description="記事一覧ページです" />
       <div className="mb-10">
         <Title title="記事一覧" subTitle="Blog" />
       </div>
-      <div className="mb-12">
-        <List contents={items} />
-      </div>
+      {items.length !== 0 ? (
+        <div className="mb-12">
+          <List contents={items} />
+        </div>
+      ) : (
+        <p>記事がありません</p>
+      )}
       {isFetchAll && (
         <div className="text-center">
           <CustomButton

@@ -25,11 +25,7 @@ const Thanks: NextPageWithLayout = () => {
     <>
       <NextSeo
         title="お問い合わせ完了"
-        openGraph={{
-          title: 'お問い合わせ完了',
-          description: 'iwtttter-blogサイトのお問い合わせ完了ページです。',
-          url: 'https://iwtttter.tech/thanks',
-        }}
+        description="お問い合わせ完了"
         noindex
       />
       <div>

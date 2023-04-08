@@ -7,35 +7,13 @@ import { MainLayout } from '@/components/Layout'
 const AboutPage: NextPageWithLayout = () => {
   return (
     <>
-      <NextSeo
-        title="このサイトについて"
-        openGraph={{
-          title: 'このサイトについて',
-          description: 'iwtttter-blogサイトについての紹介ページです。',
-          url: 'https://iwtttter.tech/about',
-        }}
-      />
+      <NextSeo title="このサイトについて" description="このサイトについて" />
       <div>
         <div className="mb-10">
           <Title title="このサイトについて" subTitle="About" />
         </div>
         <div className="leading-[1.8]">
-          <p className="mb-4">
-            このサイトは日頃の業務から個人開発まで、気づきや勉強になったことをまとめるテックブログサイトになります。
-            <br />
-            「あれ？前も同じ問題に出会った気がするなぁ。」をなるべく減らすために、自分がつまづいた部分も積極的に記事にまとめていきます。
-          </p>
-          <p className="mb-8">
-            なるべく思った時に更新するようにしていますが、怠け癖があるため、更新頻度にばらつきがあります。人間だもの。
-          </p>
-          <div className="flex items-center gap-x-4">
-            <img
-              className="h-[65px] w-[65px] rounded-full object-cover"
-              src="/assets/images/iwt.jpg"
-              alt="いわを"
-            />
-            <p>いわを</p>
-          </div>
+          <p className="mb-8">テストサイトになります。</p>
         </div>
       </div>
     </>

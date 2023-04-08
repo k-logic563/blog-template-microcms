@@ -102,11 +102,6 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
       <NextSeo
         title={`カテゴリー【${catName}】記事一覧ページ`}
         description={`カテゴリー【${catName}】の記事一覧ページです`}
-        openGraph={{
-          title: `カテゴリー【${catName}】記事一覧ページ`,
-          description: `カテゴリー【${catName}】の記事一覧ページです`,
-          url: `https://iwtttter.tech/blog/category/${catId}`,
-        }}
       />
       <div className="mb-10">
         <div className="mb-10">

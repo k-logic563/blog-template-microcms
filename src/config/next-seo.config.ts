@@ -1,18 +1,18 @@
 import { NextSeoProps } from 'next-seo'
 
 export const seoConfig: NextSeoProps = {
-  titleTemplate: `%s | iwtttter.tech`,
-  defaultTitle: 'iwtttter.tech',
-  description: 'フロントエンドiwtがつぶやく技術系サイトです。',
+  titleTemplate: `%s | blog-template-microcms`,
+  defaultTitle: '',
+  description: '',
   openGraph: {
-    url: 'https://iwtttter.tech',
-    title: 'iwtttter.tech',
-    description: 'フロントエンドiwtがつぶやく技術系サイトです。',
-    site_name: 'iwtttter.tech',
+    url: '',
+    title: '',
+    description: '',
+    site_name: '',
   },
   twitter: {
-    handle: '@webD_hello21',
-    site: 'https://iwtttter.tech',
-    cardType: 'summary_large_image',
+    handle: '',
+    site: '',
+    cardType: '',
   },
 }

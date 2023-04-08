@@ -60,7 +60,7 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
           </div>
         </section>
       ) : (
-        <p>記事がありません。</p>
+        <p className="text-center">新着記事がありません。</p>
       )}
       {popularBlogs.contents.length !== 0 ? (
         <section>
@@ -70,25 +70,29 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
           />
         </section>
       ) : (
-        <p>記事がありません。</p>
+        <p className="text-center">人気記事がありません。</p>
       )}
-      <section>
-        <h2 className="section-title">カテゴリー</h2>
-        <div className="grid gap-8 md:grid-cols-2">
-          {categories.contents.map((x) => (
-            <Link
-              href={`/blog/category/${x.id}`}
-              className="relative grid h-[140px] place-items-center overflow-hidden rounded-lg after:absolute after:inset-0 after:bg-black/40 after:transition-all after:duration-150 after:content-[''] hover:after:bg-black/60 sm:h-[200px]"
-              style={{ backgroundImage: `url(${x.thumbnail.url})` }}
-              key={x.id}
-            >
-              <p className="absolute z-10 text-[20px] font-bold text-white">
-                {x.name}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {categories.contents.length !== 0 ? (
+        <section>
+          <h2 className="section-title">カテゴリー</h2>
+          <div className="grid gap-8 md:grid-cols-2">
+            {categories.contents.map((x) => (
+              <Link
+                href={`/blog/category/${x.id}`}
+                className="relative grid h-[140px] place-items-center overflow-hidden rounded-lg after:absolute after:inset-0 after:bg-black/40 after:transition-all after:duration-150 after:content-[''] hover:after:bg-black/60 sm:h-[200px]"
+                style={{ backgroundImage: `url(${x.thumbnail.url})` }}
+                key={x.id}
+              >
+                <p className="absolute z-10 text-[20px] font-bold text-white">
+                  {x.name}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <p className="text-center">カテゴリがありません。</p>
+      )}
     </div>
   )
 }
