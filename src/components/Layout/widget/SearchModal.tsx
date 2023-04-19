@@ -1,6 +1,6 @@
-import React from 'react'
-import Link from 'next/link'
 import { Modal, Input } from '@mantine/core'
+import Link from 'next/link'
+import React from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 import { BlogContent } from '@/types/microcms'

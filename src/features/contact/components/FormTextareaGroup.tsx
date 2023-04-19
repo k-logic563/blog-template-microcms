@@ -1,7 +1,7 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 
-import { FieldNames, IFormInputs } from '@/types/form'
+import { FieldNames, IFormInputs } from '@/features/contact/types'
 
 type Props = {
   label: string

@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
-import Link from 'next/link'
 import type { NextPageWithLayout } from 'next'
+import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 
 import { MainLayout } from '@/components/Layout'

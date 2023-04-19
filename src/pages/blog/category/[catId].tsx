@@ -1,17 +1,17 @@
-import { useState, useMemo } from 'react'
+import axios from 'axios'
 import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
   NextPageWithLayout,
 } from 'next'
-import axios from 'axios'
 import { NextSeo } from 'next-seo'
+import { useState, useMemo } from 'react'
 
-import { Title } from '@/components/Heading/Title'
-import { List } from '@/components/List'
-import { MainLayout } from '@/components/Layout'
 import { CustomButton } from '@/components/Element/Button'
-
+import { Title } from '@/components/Heading/Title'
+import { MainLayout } from '@/components/Layout'
+import { List } from '@/components/List'
+import { LIMIT } from '@/features/blog'
 import { client } from '@/lib/microcms'
 import { BlogContent, CategoryContent } from '@/types/microcms'
 
@@ -19,8 +19,6 @@ type CategoryPageProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = {
   catId: string
 }
-
-const limit = 9
 
 export const getStaticPaths = async () => {
   const data = await client.get<BlogContent>({
@@ -45,7 +43,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
     endpoint: 'blogs',
     queries: {
       filters: `category[equals]${params?.catId}`,
-      limit,
+      limit: LIMIT,
     },
   })
   const categories = await client.get<CategoryContent>({
@@ -87,8 +85,8 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
         filters: `category[equals]${catId}`,
-        offset: pageNumber * limit,
-        limit,
+        offset: pageNumber * LIMIT,
+        limit: LIMIT,
       },
     })
 

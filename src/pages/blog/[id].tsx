@@ -1,21 +1,26 @@
-import { useState } from 'react'
+import { ParsedUrlQuery } from 'querystring'
+
 import axios from 'axios'
-import { Link as Scroll } from 'react-scroll'
+import cheerio from 'cheerio'
 import {
   InferGetStaticPropsType,
   NextPageWithLayout,
   GetStaticPropsContext,
 } from 'next'
 import { NextSeo } from 'next-seo'
-import cheerio from 'cheerio'
-import { ParsedUrlQuery } from 'querystring'
+import { useState } from 'react'
+import { Link as Scroll } from 'react-scroll'
 
 import { MainLayout } from '@/components/Layout'
-
+import {
+  codeHighlight,
+  generateToc,
+  removeTags,
+  useClient,
+} from '@/features/blog'
 import { client } from '@/lib/microcms'
-import { codeHighlight, formatDate, generateToc, removeTags } from '@/utils'
-import { useClient } from '@/hooks/useClient'
 import { BlogContent } from '@/types/microcms'
+import { formatDate } from '@/utils'
 
 import 'highlight.js/styles/atom-one-dark.css'
 

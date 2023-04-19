@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react'
 import { faker } from '@faker-js/faker'
+import { render, screen } from '@testing-library/react'
+
+import { Item } from '../Item'
 
 import { formatDate } from '@/utils'
-import { Item } from '../Item'
 
 test('リストアイテム表示', () => {
   const payload = {

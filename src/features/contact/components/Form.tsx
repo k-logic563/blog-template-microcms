@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { FormInputGroup } from '@/components/Form/RHF/FormInputGroup'
+import { Mode } from '../types'
 
-import { Mode } from '@/types/form'
-import { FormTextareaGroup } from '@/components/Form/RHF/FormTextareaGroup'
+import { FormInputGroup } from './FormInputGroup'
+import { FormTextareaGroup } from './FormTextareaGroup'
+
 import { CustomButton } from '@/components/Element/Button'
 
 type Props = {

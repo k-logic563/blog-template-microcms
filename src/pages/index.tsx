@@ -1,11 +1,10 @@
-import Link from 'next/link'
 import type { InferGetStaticPropsType, NextPageWithLayout } from 'next'
+import Link from 'next/link'
 
-import { List } from '@/components/List'
-import { PopularList } from '@/feature/home/PopularList'
-import { client } from '@/lib/microcms'
 import { MainLayout } from '@/components/Layout'
-
+import { List } from '@/components/List'
+import { PopularList } from '@/features/home'
+import { client } from '@/lib/microcms'
 import { BlogContent, CategoryContent } from '@/types/microcms'
 
 export type HomeProps = InferGetStaticPropsType<typeof getStaticProps>

@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react'
-import type { NextPageWithLayout } from 'next'
-import axios from 'axios'
-import { NextSeo } from 'next-seo'
-import { useForm, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import axios from 'axios'
+import type { NextPageWithLayout } from 'next'
+import { NextSeo } from 'next-seo'
+import { useState, useEffect } from 'react'
+import { useForm, FormProvider } from 'react-hook-form'
 
 import { Title } from '@/components/Heading/Title'
 import { MainLayout } from '@/components/Layout'
-import { Form } from '@/feature/contact/Form'
-
-import { schema } from '@/constants/form'
-import { Mode, IFormInputs } from '@/types/form'
+import { Form, schema, Mode, IFormInputs } from '@/features/contact'
 
 const ContactPage: NextPageWithLayout = () => {
   const [mode, setMode] = useState<Mode>('init')

@@ -1,8 +1,8 @@
-import React from 'react'
 import Link from 'next/link'
+import React from 'react'
 
-import { formatDate } from '@/utils'
 import { Content } from '@/types/microcms'
+import { formatDate } from '@/utils'
 
 type Props = {
   item: Content

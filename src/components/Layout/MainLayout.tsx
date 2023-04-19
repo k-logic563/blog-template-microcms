@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Header from './Header'
 import Footer from './Footer'
+import Header from './Header'
 import { Nav } from './Nav'
 import SearchModal from './widget/SearchModal'
 

@@ -1,8 +1,8 @@
-import Link from 'next/link'
 import { MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk'
+import Link from 'next/link'
 
-import { formatDate } from '@/utils'
 import { Content } from '@/types/microcms'
+import { formatDate } from '@/utils'
 
 type Props<T> = {
   contents: T

@@ -1,11 +1,11 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { render, fireEvent, waitFor } from '@testing-library/react'
 import { useForm, FormProvider } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Form } from '../Form'
 
-import { schema } from '@/constants/form'
-import { IFormInputs } from '@/types/form'
+import { schema } from '@/features/contact/constants'
+import { IFormInputs } from '@/features/contact/types'
 
 describe('フォームテスト', () => {
   it('正常に送信できる', async () => {

@@ -1,25 +1,23 @@
-import { useState, useMemo } from 'react'
 import axios from 'axios'
 import { InferGetStaticPropsType, NextPageWithLayout } from 'next'
 import { NextSeo } from 'next-seo'
+import { useState, useMemo } from 'react'
+
 import { CustomButton } from '@/components/Element/Button'
-
 import { Title } from '@/components/Heading/Title'
-import { List } from '@/components/List'
 import { MainLayout } from '@/components/Layout'
-
+import { List } from '@/components/List'
+import { LIMIT } from '@/features/blog'
 import { client } from '@/lib/microcms'
 import { BlogContent } from '@/types/microcms'
 
 type BlogPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
-const limit = 9
-
 export const getStaticProps = async () => {
   const data = await client.get<BlogContent>({
     endpoint: 'blogs',
     queries: {
-      limit,
+      limit: LIMIT,
     },
   })
 
@@ -49,8 +47,8 @@ const BlogPage: NextPageWithLayout<BlogPageProps> = ({ data }) => {
 
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
-        offset: pageNumber * limit,
-        limit,
+        offset: pageNumber * LIMIT,
+        limit: LIMIT,
       },
     })
 

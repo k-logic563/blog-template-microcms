@@ -1,9 +1,8 @@
 import { NextApiResponse } from 'next'
 
 import { client } from '@/lib/microcms'
-import { formatSitemapDate } from '@/utils/format'
-
 import { BlogContent } from '@/types/microcms'
+import { formatSitemapDate } from '@/utils/format'
 
 async function generateSitemapXml() {
   // 全件取得のための関数

@@ -1,5 +1,6 @@
-import { BlogContent } from '@/types/microcms'
 import { Item } from './Item'
+
+import { BlogContent } from '@/types/microcms'
 
 type Props = {
   contents: BlogContent['contents']
