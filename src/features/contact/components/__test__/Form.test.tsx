@@ -1,14 +1,23 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { render, fireEvent, waitFor } from '@testing-library/react'
+import {
+  render,
+  fireEvent,
+  waitFor,
+  screen,
+  cleanup,
+} from '@testing-library/react'
 import { useForm, FormProvider } from 'react-hook-form'
 
+import { schema } from '../../constants'
+import { IFormInputs } from '../../types'
 import { Form } from '../Form'
 
-import { schema } from '@/features/contact/constants'
-import { IFormInputs } from '@/features/contact/types'
+afterEach(() => {
+  cleanup()
+})
 
 describe('フォームテスト', () => {
-  it('正常に送信できる', async () => {
+  it('正常送信', async () => {
     const fnSubmit = jest.fn()
     const TestForm = () => {
       const methods = useForm<IFormInputs>({
@@ -25,12 +34,14 @@ describe('フォームテスト', () => {
       )
     }
 
-    const { getByTestId } = render(<TestForm />)
+    render(<TestForm />)
 
-    const nameInput = getByTestId('test-name')
-    const emailInput = getByTestId('test-email')
-    const messageTextarea = getByTestId('test-message')
-    const submitBtn = getByTestId('test-submit-button')
+    const nameInput = screen.getByRole('textbox', { name: 'お名前' })
+    const emailInput = screen.getByRole('textbox', { name: 'メールアドレス' })
+    const messageTextarea = screen.getByRole('textbox', {
+      name: 'お問い合わせ内容',
+    })
+    const submitBtn = screen.getByRole('button', { name: '送信する' })
 
     fireEvent.change(nameInput, {
       target: {
@@ -47,7 +58,6 @@ describe('フォームテスト', () => {
         value: 'テストお問い合わせです',
       },
     })
-
     fireEvent.submit(submitBtn)
 
     await waitFor(() => {
@@ -72,18 +82,17 @@ describe('フォームテスト', () => {
       )
     }
 
-    const { getByTestId } = render(<TestForm />)
+    render(<TestForm />)
 
-    const submitBtn = getByTestId('test-submit-button')
+    const submitBtn = screen.getByRole('button', { name: '送信する' })
 
     fireEvent.submit(submitBtn)
 
     await waitFor(() => {
-      expect(getByTestId('test-error-name').textContent).toBe('必須項目です')
-      expect(getByTestId('test-error-email').textContent).toBe(
-        'メールアドレス形式が違います'
-      )
-      expect(getByTestId('test-error-message').textContent).toBe('必須項目です')
+      expect(screen.getAllByText('必須項目です')).toHaveLength(2)
+      expect(
+        screen.getByText('メールアドレス形式が違います')
+      ).toBeInTheDocument()
     })
   })
 })

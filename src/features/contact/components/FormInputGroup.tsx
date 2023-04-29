@@ -26,15 +26,11 @@ export const FormInputGroup = ({ label, fieldName }: Props) => {
         <input
           id={fieldName}
           className="w-full rounded-lg border p-[0.6em_1em]"
-          data-testid={`test-${fieldName}`}
           type="text"
           {...register(fieldName)}
         />
         {errors[fieldName]?.message && (
-          <p
-            className="mt-2 text-sm text-red-600"
-            data-testid={`test-error-${fieldName}`}
-          >
+          <p className="mt-2 text-sm text-red-600">
             {errors[fieldName]?.message}
           </p>
         )}

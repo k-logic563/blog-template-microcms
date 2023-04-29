@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Mode } from '../types'
 
 import { FormInputGroup } from './FormInputGroup'
@@ -23,7 +21,6 @@ export const Form = ({ mode }: Props) => {
       <FormTextareaGroup fieldName="message" label="お問い合わせ内容" />
       <div className="mt-12 text-center">
         <CustomButton
-          testId="test-submit-button"
           disabled={mode === 'pending'}
           type="submit"
           text="送信する"
