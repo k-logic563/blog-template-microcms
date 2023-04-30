@@ -21,7 +21,7 @@ const rankTextClass = [
 export const PopularList = <T extends ContentsProps>({
   contents,
 }: Props<T>) => {
-  return (
+  return contents.length > 0 ? (
     <div className="flex flex-wrap justify-center gap-[24px] lg:gap-[32px]">
       {contents.map((item, index) => (
         <Link
@@ -48,5 +48,7 @@ export const PopularList = <T extends ContentsProps>({
         </Link>
       ))}
     </div>
+  ) : (
+    <p className="text-center">記事がありません</p>
   )
 }

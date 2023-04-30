@@ -1,9 +1,8 @@
 import type { InferGetStaticPropsType, NextPageWithLayout } from 'next'
-import Link from 'next/link'
 
 import { MainLayout } from '@/components/Layout'
 import { List } from '@/components/List'
-import { PopularList } from '@/features/home'
+import { Category, PopularList } from '@/features/home'
 import { client } from '@/lib/microcms'
 import { BlogContent, CategoryContent } from '@/types/microcms'
 
@@ -45,53 +44,20 @@ const HomePage: NextPageWithLayout<HomeProps> = ({
 }) => {
   return (
     <div className="grid gap-y-20">
-      {categories.contents.length !== 0 ? (
-        <section>
-          <h2 className="section-title">新着記事</h2>
-          <List contents={blogs.contents} />
-          <div className="mt-8 text-center">
-            <Link
-              className="inline-block rounded bg-teal-500 py-[.5em] px-[1em] font-bold text-white transition-all duration-150 hover:bg-teal-600"
-              href="/blog"
-            >
-              一覧を見る
-            </Link>
-          </div>
-        </section>
-      ) : (
-        <p className="text-center">新着記事がありません。</p>
-      )}
-      {popularBlogs.contents.length !== 0 ? (
-        <section>
-          <h2 className="section-title">人気の記事</h2>
-          <PopularList<HomeProps['blogs']['contents']>
-            contents={popularBlogs.contents}
-          />
-        </section>
-      ) : (
-        <p className="text-center">人気記事がありません。</p>
-      )}
-      {categories.contents.length !== 0 ? (
-        <section>
-          <h2 className="section-title">カテゴリー</h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            {categories.contents.map((x) => (
-              <Link
-                href={`/blog/category/${x.id}`}
-                className="relative grid h-[140px] place-items-center overflow-hidden rounded-lg after:absolute after:inset-0 after:bg-black/40 after:transition-all after:duration-150 after:content-[''] hover:after:bg-black/60 sm:h-[200px]"
-                style={{ backgroundImage: `url(${x.thumbnail.url})` }}
-                key={x.id}
-              >
-                <p className="absolute z-10 text-[20px] font-bold text-white">
-                  {x.name}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      ) : (
-        <p className="text-center">カテゴリがありません。</p>
-      )}
+      <section>
+        <h2 className="section-title">新着記事</h2>
+        <List contents={blogs.contents} />
+      </section>
+      <section>
+        <h2 className="section-title">人気の記事</h2>
+        <PopularList<HomeProps['blogs']['contents']>
+          contents={popularBlogs.contents}
+        />
+      </section>
+      <section>
+        <h2 className="section-title">カテゴリー</h2>
+        <Category contents={categories.contents} />
+      </section>
     </div>
   )
 }

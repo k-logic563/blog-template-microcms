@@ -8,9 +8,10 @@ import {
 } from '@testing-library/react'
 import { useForm, FormProvider } from 'react-hook-form'
 
-import { schema } from '../../constants'
-import { IFormInputs } from '../../types'
-import { Form } from '../Form'
+import { schema } from '../constants'
+import { IFormInputs } from '../types'
+
+import { Form } from './Form'
 
 afterEach(() => {
   cleanup()
