@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react'
 
-import { contents } from './__test__/fixture'
 import { List } from './List'
+import { contents } from './test/fixture'
 
 test('コンテンツ数の数だけ一覧表示させる', () => {
   render(<List contents={contents} />)
